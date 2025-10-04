@@ -185,7 +185,7 @@ const Index = () => {
 
             <Card className="border-border overflow-hidden">
               <div className="h-48 overflow-hidden">
-                <img src={publicSafetyImage} alt="Woman practicing situational awareness in public urban space" className="w-full h-full object-cover" />
+                <img src={publicSafetyImage} alt="Woman practicing situational awareness in public urban space" className="w-full h-full object-contain" />
               </div>
               <CardHeader>
                 <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
