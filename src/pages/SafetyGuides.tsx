@@ -5,10 +5,42 @@ import { Eye, Smartphone, Newspaper, MapPin, Focus, Sparkles, Users, TrendingUp,
 import heroImage from "@/assets/hero-privacy.jpg";
 import transparentLogo from "@/assets/encrypther-logo.png";
 import jsPDF from "jspdf";
+import { EmailGateForm } from "@/components/EmailGateForm";
+import { Toaster } from "@/components/ui/toaster";
 
 const SafetyGuides = () => {
   const [activeSection, setActiveSection] = useState(0);
+  const [hasAccess, setHasAccess] = useState(false);
+  const [showEmailGate, setShowEmailGate] = useState(false);
+
+  // Check localStorage on mount for returning users
+  useEffect(() => {
+    const hasStoredAccess = localStorage.getItem("safety_guide_access");
+    if (hasStoredAccess === "true") {
+      setHasAccess(true);
+    }
+  }, []);
   
+  const handleDiscoverKeys = () => {
+    if (hasAccess) {
+      // If already has access, scroll to content
+      document.getElementById('content')?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Show email gate
+      setShowEmailGate(true);
+      setTimeout(() => {
+        document.getElementById('email-gate')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  };
+
+  const handleEmailSuccess = () => {
+    setHasAccess(true);
+    setTimeout(() => {
+      document.getElementById('content')?.scrollIntoView({ behavior: 'smooth' });
+    }, 500);
+  };
+
   const handleDownloadPDF = () => {
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
@@ -211,15 +243,23 @@ const SafetyGuides = () => {
           <Button
             size="lg"
             className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white text-lg px-8 py-6 rounded-full shadow-elegant transition-smooth"
-            onClick={() => document.getElementById('content')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={handleDiscoverKeys}
           >
             Discover the Keys
           </Button>
         </div>
       </section>
 
-      {/* Introduction */}
-      <section id="content" className="py-20 bg-gradient-card">
+      {/* Email Gate - Shows after clicking Discover the Keys */}
+      {showEmailGate && !hasAccess && (
+        <EmailGateForm onSuccess={handleEmailSuccess} />
+      )}
+
+      {/* Full Content - Only shown after email submission */}
+      {hasAccess && (
+        <>
+          {/* Introduction */}
+          <section id="content" className="py-20 bg-gradient-card">
         <div className="container mx-auto px-4 max-w-4xl">
           <Card className="p-8 md:p-12 bg-card/80 backdrop-blur-sm border-2 border-purple-200/50 shadow-elegant">
             <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
@@ -322,6 +362,10 @@ const SafetyGuides = () => {
           </p>
         </div>
       </footer>
+        </>
+      )}
+      
+      <Toaster />
     </div>
   );
 };
