@@ -6,6 +6,7 @@ import heroImage from "@/assets/hero-privacy.jpg";
 import transparentLogo from "@/assets/encrypther-logo.png";
 import jsPDF from "jspdf";
 import { EmailGateForm } from "@/components/EmailGateForm";
+import { SafetyGuidesHeader } from "@/components/SafetyGuidesHeader";
 import { Toaster } from "@/components/ui/toaster";
 
 const SafetyGuides = () => {
@@ -216,6 +217,8 @@ const SafetyGuides = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SafetyGuidesHeader />
+      
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div
