@@ -233,8 +233,8 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <img src={encryptherLogo} alt="EncryptHer logo" className="h-6 w-6" />
+              <div className="flex items-center gap-0 mb-4">
+                <img src={encryptherLogo} alt="EncryptHer logo" className="h-12 w-12" />
                 <span className="font-bold text-lg text-foreground">EncryptHer</span>
               </div>
               <p className="text-sm text-muted-foreground">
