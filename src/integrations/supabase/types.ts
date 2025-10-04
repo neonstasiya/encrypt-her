@@ -40,22 +40,31 @@ export type Database = {
       }
       safety_guide_emails: {
         Row: {
+          active: boolean | null
           created_at: string
           email: string
           id: string
+          interests: Json | null
           source: string | null
+          subscribed_at: string | null
         }
         Insert: {
+          active?: boolean | null
           created_at?: string
           email: string
           id?: string
+          interests?: Json | null
           source?: string | null
+          subscribed_at?: string | null
         }
         Update: {
+          active?: boolean | null
           created_at?: string
           email?: string
           id?: string
+          interests?: Json | null
           source?: string | null
+          subscribed_at?: string | null
         }
         Relationships: []
       }
