@@ -273,7 +273,7 @@ const Index = () => {
           </div>
           
           <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            <p>© 2025 EncryptHer. All rights reserved. A nonprofit organization dedicated to women's digital and beyond safety.</p>
+            <p>© 2025 EncryptHer. All rights reserved. A nonprofit organization dedicated to women's digital and physical safety.</p>
           </div>
         </div>
       </footer>
