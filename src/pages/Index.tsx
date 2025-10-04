@@ -12,7 +12,7 @@ const Index = () => {
       {/* Header */}
       <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-0">
             <img src={encryptherLogo} alt="EncryptHer logo" className="h-20 w-20" />
             <h1 className="font-bold text-foreground text-3xl text-left">EncryptHer</h1>
           </div>
