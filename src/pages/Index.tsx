@@ -1,6 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Lock, Plane, Users, BookOpen, AlertCircle } from "lucide-react";
+import heroImage from "@/assets/hero-privacy.jpg";
+import onlineSecurityImage from "@/assets/online-security.jpg";
+import travelSafetyImage from "@/assets/travel-safety.jpg";
+import advocacyImage from "@/assets/advocacy.jpg";
+import publicSafetyImage from "@/assets/public-safety.jpg";
 
 const Index = () => {
   return (
@@ -22,15 +27,23 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-primary/10 via-background to-accent/10">
-        <div className="container mx-auto text-center max-w-4xl">
+      <section className="relative py-20 px-4 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={heroImage} 
+            alt="Woman working securely on laptop with digital privacy" 
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/40 via-background/80 to-accent/40" />
+        </div>
+        <div className="container mx-auto text-center max-w-4xl relative z-10">
           <div className="inline-flex items-center gap-2 bg-secondary px-4 py-2 rounded-full mb-6">
             <Lock className="h-4 w-4 text-primary" />
             <span className="text-sm font-medium text-secondary-foreground">Empowering Women Through Digital Safety</span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">
             Your Safety, Your Privacy, <span className="text-primary">Your Power</span>
-          </h2>
+          </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             EncryptHer provides essential education on online privacy, personal safety, and digital advocacy for women worldwide.
           </p>
@@ -102,7 +115,14 @@ const Index = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="border-border">
+            <Card className="border-border overflow-hidden">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src={onlineSecurityImage} 
+                  alt="Woman using digital security tools and password management" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <CardHeader>
                 <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                   <Lock className="h-6 w-6 text-primary" />
@@ -118,11 +138,21 @@ const Index = () => {
                   <li>• Social media privacy settings</li>
                   <li>• VPNs and secure browsing</li>
                   <li>• Recognizing online threats</li>
+                  <li>• Removing personal data from data brokers</li>
+                  <li>• Hiding your digital footprint & online presence</li>
+                  <li>• Deleting old accounts and profiles</li>
                 </ul>
               </CardContent>
             </Card>
 
-            <Card className="border-border">
+            <Card className="border-border overflow-hidden">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src={travelSafetyImage} 
+                  alt="Confident woman traveler in airport with safe travel practices" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <CardHeader>
                 <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
                   <Plane className="h-6 w-6 text-accent" />
@@ -142,7 +172,14 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="border-border">
+            <Card className="border-border overflow-hidden">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src={advocacyImage} 
+                  alt="Diverse group of women learning about digital advocacy and rights" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <CardHeader>
                 <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                   <Shield className="h-6 w-6 text-primary" />
@@ -162,7 +199,14 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="border-border">
+            <Card className="border-border overflow-hidden">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src={publicSafetyImage} 
+                  alt="Woman practicing situational awareness in public urban space" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <CardHeader>
                 <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
                   <Users className="h-6 w-6 text-accent" />
