@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Lock, Plane, Users, BookOpen, AlertCircle } from "lucide-react";
 import heroImage from "@/assets/hero-privacy.jpg";
+import encryptherLogo from "@/assets/encrypther-logo.png";
 import onlineSecurityImage from "@/assets/online-security.jpg";
 import travelSafetyImage from "@/assets/travel-safety.jpg";
 import advocacyImage from "@/assets/advocacy.jpg";
@@ -12,7 +13,7 @@ const Index = () => {
       <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Shield className="h-8 w-8 text-primary" />
+            <img src={encryptherLogo} alt="EncryptHer logo" className="h-8 w-8" />
             <h1 className="text-2xl font-bold text-foreground">EncryptHer</h1>
           </div>
           <nav className="hidden md:flex gap-6">
@@ -233,7 +234,7 @@ const Index = () => {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Shield className="h-6 w-6 text-primary" />
+                <img src={encryptherLogo} alt="EncryptHer logo" className="h-6 w-6" />
                 <span className="font-bold text-lg text-foreground">EncryptHer</span>
               </div>
               <p className="text-sm text-muted-foreground">
