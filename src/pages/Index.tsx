@@ -6,14 +6,14 @@ import onlineSecurityImage from "@/assets/online-security.jpg";
 import travelSafetyImage from "@/assets/travel-safety.jpg";
 import advocacyImage from "@/assets/advocacy.jpg";
 import publicSafetyImage from "@/assets/public-safety.jpg";
-import encryptherLogo from "@/assets/encrypther-logo.png";
+import logoWomanHead from "@/assets/logo-woman-head.png";
 const Index = () => {
   return <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <img src={encryptherLogo} alt="EncryptHer logo" className="h-16 w-16 object-contain" />
+            <img src={logoWomanHead} alt="EncryptHer logo" className="h-16 w-16 object-contain" />
             <h1 className="text-2xl font-bold text-foreground">EncryptHer</h1>
           </div>
           <nav className="hidden md:flex gap-6">
@@ -234,7 +234,7 @@ const Index = () => {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <img src={encryptherLogo} alt="EncryptHer logo" className="h-8 w-8 object-contain" />
+                <Shield className="h-6 w-6 text-primary" />
                 <span className="font-bold text-lg text-foreground">EncryptHer</span>
               </div>
               <p className="text-sm text-muted-foreground">
