@@ -6,10 +6,8 @@ import onlineSecurityImage from "@/assets/online-security.jpg";
 import travelSafetyImage from "@/assets/travel-safety.jpg";
 import advocacyImage from "@/assets/advocacy.jpg";
 import publicSafetyImage from "@/assets/public-safety.jpg";
-
 const Index = () => {
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -29,11 +27,7 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative py-20 px-4 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
-            src={heroImage} 
-            alt="Woman working securely on laptop with digital privacy" 
-            className="w-full h-full object-cover opacity-30"
-          />
+          <img src={heroImage} alt="Woman working securely on laptop with digital privacy" className="w-full h-full object-cover opacity-30" />
           <div className="absolute inset-0 bg-gradient-to-br from-primary/40 via-background/80 to-accent/40" />
         </div>
         <div className="container mx-auto text-center max-w-4xl relative z-10">
@@ -117,11 +111,7 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="border-border overflow-hidden">
               <div className="h-48 overflow-hidden">
-                <img 
-                  src={onlineSecurityImage} 
-                  alt="Woman using digital security tools and password management" 
-                  className="w-full h-full object-cover"
-                />
+                <img src={onlineSecurityImage} alt="Woman using digital security tools and password management" className="w-full h-full object-cover" />
               </div>
               <CardHeader>
                 <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
@@ -147,11 +137,7 @@ const Index = () => {
 
             <Card className="border-border overflow-hidden">
               <div className="h-48 overflow-hidden">
-                <img 
-                  src={travelSafetyImage} 
-                  alt="Confident woman traveler in airport with safe travel practices" 
-                  className="w-full h-full object-cover"
-                />
+                <img src={travelSafetyImage} alt="Confident woman traveler in airport with safe travel practices" className="w-full h-full object-cover" />
               </div>
               <CardHeader>
                 <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
@@ -174,11 +160,7 @@ const Index = () => {
 
             <Card className="border-border overflow-hidden">
               <div className="h-48 overflow-hidden">
-                <img 
-                  src={advocacyImage} 
-                  alt="Diverse group of women learning about digital advocacy and rights" 
-                  className="w-full h-full object-cover"
-                />
+                <img src={advocacyImage} alt="Diverse group of women learning about digital advocacy and rights" className="w-full h-full object-cover" />
               </div>
               <CardHeader>
                 <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
@@ -201,11 +183,7 @@ const Index = () => {
 
             <Card className="border-border overflow-hidden">
               <div className="h-48 overflow-hidden">
-                <img 
-                  src={publicSafetyImage} 
-                  alt="Woman practicing situational awareness in public urban space" 
-                  className="w-full h-full object-cover"
-                />
+                <img src={publicSafetyImage} alt="Woman practicing situational awareness in public urban space" className="w-full h-full object-cover" />
               </div>
               <CardHeader>
                 <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
@@ -295,12 +273,10 @@ const Index = () => {
           </div>
           
           <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            <p>&copy; 2025 EncryptHer. All rights reserved. A nonprofit organization dedicated to women's digital safety.</p>
+            <p>© 2025 EncryptHer. All rights reserved. A nonprofit organization dedicated to women's digital and beyond safety.</p>
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
