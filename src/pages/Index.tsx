@@ -112,8 +112,8 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="border-border overflow-hidden">
-              <div className="overflow-hidden">
-                <img src={onlineSecurityImage} alt="Woman using digital security tools and password management" className="w-full object-cover" />
+              <div className="h-48 overflow-hidden">
+                <img src={onlineSecurityImage} alt="Woman using digital security tools and password management" className="w-full h-full object-cover" />
               </div>
               <CardHeader>
                 <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
@@ -185,7 +185,7 @@ const Index = () => {
 
             <Card className="border-border overflow-hidden">
               <div className="h-48 overflow-hidden">
-                <img src={publicSafetyImage} alt="Woman practicing situational awareness in public urban space" className="w-full h-full object-cover" />
+                <img src={publicSafetyImage} alt="Woman practicing situational awareness in public urban space" className="w-full h-full object-contain" />
               </div>
               <CardHeader>
                 <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
