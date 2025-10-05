@@ -125,15 +125,15 @@ const Index = () => {
                   </div>
                   <CardTitle>Digital Advocacy</CardTitle>
                   <CardDescription>
-                    Empower yourself with tools and knowledge to advocate for digital rights
+                    Join us in advocating for comprehensive privacy legislation and stronger data protection laws in America
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>• Understanding digital rights</li>
-                    <li>• Reporting harassment online</li>
-                    <li>• Building support networks</li>
-                    <li>• Legal resources & protections</li>
+                    <li>• Legislative advocacy for federal privacy laws</li>
+                    <li>• Coalition building with privacy organizations</li>
+                    <li>• Resources to contact your representatives</li>
+                    <li>• Fighting for comprehensive data protection</li>
                   </ul>
                 </CardContent>
               </Card>
