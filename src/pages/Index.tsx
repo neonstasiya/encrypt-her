@@ -43,10 +43,10 @@ const Index = () => {
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             EncryptHer provides essential education on online privacy, personal safety, and digital advocacy for women worldwide.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#courses"><Button size="lg" className="text-lg">Explore Classes</Button></a>
-            <a href="#what-we-do"><Button size="lg" variant="outline" className="text-lg">Learn More</Button></a>
-          </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="#courses"><Button size="lg" className="text-lg">View Our Courses</Button></a>
+              <a href="#what-we-do"><Button size="lg" variant="outline" className="text-lg">Learn More</Button></a>
+            </div>
         </div>
       </section>
 
@@ -127,31 +127,6 @@ const Index = () => {
               </Card>
             </Link>
 
-            <Link to="/travel-safety" className="block">
-              <Card className="border-border overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
-                <div className="h-48 overflow-hidden">
-                  <img src={travelSafetyImage} alt="Confident woman traveler in airport with safe travel practices" className="w-full h-full object-cover" />
-                </div>
-                <CardHeader>
-                  <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
-                    <Plane className="h-6 w-6 text-accent" />
-                  </div>
-                  <CardTitle>Travel Safety</CardTitle>
-                  <CardDescription>
-                    Essential safety strategies for traveling and navigating public spaces with confidence
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>• Personal security awareness</li>
-                    <li>• Safe travel planning</li>
-                    <li>• Emergency response strategies</li>
-                    <li>• Cultural awareness & adaptation</li>
-                  </ul>
-                </CardContent>
-              </Card>
-            </Link>
-
             <Link to="/public-safety" className="block">
               <Card className="border-border overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
                 <div className="h-48 overflow-hidden">
@@ -172,6 +147,31 @@ const Index = () => {
                     <li>• Self-defense basics</li>
                     <li>• Safe dating practices</li>
                     <li>• Community safety resources</li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link to="/travel-safety" className="block">
+              <Card className="border-border overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+                <div className="h-48 overflow-hidden">
+                  <img src={travelSafetyImage} alt="Confident woman traveler in airport with safe travel practices" className="w-full h-full object-cover" />
+                </div>
+                <CardHeader>
+                  <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+                    <Plane className="h-6 w-6 text-accent" />
+                  </div>
+                  <CardTitle>Travel Safety</CardTitle>
+                  <CardDescription>
+                    Essential safety strategies for traveling and navigating public spaces with confidence
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li>• Personal security awareness</li>
+                    <li>• Safe travel planning</li>
+                    <li>• Emergency response strategies</li>
+                    <li>• Cultural awareness & adaptation</li>
                   </ul>
                 </CardContent>
               </Card>
