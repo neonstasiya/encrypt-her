@@ -196,10 +196,10 @@ const Index = () => {
             <div>
               <h4 className="font-semibold mb-4 text-foreground">Programs</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition-colors">Online Privacy</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Travel Safety</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Advocacy</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Public Safety</a></li>
+                <li><Link to="/online-privacy" className="hover:text-foreground transition-colors">Online Privacy</Link></li>
+                <li><a href="/#classes" className="hover:text-foreground transition-colors">Travel Safety</a></li>
+                <li><a href="/#classes" className="hover:text-foreground transition-colors">Advocacy</a></li>
+                <li><a href="/#classes" className="hover:text-foreground transition-colors">Public Safety</a></li>
               </ul>
             </div>
             
