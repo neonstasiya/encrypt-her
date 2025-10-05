@@ -22,12 +22,8 @@ const Index = () => {
             <a href="#what-we-do" className="text-muted-foreground hover:text-foreground transition-colors">What We Do</a>
             <a href="#courses" className="text-muted-foreground hover:text-foreground transition-colors">Classes</a>
             <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</a>
-            <Link to="/digital-advocacy">
-              <Button variant="ghost">Advocate</Button>
-            </Link>
-            <Link to="/donate">
-              <Button variant="ghost">Donate</Button>
-            </Link>
+            <Link to="/digital-advocacy" className="text-muted-foreground hover:text-foreground transition-colors">Advocate</Link>
+            <Link to="/donate" className="text-muted-foreground hover:text-foreground transition-colors">Donate</Link>
           </nav>
           <Button>Get Started</Button>
         </div>
