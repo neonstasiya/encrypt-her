@@ -191,8 +191,8 @@ const Index = () => {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-0 mb-1">
-                <img src={encryptherLogo} alt="EncryptHer logo" className="h-12 w-12" />
-                <span className="font-bold text-lg text-foreground -ml-2">EncryptHer</span>
+                <img src={encryptherLogo} alt="EncryptHer logo" className="h-14 w-14 object-cover -mr-2" />
+                <span className="font-bold text-lg text-foreground">EncryptHer</span>
               </div>
               <p className="text-sm text-muted-foreground">
                 Empowering women through digital safety education and real-world protection strategies.
