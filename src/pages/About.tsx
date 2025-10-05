@@ -3,6 +3,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { Users, BookOpen, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import encryptherLogo from "@/assets/encrypther-logo.png";
+import founderPhoto from "@/assets/founder-photo.png";
 const About = () => {
   return <div className="min-h-screen bg-background">
       {/* Header */}
@@ -34,15 +35,13 @@ const About = () => {
           
           {/* Founder's Story */}
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-            {/* Photo Placeholder */}
+            {/* Founder Photo */}
             <div className="flex justify-center">
-              <div className="relative w-64 h-64 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center border-2 border-border">
-                <div className="text-center text-muted-foreground">
-                  <Users className="h-16 w-16 mx-auto mb-2 opacity-50" />
-                  <p className="text-sm">Founder Photo</p>
-                  <p className="text-xs">(To be added)</p>
-                </div>
-              </div>
+              <img 
+                src={founderPhoto} 
+                alt="EncryptHer Founder" 
+                className="w-64 h-64 rounded-2xl object-cover border-2 border-border shadow-lg"
+              />
             </div>
             
             {/* Story & Mission */}
