@@ -53,49 +53,89 @@ const Index = () => {
       {/* About Section */}
       <section id="about" className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Our Mission</h3>
+          <div className="text-center mb-16">
+            <h3 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">About EncryptHer</h3>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We believe every woman deserves to feel safe and empowered in both digital and physical spaces.
+              Born from personal experience, built for women's empowerment
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="border-border hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                  <Users className="h-6 w-6 text-primary" />
+          {/* Founder's Story */}
+          <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+            {/* Photo Placeholder */}
+            <div className="flex justify-center">
+              <div className="relative w-64 h-64 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center border-2 border-border">
+                <div className="text-center text-muted-foreground">
+                  <Users className="h-16 w-16 mx-auto mb-2 opacity-50" />
+                  <p className="text-sm">Founder Photo</p>
+                  <p className="text-xs">(To be added)</p>
                 </div>
-                <CardTitle>Advocacy</CardTitle>
-                <CardDescription>
-                  Fighting for women's digital rights and privacy protection
-                </CardDescription>
-              </CardHeader>
-            </Card>
+              </div>
+            </div>
+            
+            {/* Story & Mission */}
+            <div className="space-y-6">
+              <div>
+                <h4 className="text-2xl font-bold mb-4 text-foreground">Why EncryptHer Exists</h4>
+                <div className="space-y-4 text-muted-foreground">
+                  <p>
+                    As a cybersecurity professional, I understand the technical side of digital safety. But as a single woman who has experienced stalking after dates, harassment while walking downtown, and the constant vigilance required to feel safe in public spaces, I understand something even more important—the urgent need for comprehensive safety education.
+                  </p>
+                  <p>
+                    After one too many unsettling experiences, I realized that too many women lack access to the knowledge and resources that could protect them. We're told to "be careful," but rarely given the practical tools to actually defend ourselves in our increasingly connected world.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="border-l-4 border-primary pl-6 py-2">
+                <h5 className="text-xl font-semibold mb-3 text-foreground">Our Mission</h5>
+                <p className="text-muted-foreground leading-relaxed">
+                  EncryptHer was born from this reality—a platform dedicated to empowering women with the tools, knowledge, and confidence to defend themselves in every aspect of their lives. Whether you're traveling solo, buying your first home, creating social media profiles, navigating the dating world, or simply walking downtown, we provide comprehensive safety resources tailored to your needs. Because every woman deserves to move through the world—both online and offline—with confidence, security, and peace of mind.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          {/* Core Values */}
+          <div>
+            <h4 className="text-2xl font-bold text-center mb-8 text-foreground">Our Core Values</h4>
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="border-border hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                    <Users className="h-6 w-6 text-primary" />
+                  </div>
+                  <CardTitle>Advocacy</CardTitle>
+                  <CardDescription>
+                    Fighting for women's digital rights and privacy protection through education and awareness
+                  </CardDescription>
+                </CardHeader>
+              </Card>
 
-            <Card className="border-border hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="h-12 w-12 rounded-full bg-accent/10 flex items-center justify-center mb-4">
-                  <AlertCircle className="h-6 w-6 text-accent" />
-                </div>
-                <CardTitle>Awareness</CardTitle>
-                <CardDescription>
-                  Raising consciousness about digital threats and safety measures
-                </CardDescription>
-              </CardHeader>
-            </Card>
+              <Card className="border-border hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="h-12 w-12 rounded-full bg-accent/10 flex items-center justify-center mb-4">
+                    <AlertCircle className="h-6 w-6 text-accent" />
+                  </div>
+                  <CardTitle>Awareness</CardTitle>
+                  <CardDescription>
+                    Raising consciousness about both digital threats and physical safety concerns women face daily
+                  </CardDescription>
+                </CardHeader>
+              </Card>
 
-            <Card className="border-border hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                  <BookOpen className="h-6 w-6 text-primary" />
-                </div>
-                <CardTitle>Education</CardTitle>
-                <CardDescription>
-                  Providing practical skills and knowledge for digital safety
-                </CardDescription>
-              </CardHeader>
-            </Card>
+              <Card className="border-border hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                    <BookOpen className="h-6 w-6 text-primary" />
+                  </div>
+                  <CardTitle>Education</CardTitle>
+                  <CardDescription>
+                    Providing practical skills and actionable knowledge for digital safety and real-world protection
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
@@ -239,7 +279,7 @@ const Index = () => {
                 <span className="font-bold text-lg text-foreground">EncryptHer</span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Empowering women through education in digital safety and privacy.
+                Empowering women with the knowledge and confidence to protect themselves in both digital and physical spaces.
               </p>
             </div>
             
