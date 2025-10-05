@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Donate from "./pages/Donate";
 import OnlinePrivacy from "./pages/OnlinePrivacy";
+import TravelSafety from "./pages/TravelSafety";
 import SafetyGuides from "./pages/SafetyGuides";
 import Newsletter from "./pages/Newsletter";
 import NotFound from "./pages/NotFound";
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="/online-privacy" element={<OnlinePrivacy />} />
+          <Route path="/travel-safety" element={<TravelSafety />} />
           <Route path="/safety-guides" element={<SafetyGuides />} />
           <Route path="/newsletter" element={<Newsletter />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
