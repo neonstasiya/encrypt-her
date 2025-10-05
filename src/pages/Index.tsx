@@ -21,11 +21,13 @@ const Index = () => {
             <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">About</Link>
             <a href="#what-we-do" className="text-muted-foreground hover:text-foreground transition-colors">What We Do</a>
             <a href="#courses" className="text-muted-foreground hover:text-foreground transition-colors">Classes</a>
-            <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</a>
             <Link to="/digital-advocacy" className="text-muted-foreground hover:text-foreground transition-colors">Advocate</Link>
+            <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</a>
             <Link to="/donate" className="text-muted-foreground hover:text-foreground transition-colors">Donate</Link>
           </nav>
-          <Button>Get Started</Button>
+          <Link to="/donate">
+            <Button>Donate</Button>
+          </Link>
         </div>
       </header>
 
