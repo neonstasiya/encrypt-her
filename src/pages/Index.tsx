@@ -114,28 +114,30 @@ const Index = () => {
               </Card>
             </Link>
 
-            <Card className="border-border overflow-hidden">
-              <div className="h-48 overflow-hidden">
-                <img src={advocacyImage} alt="Diverse group of women learning about digital advocacy and rights" className="w-full h-full object-cover" />
-              </div>
-              <CardHeader>
-                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <Shield className="h-6 w-6 text-primary" />
+            <Link to="/digital-advocacy" className="block">
+              <Card className="border-border overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+                <div className="h-48 overflow-hidden">
+                  <img src={advocacyImage} alt="Diverse group of women learning about digital advocacy and rights" className="w-full h-full object-cover" />
                 </div>
-                <CardTitle>Digital Advocacy</CardTitle>
-                <CardDescription>
-                  Empower yourself with tools and knowledge to advocate for digital rights
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• Understanding digital rights</li>
-                  <li>• Reporting harassment online</li>
-                  <li>• Building support networks</li>
-                  <li>• Legal resources & protections</li>
-                </ul>
-              </CardContent>
-            </Card>
+                <CardHeader>
+                  <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                    <Shield className="h-6 w-6 text-primary" />
+                  </div>
+                  <CardTitle>Digital Advocacy</CardTitle>
+                  <CardDescription>
+                    Empower yourself with tools and knowledge to advocate for digital rights
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li>• Understanding digital rights</li>
+                    <li>• Reporting harassment online</li>
+                    <li>• Building support networks</li>
+                    <li>• Legal resources & protections</li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </Link>
 
             <Card className="border-border overflow-hidden">
               <div className="h-48 overflow-hidden">
@@ -202,7 +204,7 @@ const Index = () => {
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li><Link to="/online-privacy" className="hover:text-foreground transition-colors">Online Privacy</Link></li>
                 <li><Link to="/travel-safety" className="hover:text-foreground transition-colors">Travel Safety</Link></li>
-                <li><a href="/#classes" className="hover:text-foreground transition-colors">Advocacy</a></li>
+                <li><Link to="/digital-advocacy" className="hover:text-foreground transition-colors">Advocacy</Link></li>
                 <li><a href="/#classes" className="hover:text-foreground transition-colors">Public Safety</a></li>
               </ul>
             </div>
