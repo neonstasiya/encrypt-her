@@ -3,10 +3,8 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { Users, BookOpen, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import encryptherLogo from "@/assets/encrypther-logo.png";
-
 const About = () => {
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 flex items-center justify-between py-px">
@@ -63,9 +61,7 @@ const About = () => {
               
               <div className="border-l-4 border-primary pl-6 py-2">
                 <h3 className="text-2xl font-semibold mb-3 text-foreground">Our Mission</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  EncryptHer was born from this reality—a platform dedicated to empowering women with the tools, knowledge, and confidence to defend themselves in every aspect of their lives. Whether you're traveling solo, buying your first home, creating social media profiles, navigating the dating world, or simply walking downtown, we provide comprehensive safety resources tailored to your needs. Because every woman deserves to move through the world—both online and offline—with confidence, security, and peace of mind.
-                </p>
+                <p className="text-muted-foreground leading-relaxed text-base">EncryptHer was born from this reality—a platform dedicated to empowering women with the tools, knowledge, and confidence to defend themselves in every aspect of their lives. Whether you're traveling solo, buying your first home, creating social media profiles, navigating the dating world, or simply walking walking your dog, we provide comprehensive safety resources tailored to your needs. Because every woman deserves to move through the world—both online and offline—with confidence, security, and peace of mind.</p>
               </div>
             </div>
           </div>
@@ -164,8 +160,6 @@ const About = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default About;
