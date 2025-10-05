@@ -20,6 +20,7 @@ const Index = () => {
           <nav className="hidden md:flex gap-6">
             <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">About</Link>
             <a href="#what-we-do" className="text-muted-foreground hover:text-foreground transition-colors">What We Do</a>
+            <a href="#courses" className="text-muted-foreground hover:text-foreground transition-colors">Classes</a>
             <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</a>
           </nav>
           <Button>Get Started</Button>
@@ -91,7 +92,7 @@ const Index = () => {
       <section id="courses" className="py-20 px-4 bg-muted/50">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Our Courses</h3>
+            <h3 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Learn It</h3>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Comprehensive courses designed to protect and empower you
             </p>
