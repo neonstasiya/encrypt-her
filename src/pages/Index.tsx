@@ -18,7 +18,7 @@ const Index = () => {
             <h1 className="text-2xl font-bold text-foreground">EncryptHer</h1>
           </div>
           <nav className="hidden md:flex gap-6">
-            <a href="#about" className="text-muted-foreground hover:text-foreground transition-colors">About</a>
+            <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">About</Link>
             <a href="#classes" className="text-muted-foreground hover:text-foreground transition-colors">Classes</a>
             <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</a>
           </nav>
@@ -180,48 +180,8 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer id="about" className="py-12 px-4 border-t border-border bg-card">
+      <footer className="py-12 px-4 border-t border-border bg-card">
         <div className="container mx-auto max-w-6xl">
-          {/* About Us Section */}
-          <div className="mb-12 pb-12 border-b border-border">
-            <h3 className="text-2xl md:text-3xl font-bold mb-8 text-foreground">About EncryptHer</h3>
-            
-            <div className="grid md:grid-cols-2 gap-12 items-start mb-8">
-              {/* Photo Placeholder */}
-              <div className="flex justify-center">
-                <div className="relative w-64 h-64 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center border-2 border-border">
-                  <div className="text-center text-muted-foreground">
-                    <Users className="h-16 w-16 mx-auto mb-2 opacity-50" />
-                    <p className="text-sm">Founder Photo</p>
-                    <p className="text-xs">(To be added)</p>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Story & Mission */}
-              <div className="space-y-6">
-                <div>
-                  <h4 className="text-xl font-bold mb-4 text-foreground">Why EncryptHer Exists</h4>
-                  <div className="space-y-4 text-sm text-muted-foreground">
-                    <p>
-                      As a cybersecurity professional, I understand the technical side of digital safety. But as a single woman who has experienced stalking after dates, harassment while walking downtown, and the constant vigilance required to feel safe in public spaces, I understand something even more important—the urgent need for comprehensive safety education.
-                    </p>
-                    <p>
-                      After one too many unsettling experiences, I realized that too many women lack access to the knowledge and resources that could protect them. We're told to "be careful," but rarely given the practical tools to actually defend ourselves in our increasingly connected world.
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="border-l-4 border-primary pl-6 py-2">
-                  <h5 className="text-lg font-semibold mb-3 text-foreground">Our Mission</h5>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    EncryptHer was born from this reality—a platform dedicated to empowering women with the tools, knowledge, and confidence to defend themselves in every aspect of their lives. Whether you're traveling solo, buying your first home, creating social media profiles, navigating the dating world, or simply walking downtown, we provide comprehensive safety resources tailored to your needs. Because every woman deserves to move through the world—both online and offline—with confidence, security, and peace of mind.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-1 mb-4">
@@ -256,7 +216,7 @@ const Index = () => {
             <div>
               <h4 className="font-semibold mb-4 text-foreground">Connect</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition-colors">About Us</a></li>
+                <li><Link to="/about" className="hover:text-foreground transition-colors">About Us</Link></li>
                 <li><a href="#" className="hover:text-foreground transition-colors">Contact</a></li>
                 <li><Link to="/newsletter" className="hover:text-foreground transition-colors">Newsletter</Link></li>
                 <li><a href="#" className="hover:text-foreground transition-colors">Donate</a></li>
