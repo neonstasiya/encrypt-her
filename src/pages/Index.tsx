@@ -17,11 +17,17 @@ const Index = () => {
             <img src={encryptherLogo} alt="EncryptHer logo" className="h-28 w-28 object-cover -mr-2" />
             <h1 className="text-2xl font-bold text-foreground">EncryptHer</h1>
           </div>
-          <nav className="hidden md:flex gap-6">
+          <nav className="hidden md:flex gap-6 items-center">
             <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">About</Link>
             <a href="#what-we-do" className="text-muted-foreground hover:text-foreground transition-colors">What We Do</a>
             <a href="#courses" className="text-muted-foreground hover:text-foreground transition-colors">Classes</a>
             <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</a>
+            <Link to="/digital-advocacy">
+              <Button variant="ghost">Advocate</Button>
+            </Link>
+            <Link to="/donate">
+              <Button variant="ghost">Donate</Button>
+            </Link>
           </nav>
           <Button>Get Started</Button>
         </div>
