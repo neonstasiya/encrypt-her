@@ -19,7 +19,7 @@ const Index = () => {
           </div>
           <nav className="hidden md:flex gap-6">
             <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">About</Link>
-            <a href="#classes" className="text-muted-foreground hover:text-foreground transition-colors">Classes</a>
+            <a href="#programs" className="text-muted-foreground hover:text-foreground transition-colors">What We Do</a>
             <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</a>
           </nav>
           <Button>Get Started</Button>
@@ -50,13 +50,13 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Classes Section */}
-      <section id="classes" className="py-20 px-4 bg-muted/50">
+      {/* What We Do Section */}
+      <section id="programs" className="py-20 px-4 bg-muted/50">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Our Classes</h3>
+            <h3 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">What We Do</h3>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive courses designed to protect and empower you
+              Educational courses and advocacy initiatives designed to protect and empower you
             </p>
           </div>
 
@@ -123,7 +123,12 @@ const Index = () => {
                   <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                     <Shield className="h-6 w-6 text-primary" />
                   </div>
-                  <CardTitle>Digital Advocacy</CardTitle>
+                  <div className="flex items-center gap-2 mb-2">
+                    <CardTitle>Digital Advocacy</CardTitle>
+                    <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-accent/20 text-accent-foreground">
+                      Initiative
+                    </span>
+                  </div>
                   <CardDescription>
                     Join us in advocating for comprehensive privacy legislation and stronger data protection laws in America
                   </CardDescription>
