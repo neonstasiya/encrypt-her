@@ -43,9 +43,8 @@ const Index = () => {
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             EncryptHer provides essential education on online privacy, personal safety, and digital advocacy for women worldwide.
           </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <a href="#courses"><Button size="lg" className="text-lg">View Our Courses</Button></a>
-              <a href="#what-we-do"><Button size="lg" variant="outline" className="text-lg">Learn More</Button></a>
             </div>
         </div>
       </section>
