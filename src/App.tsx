@@ -11,6 +11,7 @@ import TravelSafety from "./pages/TravelSafety";
 import DigitalAdvocacy from "./pages/DigitalAdvocacy";
 import SafetyGuides from "./pages/SafetyGuides";
 import Newsletter from "./pages/Newsletter";
+import PublicSafety from "./pages/PublicSafety";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/digital-advocacy" element={<DigitalAdvocacy />} />
           <Route path="/safety-guides" element={<SafetyGuides />} />
           <Route path="/newsletter" element={<Newsletter />} />
+          <Route path="/public-safety" element={<PublicSafety />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -139,28 +139,30 @@ const Index = () => {
               </Card>
             </Link>
 
-            <Card className="border-border overflow-hidden">
-              <div className="h-48 overflow-hidden">
-                <img src={publicSafetyImage} alt="Woman practicing situational awareness in public urban space" className="w-full h-full object-cover" />
-              </div>
-              <CardHeader>
-                <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
-                  <Users className="h-6 w-6 text-accent" />
+            <Link to="/public-safety" className="block">
+              <Card className="border-border overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+                <div className="h-48 overflow-hidden">
+                  <img src={publicSafetyImage} alt="Woman practicing situational awareness in public urban space" className="w-full h-full object-cover" />
                 </div>
-                <CardTitle>Public Safety & Awareness</CardTitle>
-                <CardDescription>
-                  Practical strategies for staying safe in public and everyday situations
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• Situational awareness techniques</li>
-                  <li>• Self-defense basics</li>
-                  <li>• Safe dating practices</li>
-                  <li>• Community safety resources</li>
-                </ul>
-              </CardContent>
-            </Card>
+                <CardHeader>
+                  <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+                    <Users className="h-6 w-6 text-accent" />
+                  </div>
+                  <CardTitle>Public Safety & Awareness</CardTitle>
+                  <CardDescription>
+                    Practical strategies for staying safe in public and everyday situations
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li>• Situational awareness techniques</li>
+                    <li>• Self-defense basics</li>
+                    <li>• Safe dating practices</li>
+                    <li>• Community safety resources</li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
         </div>
       </section>
@@ -205,7 +207,7 @@ const Index = () => {
                 <li><Link to="/online-privacy" className="hover:text-foreground transition-colors">Online Privacy</Link></li>
                 <li><Link to="/travel-safety" className="hover:text-foreground transition-colors">Travel Safety</Link></li>
                 <li><Link to="/digital-advocacy" className="hover:text-foreground transition-colors">Advocacy</Link></li>
-                <li><a href="/#classes" className="hover:text-foreground transition-colors">Public Safety</a></li>
+                <li><Link to="/public-safety" className="hover:text-foreground transition-colors">Public Safety</Link></li>
               </ul>
             </div>
             
