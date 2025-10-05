@@ -219,7 +219,7 @@ const Index = () => {
                 <li><Link to="/about" className="hover:text-foreground transition-colors">About Us</Link></li>
                 <li><a href="#" className="hover:text-foreground transition-colors">Contact</a></li>
                 <li><Link to="/newsletter" className="hover:text-foreground transition-colors">Newsletter</Link></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Donate</a></li>
+                <li><Link to="/donate" className="hover:text-foreground transition-colors">Donate</Link></li>
               </ul>
             </div>
           </div>
