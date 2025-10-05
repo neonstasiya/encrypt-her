@@ -192,7 +192,7 @@ const Index = () => {
             <div>
               <div className="flex items-center gap-0 mb-1">
                 <img src={encryptherLogo} alt="EncryptHer logo" className="h-12 w-12" />
-                <span className="font-bold text-lg text-foreground">EncryptHer</span>
+                <span className="font-bold text-lg text-foreground -ml-2">EncryptHer</span>
               </div>
               <p className="text-sm text-muted-foreground">
                 Empowering women through digital safety education and real-world protection strategies.
