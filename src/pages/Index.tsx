@@ -44,7 +44,7 @@ const Index = () => {
             EncryptHer provides essential education on online privacy, personal safety, and digital advocacy for women worldwide.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg">Explore Classes</Button>
+            
             <Button size="lg" variant="outline" className="text-lg">Learn More</Button>
           </div>
         </div>
