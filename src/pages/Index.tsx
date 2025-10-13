@@ -221,8 +221,8 @@ const Index = () => {
             <Button size="lg" variant="secondary" className="text-lg">
               Enroll Now
             </Button>
-            <Button size="lg" variant="outline" className="text-lg bg-white/10 hover:bg-white/20 text-white border-white/20">
-              Contact Us
+            <Button size="lg" variant="outline" className="text-lg bg-white/10 hover:bg-white/20 text-white border-white/20" asChild>
+              <Link to="/contact">Contact Us</Link>
             </Button>
           </div>
         </div>
@@ -266,7 +266,7 @@ const Index = () => {
               <h4 className="font-semibold mb-4 text-foreground">Connect</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li><Link to="/about" className="hover:text-foreground transition-colors">About Us</Link></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Contact</a></li>
+                <li><Link to="/contact" className="hover:text-foreground transition-colors">Contact</Link></li>
                 <li><Link to="/newsletter" className="hover:text-foreground transition-colors">Newsletter</Link></li>
                 <li><Link to="/donate" className="hover:text-foreground transition-colors">Donate</Link></li>
               </ul>
