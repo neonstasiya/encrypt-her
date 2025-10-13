@@ -4,10 +4,10 @@ import { Shield, Lock, Plane, Users, BookOpen, AlertCircle } from "lucide-react"
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-privacy.jpg";
 import encryptherLogo from "@/assets/encrypther-logo.png";
-import privacyPaperImage from "@/assets/privacy-paper.jpg";
-import travelLuggageImage from "@/assets/travel-luggage.jpg";
+import onlineSecurityImage from "@/assets/online-security.jpg";
+import travelSafetyImage from "@/assets/travel-safety.jpg";
 import advocacyImage from "@/assets/advocacy.jpg";
-import streetAwarenessImage from "@/assets/street-awareness.jpg";
+import publicSafetyImage from "@/assets/public-safety.jpg";
 const Index = () => {
   return <div className="min-h-screen bg-background">
       {/* Header */}
@@ -106,7 +106,7 @@ const Index = () => {
             <Link to="/online-privacy" className="block">
               <Card className="border-border overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
                 <div className="h-48 overflow-hidden">
-                  <img src={privacyPaperImage} alt="Woman covering her face with paper representing online privacy protection" className="w-full h-full object-cover object-[center_30%]" />
+                  <img src={onlineSecurityImage} alt="Woman using digital security tools and password management" className="w-full h-full object-cover object-[center_90%]" />
                 </div>
                 <CardHeader>
                   <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
@@ -114,13 +114,19 @@ const Index = () => {
                   </div>
                   <CardTitle>Online Privacy & Security</CardTitle>
                   <CardDescription>
-                    🛡️ 1 in 3 women experience online harassment — we're here to change that.
+                    Learn to protect your digital footprint, secure your accounts, and maintain privacy online
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Learn to protect your digital footprint, secure your accounts, and maintain privacy online.
-                  </p>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li>• Password management & encryption</li>
+                    <li>• Social media privacy settings</li>
+                    <li>• VPNs and secure browsing</li>
+                    <li>• Recognizing online threats</li>
+                    <li>• Removing personal data from data brokers</li>
+                    <li>• Hiding your digital footprint & online presence</li>
+                    <li>• Deleting old accounts and profiles</li>
+                  </ul>
                 </CardContent>
               </Card>
             </Link>
@@ -128,7 +134,7 @@ const Index = () => {
             <Link to="/public-safety" className="block">
               <Card className="border-border overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
                 <div className="h-48 overflow-hidden">
-                  <img src={streetAwarenessImage} alt="Woman practicing situational awareness in public urban space" className="w-full h-full object-cover" />
+                  <img src={publicSafetyImage} alt="Woman practicing situational awareness in public urban space" className="w-full h-full object-cover" />
                 </div>
                 <CardHeader>
                   <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
@@ -136,13 +142,16 @@ const Index = () => {
                   </div>
                   <CardTitle>Public Safety & Awareness</CardTitle>
                   <CardDescription>
-                    💪 Research shows awareness and education can reduce women's risk of violence by up to 50%.
+                    Practical strategies for staying safe in public and everyday situations
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Our programs turn fear into preparedness — giving women the tools, training, and confidence to stay safe wherever they go.
-                  </p>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li>• Situational awareness techniques</li>
+                    <li>• Self-defense basics</li>
+                    <li>• Safe dating practices</li>
+                    <li className="w-full h-full object-cover object-[center_70%]">• Community safety resources</li>
+                  </ul>
                 </CardContent>
               </Card>
             </Link>
@@ -150,7 +159,7 @@ const Index = () => {
             <Link to="/travel-safety" className="block">
               <Card className="border-border overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
                 <div className="h-48 overflow-hidden">
-                  <img src={travelLuggageImage} alt="Confident woman traveler with luggage practicing safe travel habits" className="w-full h-full object-cover object-[center_30%]" />
+                  <img src={travelSafetyImage} alt="Confident woman traveler in airport with safe travel practices" className="w-full h-full object-cover" />
                 </div>
                 <CardHeader>
                   <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
@@ -158,13 +167,16 @@ const Index = () => {
                   </div>
                   <CardTitle>Travel Safety</CardTitle>
                   <CardDescription>
-                    ✈️ 1 in 4 female travelers say they've felt unsafe or threatened when traveling alone.
+                    Essential safety strategies for traveling and navigating public spaces with confidence
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Our workshops teach women how to identify danger before it starts — from rideshare red flags to hotel security checks.
-                  </p>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li>• Personal security awareness</li>
+                    <li>• Safe travel planning</li>
+                    <li>• Emergency response strategies</li>
+                    <li>• Cultural awareness & adaptation</li>
+                  </ul>
                 </CardContent>
               </Card>
             </Link>
