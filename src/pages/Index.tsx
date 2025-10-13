@@ -140,12 +140,9 @@ const Index = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>• Situational awareness techniques</li>
-                    <li>• Self-defense basics</li>
-                    <li>• Safe dating practices</li>
-                    <li>• Community safety resources</li>
-                  </ul>
+                  <p className="text-sm text-muted-foreground">
+                    Learn practical strategies for staying safe in public and everyday situations.
+                  </p>
                 </CardContent>
               </Card>
             </Link>
