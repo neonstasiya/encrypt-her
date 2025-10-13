@@ -2,6 +2,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Lock, Plane, Users, BookOpen, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 import heroImage from "@/assets/hero-privacy.jpg";
 import encryptherLogo from "@/assets/encrypther-logo.png";
 import privacyPaperImage from "@/assets/privacy-paper.jpg";
@@ -17,13 +25,82 @@ const Index = () => {
             <img src={encryptherLogo} alt="EncryptHer logo" className="h-28 w-28 object-cover -mr-2" />
             <h1 className="text-2xl font-bold text-foreground">EncryptHer</h1>
           </div>
-          <nav className="hidden md:flex gap-6 items-center">
-            <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">About</Link>
-            <a href="#what-we-do" className="text-muted-foreground hover:text-foreground transition-colors">What We Do</a>
-            <a href="#courses" className="text-muted-foreground hover:text-foreground transition-colors">Classes</a>
-            <Link to="/digital-advocacy" className="text-muted-foreground hover:text-foreground transition-colors">Advocate</Link>
-            <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</a>
-          </nav>
+          <NavigationMenu className="hidden md:flex">
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors px-4 py-2">About</Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+              
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <a href="#what-we-do" className="text-muted-foreground hover:text-foreground transition-colors px-4 py-2">What We Do</a>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+              
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-muted-foreground hover:text-foreground">
+                  Classes
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="w-[200px] p-2">
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link 
+                          to="/online-privacy"
+                          className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        >
+                          <div className="text-sm font-medium leading-none mb-1">Online Privacy</div>
+                          <p className="text-xs leading-snug text-muted-foreground line-clamp-2">
+                            Digital security & privacy
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link 
+                          to="/public-safety"
+                          className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        >
+                          <div className="text-sm font-medium leading-none mb-1">Public Safety</div>
+                          <p className="text-xs leading-snug text-muted-foreground line-clamp-2">
+                            Awareness & protection
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link 
+                          to="/travel-safety"
+                          className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        >
+                          <div className="text-sm font-medium leading-none mb-1">Travel Safety</div>
+                          <p className="text-xs leading-snug text-muted-foreground line-clamp-2">
+                            Safe travel practices
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+              
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <Link to="/digital-advocacy" className="text-muted-foreground hover:text-foreground transition-colors px-4 py-2">Advocate</Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+              
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <Link to="/contact" className="text-muted-foreground hover:text-foreground transition-colors px-4 py-2">Contact</Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
           <Link to="/donate">
             <Button>Donate</Button>
           </Link>
