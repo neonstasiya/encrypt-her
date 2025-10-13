@@ -200,24 +200,9 @@ const Index = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-3 text-sm text-muted-foreground">
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-0.5">•</span>
-                    <span>Legislative advocacy for comprehensive federal privacy laws</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-0.5">•</span>
-                    <span>Coalition building with leading privacy organizations</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-0.5">•</span>
-                    <span>Resources and tools to contact your representatives</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-0.5">•</span>
-                    <span>Fighting for comprehensive data protection for all Americans</span>
-                  </li>
-                </ul>
+                <p className="text-sm text-muted-foreground">
+                  Your medical records, home address, and even dating app data can be sold legally — because the U.S. still has no national privacy law protecting you. Source: Electronic Frontier Foundation (<a href="https://www.eff.org/deeplinks/2025/08/data-brokers-are-ignoring-privacy-law-we-deserve-better" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">link</a>)
+                </p>
               </CardContent>
             </Card>
           </Link>
