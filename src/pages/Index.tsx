@@ -118,15 +118,9 @@ const Index = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>• Password management & encryption</li>
-                    <li>• Social media privacy settings</li>
-                    <li>• VPNs and secure browsing</li>
-                    <li>• Recognizing online threats</li>
-                    <li>• Removing personal data from data brokers</li>
-                    <li>• Hiding your digital footprint & online presence</li>
-                    <li>• Deleting old accounts and profiles</li>
-                  </ul>
+                  <p className="text-sm text-muted-foreground">
+                    Learn to protect your digital footprint, secure your accounts, and maintain privacy online.
+                  </p>
                 </CardContent>
               </Card>
             </Link>
