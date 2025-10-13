@@ -6,10 +6,8 @@ import { Lock, Shield, Search, FileText, Scale, BookOpen, AlertCircle, CheckCirc
 import { Link } from "react-router-dom";
 import encryptherLogo from "@/assets/encrypther-logo.png";
 import onlineSecurityImage from "@/assets/online-security.jpg";
-
 const OnlinePrivacy = () => {
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 flex items-center justify-between py-px">
@@ -29,7 +27,7 @@ const OnlinePrivacy = () => {
               </SheetHeader>
               <nav className="flex flex-col gap-4 mt-6">
                 <Link to="/" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Home</Link>
-                <a href="/#classes" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Classes</a>
+                <a href="/#classes" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Programs</a>
                 <Link to="/safety-guides" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Safety Guides</Link>
                 <Link to="/about" className="text-lg text-muted-foreground hover:text-foreground transition-colors">About</Link>
                 <a href="/#contact" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Contact</a>
@@ -488,8 +486,6 @@ const OnlinePrivacy = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default OnlinePrivacy;
