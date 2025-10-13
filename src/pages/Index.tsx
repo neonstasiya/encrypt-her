@@ -162,12 +162,9 @@ const Index = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>• Personal security awareness</li>
-                    <li>• Safe travel planning</li>
-                    <li>• Emergency response strategies</li>
-                    <li>• Cultural awareness & adaptation</li>
-                  </ul>
+                  <p className="text-sm text-muted-foreground">
+                    Our workshops teach women how to identify danger before it starts — from rideshare red flags to hotel security checks.
+                  </p>
                 </CardContent>
               </Card>
             </Link>
