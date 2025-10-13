@@ -20,7 +20,6 @@ const Donate = () => {
             <a href="/#classes" className="text-muted-foreground hover:text-foreground transition-colors">Classes</a>
             <a href="/#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</a>
           </nav>
-          <Button>Get Started</Button>
         </div>
       </header>
 
