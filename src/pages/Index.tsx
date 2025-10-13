@@ -108,24 +108,22 @@ const Index = () => {
                 <div className="h-48 overflow-hidden">
                   <img src={onlineSecurityImage} alt="Woman using digital security tools and password management" className="w-full h-full object-cover object-[center_50%]" />
                 </div>
-                <CardHeader>
+                <CardHeader className="rounded-sm">
                   <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                     <Lock className="h-6 w-6 text-primary" />
                   </div>
                   <CardTitle>Online Privacy & Security</CardTitle>
-                  <CardDescription>
-                    🛡️ 1 in 3 women experience online harassment — we're here to change that.
-                  </CardDescription>
+                  <CardDescription>1 in 3 women experience online harassment — we're here to change that. Learn to protect your digital footprint, secure your accounts, and maintain privacy online</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>• Password management & encryption</li>
+                  <ul className="space-y-2 text-sm text-muted-foreground rounded-full">
+                    
                     <li>• Social media privacy settings</li>
                     <li>• VPNs and secure browsing</li>
-                    <li>• Recognizing online threats</li>
+                    
                     <li>• Removing personal data from data brokers</li>
                     <li>• Hiding your digital footprint & online presence</li>
-                    <li>• Deleting old accounts and profiles</li>
+                    
                   </ul>
                 </CardContent>
               </Card>
