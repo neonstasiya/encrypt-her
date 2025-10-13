@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Lock, Shield, Search, FileText, Scale, BookOpen, AlertCircle, CheckCircle } from "lucide-react";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Lock, Shield, Search, FileText, Scale, BookOpen, AlertCircle, CheckCircle, Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 import encryptherLogo from "@/assets/encrypther-logo.png";
 import onlineSecurityImage from "@/assets/online-security.jpg";
@@ -16,13 +17,25 @@ const OnlinePrivacy = () => {
             <img src={encryptherLogo} alt="EncryptHer logo" className="h-24 w-24" />
             <h1 className="text-2xl font-bold text-foreground">EncryptHer</h1>
           </Link>
-          <nav className="hidden md:flex gap-6">
-            <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">Home</Link>
-            <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">About</Link>
-            <a href="/#classes" className="text-muted-foreground hover:text-foreground transition-colors">Classes</a>
-            <a href="/#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</a>
-          </nav>
-          <Button>Get Started</Button>
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent>
+              <SheetHeader>
+                <SheetTitle>Menu</SheetTitle>
+              </SheetHeader>
+              <nav className="flex flex-col gap-4 mt-6">
+                <Link to="/" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Home</Link>
+                <Link to="/about" className="text-lg text-muted-foreground hover:text-foreground transition-colors">About</Link>
+                <a href="/#classes" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Classes</a>
+                <a href="/#contact" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Contact</a>
+                <Link to="/donate" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Donate</Link>
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </header>
 
