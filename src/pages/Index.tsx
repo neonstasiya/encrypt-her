@@ -4,10 +4,10 @@ import { Shield, Lock, Plane, Users, BookOpen, AlertCircle } from "lucide-react"
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-privacy.jpg";
 import encryptherLogo from "@/assets/encrypther-logo.png";
-import onlineSecurityImage from "@/assets/online-security.jpg";
-import travelSafetyImage from "@/assets/travel-safety.jpg";
+import privacyPaperImage from "@/assets/privacy-paper.jpg";
+import travelLuggageImage from "@/assets/travel-luggage.jpg";
 import advocacyImage from "@/assets/advocacy.jpg";
-import publicSafetyImage from "@/assets/public-safety.jpg";
+import streetAwarenessImage from "@/assets/street-awareness.jpg";
 const Index = () => {
   return <div className="min-h-screen bg-background">
       {/* Header */}
@@ -106,7 +106,7 @@ const Index = () => {
             <Link to="/online-privacy" className="block">
               <Card className="border-border overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
                 <div className="h-48 overflow-hidden">
-                  <img src={onlineSecurityImage} alt="Woman using digital security tools and password management" className="w-full h-full object-cover object-[center_50%]" />
+                  <img src={privacyPaperImage} alt="Woman covering her face with paper representing online privacy protection" className="w-full h-full object-cover object-[center_50%]" />
                 </div>
                 <CardHeader>
                   <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
@@ -128,7 +128,7 @@ const Index = () => {
             <Link to="/public-safety" className="block">
               <Card className="border-border overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
                 <div className="h-48 overflow-hidden">
-                  <img src={publicSafetyImage} alt="Woman practicing situational awareness in public urban space" className="w-full h-full object-cover" />
+                  <img src={streetAwarenessImage} alt="Woman practicing situational awareness in public urban space" className="w-full h-full object-cover" />
                 </div>
                 <CardHeader>
                   <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
@@ -150,7 +150,7 @@ const Index = () => {
             <Link to="/travel-safety" className="block">
               <Card className="border-border overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
                 <div className="h-48 overflow-hidden">
-                  <img src={travelSafetyImage} alt="Confident woman traveler in airport with safe travel practices" className="w-full h-full object-cover" />
+                  <img src={travelLuggageImage} alt="Confident woman traveler with luggage practicing safe travel habits" className="w-full h-full object-cover" />
                 </div>
                 <CardHeader>
                   <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
