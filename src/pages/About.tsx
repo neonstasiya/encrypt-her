@@ -48,14 +48,23 @@ const About = () => {
             <div className="space-y-6">
               <div>
                 <h2 className="text-3xl font-bold mb-4 text-foreground">Why EncryptHer Exists</h2>
-                <div className="space-y-4 text-muted-foreground">
-                  <p>
-                    As a cybersecurity professional, I understand the technical side of digital safety. But as a single woman who has experienced stalking after dates, harassment while walking downtown, and the constant vigilance required to feel safe in public spaces, I understand something even more important—the urgent need for comprehensive safety education.
-                  </p>
-                  <p>
-                    After one too many unsettling experiences, I realized that too many women lack access to the knowledge and resources that could protect them. We're told to "be careful," but rarely given the practical tools to actually defend ourselves in our increasingly connected world.
-                  </p>
-                </div>
+              <div className="space-y-4 text-muted-foreground">
+                <p>
+                  In a world where personal data has become a form of currency, EncryptHer exists to help women reclaim their digital power. We teach women how to protect themselves online and offline — from removing personal information off the internet, to building real-world situational awareness and digital confidence.
+                </p>
+                <p>
+                  Founded by cybersecurity analyst Anastasiya, EncryptHer bridges the gap between cybersecurity education, personal safety, and empowerment. We're here to make sure no woman ever feels exposed, unprotected, or powerless in the digital age.
+                </p>
+                <p>
+                  Our mission is to empower women through cybersecurity education, privacy awareness, and practical safety training — giving every woman the tools to protect her identity, her reputation, and her life.
+                </p>
+                <p>
+                  We provide digital privacy training, cyber safety workshops, and real-world safety skills through partnerships with law enforcement and security experts. We also build a supportive community of tech-savvy women who share knowledge, resources, and confidence to navigate today's digital world.
+                </p>
+                <p>
+                  Every day, women are targeted online — from harassment and stalking to scams and doxxing. EncryptHer exists to turn fear into skill, vulnerability into confidence, and silence into empowerment. Knowledge is protection, and protection is power. Together, we're creating a world where women don't just survive the digital landscape — they dominate it.
+                </p>
+              </div>
               </div>
               
               <div className="border-l-4 border-primary pl-6 py-2">
