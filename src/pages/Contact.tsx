@@ -229,8 +229,11 @@ const Contact = () => {
       <footer className="bg-muted/30 border-t mt-20">
         <div className="max-w-7xl mx-auto px-4 py-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div className="flex flex-col gap-4">
-              <img src={encryptherLogo} alt="EncryptHer Logo" className="h-16 w-auto object-contain" />
+            <div>
+              <div className="flex items-center gap-0 mb-4">
+                <img src={encryptherLogo} alt="EncryptHer Logo" className="h-12 w-12" />
+                <span className="font-bold text-lg text-foreground">EncryptHer</span>
+              </div>
               <p className="text-sm text-muted-foreground">
                 A nonprofit organization dedicated to women's safety in the digital and physical world.
               </p>
