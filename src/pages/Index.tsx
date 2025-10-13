@@ -194,9 +194,9 @@ const Index = () => {
                   </div>
                   <span className="text-xs font-semibold px-3 py-1 rounded-full bg-accent/10 text-accent-foreground">Initiative</span>
                 </div>
-                <CardTitle className="text-2xl">Join us in advocating for comprehensive privacy legislation and stronger data protection laws in America. Together, we can fight for the digital rights and privacy protections women deserve.</CardTitle>
+                <CardTitle className="text-2xl">Join Our Advocacy Movement</CardTitle>
                 <CardDescription className="text-base">
-                  Join Our Advocacy Movement
+                  Join us in advocating for comprehensive privacy legislation and stronger data protection laws in America. Together, we can fight for the digital rights and privacy protections women deserve.
                 </CardDescription>
               </CardHeader>
               <CardContent>
