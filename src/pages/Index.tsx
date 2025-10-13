@@ -114,7 +114,7 @@ const Index = () => {
                   </div>
                   <CardTitle>Online Privacy & Security</CardTitle>
                   <CardDescription>
-                    Learn to protect your digital footprint, secure your accounts, and maintain privacy online
+                    🛡️ 1 in 3 women experience online harassment — we're here to change that.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
