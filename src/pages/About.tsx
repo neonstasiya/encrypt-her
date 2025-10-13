@@ -26,10 +26,10 @@ const About = () => {
               </SheetHeader>
               <nav className="flex flex-col gap-4 mt-6">
                 <Link to="/" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Home</Link>
-                <Link to="/about" className="text-lg text-muted-foreground hover:text-foreground transition-colors">About</Link>
                 <a href="/#classes" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Classes</a>
+                <Link to="/safety-guides" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Safety Guides</Link>
                 <a href="/#contact" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Contact</a>
-                <Link to="/donate" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Donate</Link>
+                <Link to="/donate" className="text-lg font-semibold text-primary hover:text-primary/80 transition-colors">Donate</Link>
               </nav>
             </SheetContent>
           </Sheet>
