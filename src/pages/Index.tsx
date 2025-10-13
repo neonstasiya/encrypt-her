@@ -158,7 +158,7 @@ const Index = () => {
                   </div>
                   <CardTitle>Travel Safety</CardTitle>
                   <CardDescription>
-                    🧳 1 in 4 female travelers say they've felt unsafe or threatened when traveling alone.
+                    ✈️ 1 in 4 female travelers say they've felt unsafe or threatened when traveling alone.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
