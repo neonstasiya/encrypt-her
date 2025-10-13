@@ -136,7 +136,7 @@ const Index = () => {
                   </div>
                   <CardTitle>Public Safety & Awareness</CardTitle>
                   <CardDescription>
-                    Research shows awareness and education can reduce women's risk of violence by up to 50%.
+                    💪 Research shows awareness and education can reduce women's risk of violence by up to 50%.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
