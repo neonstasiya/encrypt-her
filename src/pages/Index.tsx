@@ -108,19 +108,23 @@ const Index = () => {
                 <div className="h-48 overflow-hidden">
                   <img src={onlineSecurityImage} alt="Woman using digital security tools and password management" className="w-full h-full object-cover object-[center_50%]" />
                 </div>
-                <CardHeader>
+                <CardHeader className="rounded-sm">
                   <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                     <Lock className="h-6 w-6 text-primary" />
                   </div>
                   <CardTitle>Online Privacy & Security</CardTitle>
-                  <CardDescription>
-                    🛡️ 1 in 3 women experience online harassment — we're here to change that.
-                  </CardDescription>
+                  <CardDescription>1 in 3 women experience online harassment — we're here to change that. Learn to protect your digital footprint, secure your accounts, and maintain privacy online</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Learn to protect your digital footprint, secure your accounts, and maintain privacy online.
-                  </p>
+                  <ul className="space-y-2 text-sm text-muted-foreground rounded-full">
+                    
+                    <li>• Social media privacy settings</li>
+                    <li>• VPNs and secure browsing</li>
+                    
+                    <li>• Removing personal data from data brokers</li>
+                    <li>• Hiding your digital footprint & online presence</li>
+                    
+                  </ul>
                 </CardContent>
               </Card>
             </Link>
@@ -134,15 +138,18 @@ const Index = () => {
                   <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
                     <Users className="h-6 w-6 text-accent" />
                   </div>
-                  <CardTitle>Public Safety & Awareness</CardTitle>
+                  <CardTitle>Our programs turn fear into preparedness — giving women the tools, training, and confidence to stay safe wherever they go.</CardTitle>
                   <CardDescription>
-                    Research shows awareness and education can reduce women's risk of violence by up to 50%.
+                    Practical strategies for staying safe in public and everyday situations
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Learn practical strategies for staying safe in public and everyday situations.
-                  </p>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li>• Situational awareness techniques</li>
+                    <li>• Self-defense basics</li>
+                    <li>• Safe dating practices</li>
+                    <li>• Community safety resources</li>
+                  </ul>
                 </CardContent>
               </Card>
             </Link>
