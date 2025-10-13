@@ -9,7 +9,11 @@ const Donate = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 flex items-center justify-center py-px">
+        <div className="container mx-auto px-4 flex items-center justify-between py-px">
+          <Link to="/" className="flex items-center gap-0">
+            <img src={encryptherLogo} alt="EncryptHer logo" className="h-24 w-24" />
+            <h1 className="text-2xl font-bold text-foreground">EncryptHer</h1>
+          </Link>
           <nav className="hidden md:flex gap-6">
             <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">Home</Link>
             <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">About</Link>
