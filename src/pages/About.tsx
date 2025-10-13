@@ -48,19 +48,9 @@ const About = () => {
           </div>
           
           {/* Founder's Story */}
-          <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-            {/* Founder Photo */}
-            <div className="flex justify-center">
-              <img src={founderPhoto} alt="EncryptHer Founder" className="w-64 h-64 rounded-2xl object-cover border-2 border-border shadow-lg" />
-            </div>
-            
+          <div className="flex justify-center mb-16">
             {/* Story & Mission */}
-            <div className="space-y-6">
-              <div>
-                
-                
-              </div>
-              
+            <div className="space-y-6 max-w-3xl">
               <div className="border-l-4 border-primary pl-6 py-2">
                 <h3 className="text-2xl font-semibold mb-3 text-foreground">Our Mission</h3>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-base">
