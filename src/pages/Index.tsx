@@ -150,7 +150,7 @@ const Index = () => {
                     <li>• Situational awareness techniques</li>
                     <li>• Self-defense basics</li>
                     <li>• Safe dating practices</li>
-                    <li className="w-full h-full object-cover object-[center_70%]">• Community safety resources</li>
+                    <li>• Community safety resources</li>
                   </ul>
                 </CardContent>
               </Card>
