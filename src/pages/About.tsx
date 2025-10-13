@@ -37,34 +37,14 @@ const About = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
             {/* Founder Photo */}
             <div className="flex justify-center">
-              <img 
-                src={founderPhoto} 
-                alt="EncryptHer Founder" 
-                className="w-64 h-64 rounded-2xl object-cover border-2 border-border shadow-lg"
-              />
+              <img src={founderPhoto} alt="EncryptHer Founder" className="w-64 h-64 rounded-2xl object-cover border-2 border-border shadow-lg" />
             </div>
             
             {/* Story & Mission */}
             <div className="space-y-6">
               <div>
-                <h2 className="text-3xl font-bold mb-4 text-foreground">Why EncryptHer Exists</h2>
-              <div className="space-y-4 text-muted-foreground">
-                <p>
-                  In a world where personal data has become a form of currency, EncryptHer exists to help women reclaim their digital power. We teach women how to protect themselves online and offline — from removing personal information off the internet, to building real-world situational awareness and digital confidence.
-                </p>
-                <p>
-                  Founded by cybersecurity analyst Anastasiya, EncryptHer bridges the gap between cybersecurity education, personal safety, and empowerment. We're here to make sure no woman ever feels exposed, unprotected, or powerless in the digital age.
-                </p>
-                <p>
-                  Our mission is to empower women through cybersecurity education, privacy awareness, and practical safety training — giving every woman the tools to protect her identity, her reputation, and her life.
-                </p>
-                <p>
-                  We provide digital privacy training, cyber safety workshops, and real-world safety skills through partnerships with law enforcement and security experts. We also build a supportive community of tech-savvy women who share knowledge, resources, and confidence to navigate today's digital world.
-                </p>
-                <p>
-                  Every day, women are targeted online — from harassment and stalking to scams and doxxing. EncryptHer exists to turn fear into skill, vulnerability into confidence, and silence into empowerment. Knowledge is protection, and protection is power. Together, we're creating a world where women don't just survive the digital landscape — they dominate it.
-                </p>
-              </div>
+                
+                
               </div>
               
               <div className="border-l-4 border-primary pl-6 py-2">
