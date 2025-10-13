@@ -141,7 +141,7 @@ const Index = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground">
-                    Learn practical strategies for staying safe in public and everyday situations.
+                    Our programs turn fear into preparedness — giving women the tools, training, and confidence to stay safe wherever they go.
                   </p>
                 </CardContent>
               </Card>
