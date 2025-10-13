@@ -106,7 +106,7 @@ const Index = () => {
             <Link to="/online-privacy" className="block">
               <Card className="border-border overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
                 <div className="h-48 overflow-hidden">
-                  <img src={privacyPaperImage} alt="Woman covering her face with paper representing online privacy protection" className="w-full h-full object-cover object-[center_30%]" />
+                  <img src={privacyPaperImage} alt="Woman covering her face with paper representing online privacy protection" className="w-full h-full object-cover object-[center_99%]" />
                 </div>
                 <CardHeader>
                   <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
@@ -128,7 +128,7 @@ const Index = () => {
             <Link to="/public-safety" className="block">
               <Card className="border-border overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
                 <div className="h-48 overflow-hidden">
-                  <img src={streetAwarenessImage} alt="Woman practicing situational awareness in public urban space" className="w-full h-full object-cover" />
+                  <img src={streetAwarenessImage} alt="Woman practicing situational awareness in public urban space" className="w-full h-full object-cover object-[center_99%]" />
                 </div>
                 <CardHeader>
                   <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
@@ -150,7 +150,7 @@ const Index = () => {
             <Link to="/travel-safety" className="block">
               <Card className="border-border overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
                 <div className="h-48 overflow-hidden">
-                  <img src={travelLuggageImage} alt="Confident woman traveler with luggage practicing safe travel habits" className="w-full h-full object-cover object-[center_30%]" />
+                  <img src={travelLuggageImage} alt="Confident woman traveler with luggage practicing safe travel habits" className="w-full h-full object-cover object-[center_99%]" />
                 </div>
                 <CardHeader>
                   <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
