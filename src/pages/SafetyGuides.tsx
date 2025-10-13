@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Eye, Smartphone, Newspaper, MapPin, Focus, Sparkles, Users, TrendingUp, Zap, Heart, MessageCircle, RefreshCcw } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-privacy.jpg";
 import transparentLogo from "@/assets/encrypther-logo.png";
 import jsPDF from "jspdf";
@@ -354,15 +355,53 @@ const SafetyGuides = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 bg-muted/50 border-t border-border">
-        <div className="container mx-auto px-4 text-center">
-          <img src={transparentLogo} alt="EncryptHer" className="h-32 w-auto mx-auto mb-4 opacity-70" />
-          <p className="text-muted-foreground mb-2">
-            © 2025 EncryptHer. Empowering women through awareness and education.
-          </p>
-          <p className="text-sm text-muted-foreground">
-            This guide is for educational purposes. Every situation is unique—trust your judgment and seek professional guidance when needed.
-          </p>
+      <footer className="py-12 px-4 border-t border-border bg-card">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div className="flex items-center gap-0 mb-1">
+                <img src={transparentLogo} alt="EncryptHer logo" className="h-12 w-12" />
+                <span className="font-bold text-lg text-foreground">EncryptHer</span>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Empowering women through digital safety education and real-world protection strategies.
+              </p>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold mb-4 text-foreground">Programs</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><Link to="/online-privacy" className="hover:text-foreground transition-colors">Online Privacy</Link></li>
+                <li><Link to="/travel-safety" className="hover:text-foreground transition-colors">Travel Safety</Link></li>
+                <li><Link to="/digital-advocacy" className="hover:text-foreground transition-colors">Advocacy</Link></li>
+                <li><Link to="/public-safety" className="hover:text-foreground transition-colors">Public Safety</Link></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold mb-4 text-foreground">Resources</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><Link to="/blog" className="hover:text-foreground transition-colors">Blog</Link></li>
+                <li><Link to="/safety-guides" className="hover:text-foreground transition-colors">Safety Guides</Link></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Community</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Support</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold mb-4 text-foreground">Connect</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><Link to="/about" className="hover:text-foreground transition-colors">About Us</Link></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Contact</a></li>
+                <li><Link to="/newsletter" className="hover:text-foreground transition-colors">Newsletter</Link></li>
+                <li><Link to="/donate" className="hover:text-foreground transition-colors">Donate</Link></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
+            <p>© 2025 EncryptHer. All rights reserved. A nonprofit organization dedicated to women's digital and physical world.</p>
+          </div>
         </div>
       </footer>
         </>

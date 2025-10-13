@@ -757,37 +757,52 @@ const DigitalAdvocacy = () => {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border py-12 px-4 bg-card/50">
+      <footer className="py-12 px-4 border-t border-border bg-card">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <div className="flex items-center gap-2 mb-4">
+              <div className="flex items-center gap-0 mb-1">
                 <img src={encryptherLogo} alt="EncryptHer logo" className="h-12 w-12" />
-                <h3 className="text-xl font-bold text-foreground">EncryptHer</h3>
+                <span className="font-bold text-lg text-foreground">EncryptHer</span>
               </div>
-              <p className="text-muted-foreground">
-                Empowering women and girls through digital privacy education and advocacy.
+              <p className="text-sm text-muted-foreground">
+                Empowering women through digital safety education and real-world protection strategies.
               </p>
             </div>
+            
             <div>
-              <h4 className="font-semibold mb-4 text-foreground">Quick Links</h4>
-              <nav className="flex flex-col gap-2">
-                <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">Home</Link>
-                <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">About</Link>
-                <Link to="/safety-guides" className="text-muted-foreground hover:text-foreground transition-colors">Safety Guides</Link>
-                <Link to="/newsletter" className="text-muted-foreground hover:text-foreground transition-colors">Newsletter</Link>
-              </nav>
+              <h4 className="font-semibold mb-4 text-foreground">Programs</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><Link to="/online-privacy" className="hover:text-foreground transition-colors">Online Privacy</Link></li>
+                <li><Link to="/travel-safety" className="hover:text-foreground transition-colors">Travel Safety</Link></li>
+                <li><Link to="/digital-advocacy" className="hover:text-foreground transition-colors">Advocacy</Link></li>
+                <li><Link to="/public-safety" className="hover:text-foreground transition-colors">Public Safety</Link></li>
+              </ul>
             </div>
+            
+            <div>
+              <h4 className="font-semibold mb-4 text-foreground">Resources</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><Link to="/blog" className="hover:text-foreground transition-colors">Blog</Link></li>
+                <li><Link to="/safety-guides" className="hover:text-foreground transition-colors">Safety Guides</Link></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Community</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Support</a></li>
+              </ul>
+            </div>
+            
             <div>
               <h4 className="font-semibold mb-4 text-foreground">Connect</h4>
-              <p className="text-muted-foreground mb-2">Stay informed about privacy advocacy</p>
-              <Button variant="outline" asChild>
-                <Link to="/newsletter">Subscribe to Newsletter</Link>
-              </Button>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><Link to="/about" className="hover:text-foreground transition-colors">About Us</Link></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Contact</a></li>
+                <li><Link to="/newsletter" className="hover:text-foreground transition-colors">Newsletter</Link></li>
+                <li><Link to="/donate" className="hover:text-foreground transition-colors">Donate</Link></li>
+              </ul>
             </div>
           </div>
-          <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2025 EncryptHer. Fighting for your right to privacy.</p>
+          
+          <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
+            <p>© 2025 EncryptHer. All rights reserved. A nonprofit organization dedicated to women's digital and physical world.</p>
           </div>
         </div>
       </footer>

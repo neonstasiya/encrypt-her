@@ -138,15 +138,15 @@ const About = () => {
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li><Link to="/online-privacy" className="hover:text-foreground transition-colors">Online Privacy</Link></li>
                 <li><Link to="/travel-safety" className="hover:text-foreground transition-colors">Travel Safety</Link></li>
-                <li><a href="/#classes" className="hover:text-foreground transition-colors">Advocacy</a></li>
-                <li><a href="/#classes" className="hover:text-foreground transition-colors">Public Safety</a></li>
+                <li><Link to="/digital-advocacy" className="hover:text-foreground transition-colors">Advocacy</Link></li>
+                <li><Link to="/public-safety" className="hover:text-foreground transition-colors">Public Safety</Link></li>
               </ul>
             </div>
             
             <div>
               <h4 className="font-semibold mb-4 text-foreground">Resources</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition-colors">Blog</a></li>
+                <li><Link to="/blog" className="hover:text-foreground transition-colors">Blog</Link></li>
                 <li><Link to="/safety-guides" className="hover:text-foreground transition-colors">Safety Guides</Link></li>
                 <li><a href="#" className="hover:text-foreground transition-colors">Community</a></li>
                 <li><a href="#" className="hover:text-foreground transition-colors">Support</a></li>
