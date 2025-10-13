@@ -353,6 +353,8 @@ const SafetyGuides = () => {
           </div>
         </div>
       </section>
+      </>
+      )}
 
       {/* Footer */}
       <footer className="py-12 px-4 border-t border-border bg-card">
@@ -404,8 +406,6 @@ const SafetyGuides = () => {
           </div>
         </div>
       </footer>
-        </>
-      )}
       
       <Toaster />
     </div>
