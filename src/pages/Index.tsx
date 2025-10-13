@@ -33,9 +33,7 @@ const Index = () => {
               </NavigationMenuItem>
               
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-muted-foreground hover:text-foreground bg-transparent">
-                  Classes
-                </NavigationMenuTrigger>
+                <NavigationMenuTrigger className="text-muted-foreground hover:text-foreground bg-transparent">Programs</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="w-[200px] p-2">
                     <li>
