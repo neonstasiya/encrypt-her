@@ -31,6 +31,7 @@ const PublicSafety = () => {
                 <Link to="/" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Home</Link>
                 <a href="/#classes" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Classes</a>
                 <Link to="/safety-guides" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Safety Guides</Link>
+                <Link to="/about" className="text-lg text-muted-foreground hover:text-foreground transition-colors">About</Link>
                 <a href="/#contact" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Contact</a>
                 <Link to="/donate" className="text-lg font-semibold text-primary hover:text-primary/80 transition-colors">Donate</Link>
               </nav>
