@@ -196,12 +196,12 @@ const Index = () => {
                 </div>
                 <CardTitle className="text-2xl">Join Our Advocacy Movement</CardTitle>
                 <CardDescription className="text-base">
-                  Join us in advocating for comprehensive privacy legislation and stronger data protection laws in America. Together, we can fight for the digital rights and privacy protections women deserve.
+                  Your medical records, home address, and even dating app data can be sold legally — because the U.S. still has no national privacy law protecting you. Source: Electronic Frontier Foundation (<a href="https://www.eff.org/deeplinks/2025/08/data-brokers-are-ignoring-privacy-law-we-deserve-better" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">link</a>)
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Your medical records, home address, and even dating app data can be sold legally — because the U.S. still has no national privacy law protecting you. Source: Electronic Frontier Foundation (<a href="https://www.eff.org/deeplinks/2025/08/data-brokers-are-ignoring-privacy-law-we-deserve-better" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">link</a>)
+                  Join us in advocating for comprehensive privacy legislation and stronger data protection laws in America. Together, we can fight for the digital rights and privacy protections women deserve.
                 </p>
               </CardContent>
             </Card>
