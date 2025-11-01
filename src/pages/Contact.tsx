@@ -10,6 +10,7 @@ import * as z from "zod";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
 import encryptherLogo from "@/assets/encrypther-logo.png";
+import { supabase } from "@/integrations/supabase/client";
 
 const contactFormSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
@@ -32,12 +33,23 @@ const Contact = () => {
 
   const onSubmit = async (data: ContactFormData) => {
     try {
-      // Simulate form submission
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log("Form submitted:", data);
+      const { error } = await supabase
+        .from('contact_messages')
+        .insert([
+          {
+            name: data.name,
+            email: data.email,
+            subject: data.subject,
+            message: data.message,
+          },
+        ]);
+
+      if (error) throw error;
+
       toast.success("Message sent successfully! We'll get back to you soon.");
       reset();
     } catch (error) {
+      console.error("Error submitting contact form:", error);
       toast.error("Failed to send message. Please try again.");
     }
   };
