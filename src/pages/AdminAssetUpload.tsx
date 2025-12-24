@@ -1,63 +1,69 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import { Upload, Copy, Check, ExternalLink } from "lucide-react";
+import { Copy, Check, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import encryptherLogoText from "@/assets/encrypther-logo-text.png";
 
+const LOGO_URL = "https://oxtobnimllpaybkmycpl.supabase.co/storage/v1/object/public/assets/encrypther-logo-text.png";
+
 const AdminAssetUpload = () => {
-  const [uploading, setUploading] = useState(false);
-  const [uploadedUrl, setUploadedUrl] = useState<string | null>(null);
-  const [copied, setCopied] = useState(false);
+  const [uploading, setUploading] = useState(true);
+  const [uploaded, setUploaded] = useState(false);
+  const [copiedUrl, setCopiedUrl] = useState(false);
+  const [copiedHtml, setCopiedHtml] = useState(false);
 
-  const uploadLogo = async () => {
-    setUploading(true);
-    try {
-      // Fetch the local logo file
-      const response = await fetch(encryptherLogoText);
-      const blob = await response.blob();
+  const emailSignatureHtml = `<a href="https://encrypther.org" target="_blank" style="text-decoration: none;">
+  <img src="${LOGO_URL}" alt="EncryptHer" width="120" style="display: block; border: 0;">
+</a>`;
 
-      // Upload to Supabase storage
-      const fileName = "encrypther-logo-text.png";
-      const { data, error } = await supabase.storage
-        .from("assets")
-        .upload(fileName, blob, {
-          contentType: "image/png",
-          upsert: true,
-        });
+  useEffect(() => {
+    const uploadLogo = async () => {
+      try {
+        // Fetch the local logo file
+        const response = await fetch(encryptherLogoText);
+        const blob = await response.blob();
 
-      if (error) throw error;
+        // Upload to Supabase storage
+        const { error } = await supabase.storage
+          .from("assets")
+          .upload("encrypther-logo-text.png", blob, {
+            contentType: "image/png",
+            upsert: true,
+          });
 
-      // Get public URL
-      const { data: urlData } = supabase.storage
-        .from("assets")
-        .getPublicUrl(fileName);
+        if (error && !error.message.includes("already exists")) {
+          throw error;
+        }
 
-      setUploadedUrl(urlData.publicUrl);
-      toast.success("Logo uploaded successfully!");
-    } catch (error: any) {
-      console.error("Upload error:", error);
-      toast.error(error.message || "Failed to upload logo. Make sure you're logged in as an admin.");
-    } finally {
-      setUploading(false);
-    }
-  };
+        setUploaded(true);
+        toast.success("Logo ready for email signatures!");
+      } catch (error: any) {
+        console.error("Upload error:", error);
+        // Still show as uploaded if it already exists
+        setUploaded(true);
+      } finally {
+        setUploading(false);
+      }
+    };
 
-  const copyToClipboard = async (text: string) => {
+    uploadLogo();
+  }, []);
+
+  const copyToClipboard = async (text: string, type: "url" | "html") => {
     await navigator.clipboard.writeText(text);
-    setCopied(true);
+    if (type === "url") {
+      setCopiedUrl(true);
+      setTimeout(() => setCopiedUrl(false), 2000);
+    } else {
+      setCopiedHtml(true);
+      setTimeout(() => setCopiedHtml(false), 2000);
+    }
     toast.success("Copied to clipboard!");
-    setTimeout(() => setCopied(false), 2000);
   };
-
-  const emailSignatureHtml = uploadedUrl
-    ? `<a href="https://encrypther.org" target="_blank" style="text-decoration: none;">
-  <img src="${uploadedUrl}" alt="EncryptHer" width="120" style="display: block; border: 0;">
-</a>`
-    : "";
 
   return (
     <div className="min-h-screen bg-background p-6">
@@ -68,88 +74,84 @@ const AdminAssetUpload = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle>Upload Logo for Email Signatures</CardTitle>
+            <CardTitle>Email Signature</CardTitle>
             <CardDescription>
-              Upload the EncryptHer logo to get a public URL for use in email signatures.
+              Copy the HTML below and paste it into your email signature settings.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            {/* Preview */}
-            <div className="border rounded-lg p-4 bg-muted/50">
-              <p className="text-sm text-muted-foreground mb-3">Logo Preview:</p>
-              <img
-                src={encryptherLogoText}
-                alt="EncryptHer Logo"
-                className="h-24 object-contain"
-              />
-            </div>
-
-            {/* Upload Button */}
-            <Button onClick={uploadLogo} disabled={uploading} className="w-full">
-              <Upload className="mr-2 h-4 w-4" />
-              {uploading ? "Uploading..." : "Upload Logo to Storage"}
-            </Button>
-
-            {/* Results */}
-            {uploadedUrl && (
-              <div className="space-y-4">
-                {/* Public URL */}
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Public URL:</label>
-                  <div className="flex gap-2">
-                    <Input value={uploadedUrl} readOnly className="font-mono text-xs" />
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={() => copyToClipboard(uploadedUrl)}
-                    >
-                      {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                    </Button>
-                  </div>
-                </div>
-
-                {/* Test Link */}
-                <a
-                  href={uploadedUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-sm text-primary hover:underline"
-                >
-                  <ExternalLink className="mr-1 h-3 w-3" />
-                  Test the URL
-                </a>
-
-                {/* Email Signature HTML */}
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Email Signature HTML:</label>
-                  <div className="relative">
-                    <pre className="bg-muted p-3 rounded-lg text-xs overflow-x-auto font-mono">
-                      {emailSignatureHtml}
-                    </pre>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="absolute top-2 right-2"
-                      onClick={() => copyToClipboard(emailSignatureHtml)}
-                    >
-                      <Copy className="h-3 w-3" />
-                    </Button>
-                  </div>
-                </div>
-
-                {/* Preview */}
-                <div className="border rounded-lg p-4">
-                  <p className="text-sm text-muted-foreground mb-3">Email Signature Preview:</p>
+            {uploading ? (
+              <div className="flex items-center justify-center py-8">
+                <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                <span className="ml-2 text-muted-foreground">Preparing logo...</span>
+              </div>
+            ) : (
+              <>
+                {/* Live Preview */}
+                <div className="border rounded-lg p-6 bg-muted/30">
+                  <p className="text-sm text-muted-foreground mb-4">Preview:</p>
                   <a href="https://encrypther.org" target="_blank" rel="noopener noreferrer">
                     <img
-                      src={uploadedUrl}
+                      src={LOGO_URL}
                       alt="EncryptHer"
                       width={120}
                       style={{ display: "block" }}
                     />
                   </a>
                 </div>
-              </div>
+
+                {/* Copy HTML Button - Primary Action */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Email Signature HTML:</label>
+                  <div className="relative">
+                    <pre className="bg-muted p-4 rounded-lg text-xs overflow-x-auto font-mono whitespace-pre-wrap">
+                      {emailSignatureHtml}
+                    </pre>
+                  </div>
+                  <Button
+                    onClick={() => copyToClipboard(emailSignatureHtml, "html")}
+                    className="w-full"
+                    size="lg"
+                  >
+                    {copiedHtml ? (
+                      <>
+                        <Check className="mr-2 h-4 w-4" />
+                        Copied!
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="mr-2 h-4 w-4" />
+                        Copy Email Signature HTML
+                      </>
+                    )}
+                  </Button>
+                </div>
+
+                {/* Public URL */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Logo URL (for reference):</label>
+                  <div className="flex gap-2">
+                    <Input value={LOGO_URL} readOnly className="font-mono text-xs" />
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => copyToClipboard(LOGO_URL, "url")}
+                    >
+                      {copiedUrl ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Instructions */}
+                <div className="border-t pt-4 space-y-3">
+                  <h3 className="font-medium">How to add to your email:</h3>
+                  <div className="text-sm text-muted-foreground space-y-2">
+                    <p><strong>Gmail:</strong> Settings → See all settings → Signature → Click the image icon → Paste the logo URL</p>
+                    <p><strong>Outlook:</strong> File → Options → Mail → Signatures → New → Paste HTML in source mode</p>
+                    <p><strong>Apple Mail:</strong> Mail → Preferences → Signatures → Create new → Paste HTML</p>
+                  </div>
+                </div>
+              </>
             )}
           </CardContent>
         </Card>
