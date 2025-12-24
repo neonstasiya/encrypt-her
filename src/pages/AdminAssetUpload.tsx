@@ -87,17 +87,38 @@ const AdminAssetUpload = () => {
               </div>
             ) : (
               <>
-                {/* Live Preview */}
+                {/* Live Preview - using local asset for accurate display */}
                 <div className="border rounded-lg p-6 bg-muted/30">
-                  <p className="text-sm text-muted-foreground mb-4">Preview:</p>
+                  <p className="text-sm text-muted-foreground mb-4">Preview (this is what your email signature will look like):</p>
                   <a href="https://encrypther.org" target="_blank" rel="noopener noreferrer">
                     <img
-                      src={LOGO_URL}
+                      src={encryptherLogoText}
                       alt="EncryptHer"
                       width={120}
                       style={{ display: "block" }}
                     />
                   </a>
+                </div>
+
+                {/* Storage Preview - verify the uploaded image */}
+                <div className="border rounded-lg p-6 bg-muted/30">
+                  <p className="text-sm text-muted-foreground mb-4">Hosted Logo (from storage):</p>
+                  <img
+                    src={LOGO_URL}
+                    alt="EncryptHer from storage"
+                    width={120}
+                    style={{ display: "block" }}
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      const parent = e.currentTarget.parentElement;
+                      if (parent) {
+                        const errorMsg = document.createElement('p');
+                        errorMsg.className = 'text-destructive text-sm';
+                        errorMsg.textContent = 'Failed to load from storage. Try refreshing.';
+                        parent.appendChild(errorMsg);
+                      }
+                    }}
+                  />
                 </div>
 
                 {/* Copy HTML Button - Primary Action */}
