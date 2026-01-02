@@ -98,6 +98,54 @@ export type Database = {
         }
         Relationships: []
       }
+      safety_resources: {
+        Row: {
+          address: string | null
+          category: string
+          city: string | null
+          created_at: string | null
+          description: string | null
+          id: string
+          is_national: boolean | null
+          is_verified: boolean | null
+          name: string
+          phone: string | null
+          state: string
+          updated_at: string | null
+          website: string | null
+        }
+        Insert: {
+          address?: string | null
+          category: string
+          city?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_national?: boolean | null
+          is_verified?: boolean | null
+          name: string
+          phone?: string | null
+          state: string
+          updated_at?: string | null
+          website?: string | null
+        }
+        Update: {
+          address?: string | null
+          category?: string
+          city?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_national?: boolean | null
+          is_verified?: boolean | null
+          name?: string
+          phone?: string | null
+          state?: string
+          updated_at?: string | null
+          website?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string | null
