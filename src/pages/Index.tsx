@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Shield, Lock, Plane, Users, BookOpen, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
+import { FooterResourcesDropdown } from "@/components/FooterResourcesDropdown";
 import heroImage from "@/assets/hero-privacy.jpg";
 import encryptherLogo from "@/assets/encrypther-logo.png";
 import privacyPaperImage from "@/assets/privacy-paper.jpg";
@@ -313,11 +314,10 @@ const Index = () => {
             
             <div>
               <h4 className="font-semibold mb-4 text-foreground">Resources</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/blog" className="hover:text-foreground transition-colors">Blog</Link></li>
-                <li><Link to="/safety-guides" className="hover:text-foreground transition-colors">Safety Guides</Link></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Community</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Support</a></li>
+              <ul className="space-y-2 text-sm">
+                <li><FooterResourcesDropdown /></li>
+                <li><Link to="/blog" className="text-muted-foreground hover:text-foreground transition-colors">Blog</Link></li>
+                <li><Link to="/safety-guides" className="text-muted-foreground hover:text-foreground transition-colors">Safety Guides</Link></li>
               </ul>
             </div>
             
