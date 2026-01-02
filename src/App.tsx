@@ -16,6 +16,8 @@ import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import AdminAssetUpload from "./pages/AdminAssetUpload";
+import Resources from "./pages/Resources";
+import AdminResources from "./pages/AdminResources";
 
 const queryClient = new QueryClient();
 
@@ -37,7 +39,9 @@ const App = () => (
           <Route path="/public-safety" element={<PublicSafety />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/resources" element={<Resources />} />
           <Route path="/admin/upload-assets" element={<AdminAssetUpload />} />
+          <Route path="/admin/resources" element={<AdminResources />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
