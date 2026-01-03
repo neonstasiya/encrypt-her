@@ -6,6 +6,7 @@ import { Eye, Shield, Package, Heart, Bus, AlertCircle, CheckCircle, Phone, Menu
 import { Link } from "react-router-dom";
 import publicSafetyImage from "@/assets/public-safety.jpg";
 import encryptherLogo from "@/assets/encrypther-logo.png";
+import { FooterResourcesDropdown } from "@/components/FooterResourcesDropdown";
 
 const PublicSafety = () => {
   return (
@@ -659,11 +660,10 @@ const PublicSafety = () => {
             
             <div>
               <h4 className="font-semibold mb-4 text-foreground">Resources</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/blog" className="hover:text-foreground transition-colors">Blog</Link></li>
-                <li><Link to="/safety-guides" className="hover:text-foreground transition-colors">Safety Guides</Link></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Community</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Support</a></li>
+              <ul className="space-y-2 text-sm">
+                <li><FooterResourcesDropdown /></li>
+                <li><Link to="/blog" className="text-muted-foreground hover:text-foreground transition-colors">Blog</Link></li>
+                <li><Link to="/safety-guides" className="text-muted-foreground hover:text-foreground transition-colors">Safety Guides</Link></li>
               </ul>
             </div>
             

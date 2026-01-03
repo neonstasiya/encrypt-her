@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { Link } from "react-router-dom";
 import encryptherLogo from "@/assets/encrypther-logo.png";
 import { supabase } from "@/integrations/supabase/client";
+import { FooterResourcesDropdown } from "@/components/FooterResourcesDropdown";
 
 const contactFormSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
@@ -264,10 +265,9 @@ const Contact = () => {
             <div>
               <h3 className="font-semibold mb-4">Resources</h3>
               <ul className="space-y-2 text-sm">
+                <li><FooterResourcesDropdown /></li>
                 <li><Link to="/blog" className="text-muted-foreground hover:text-foreground transition-colors">Blog</Link></li>
                 <li><Link to="/safety-guides" className="text-muted-foreground hover:text-foreground transition-colors">Safety Guides</Link></li>
-                <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Community</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Support</a></li>
               </ul>
             </div>
 
