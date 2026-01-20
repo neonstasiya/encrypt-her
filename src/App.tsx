@@ -28,6 +28,7 @@ import AdminBlog from "./pages/AdminBlog";
 import AdminBlogEditor from "./pages/AdminBlogEditor";
 import AdminContributions from "./pages/AdminContributions";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminContent from "./pages/AdminContent";
 import Auth from "./pages/Auth";
 import ResetPassword from "./pages/ResetPassword";
 import AccessibilityStatement from "./pages/AccessibilityStatement";
@@ -70,6 +71,11 @@ const App = () => (
             <Route path="/admin" element={
               <ProtectedRoute requireAdmin>
                 <AdminDashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/content" element={
+              <ProtectedRoute requireAdmin>
+                <AdminContent />
               </ProtectedRoute>
             } />
             <Route path="/admin/upload-assets" element={
