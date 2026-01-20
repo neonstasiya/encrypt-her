@@ -10,8 +10,11 @@ import { EmailGateForm } from "@/components/EmailGateForm";
 import { SafetyGuidesHeader } from "@/components/SafetyGuidesHeader";
 import { Toaster } from "@/components/ui/toaster";
 import { FooterResourcesDropdown } from "@/components/FooterResourcesDropdown";
+import { SkipLink } from "@/components/SkipLink";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 const SafetyGuides = () => {
+  usePageTitle("12 Keys to Personal Safety | EncryptHer");
   const [activeSection, setActiveSection] = useState(0);
   const [hasAccess, setHasAccess] = useState(false);
   const [showEmailGate, setShowEmailGate] = useState(false);
@@ -219,41 +222,44 @@ const SafetyGuides = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SkipLink />
       <SafetyGuidesHeader />
       
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `url(${heroImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-pink-600/20 to-cyan-600/20" />
-        
-        {/* Logo positioned at top center over the hero image */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20 pt-4">
-          <img src={transparentLogo} alt="EncryptHer" className="h-24 w-auto" />
-        </div>
-        
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 bg-clip-text text-transparent animate-fade-in">
-            12 Keys to Personal Safety
-          </h1>
-          <p className="text-xl md:text-2xl text-foreground/80 mb-8 max-w-3xl mx-auto">
-            Empower yourself with situational awareness. Your safety, your control, your confidence.
-          </p>
-          <Button
-            size="lg"
-            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white text-lg px-8 py-6 rounded-full shadow-elegant transition-smooth"
-            onClick={handleDiscoverKeys}
-          >
-            Discover the Keys
-          </Button>
-        </div>
-      </section>
+      <main id="main-content">
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden" aria-labelledby="hero-heading">
+          <div
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage: `url(${heroImage})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}
+            aria-hidden="true"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-pink-600/20 to-cyan-600/20" aria-hidden="true" />
+          
+          {/* Logo positioned at top center over the hero image */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20 pt-4">
+            <img src={transparentLogo} alt="" className="h-24 w-auto" aria-hidden="true" />
+          </div>
+          
+          <div className="relative z-10 container mx-auto px-4 text-center">
+            <h1 id="hero-heading" className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 bg-clip-text text-transparent animate-fade-in">
+              12 Keys to Personal Safety
+            </h1>
+            <p className="text-xl md:text-2xl text-foreground/80 mb-8 max-w-3xl mx-auto">
+              Empower yourself with situational awareness. Your safety, your control, your confidence.
+            </p>
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white text-lg px-8 py-6 rounded-full shadow-elegant transition-smooth focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+              onClick={handleDiscoverKeys}
+            >
+              Discover the Keys
+            </Button>
+          </div>
+        </section>
 
       {/* Email Gate - Shows after clicking Discover the Keys */}
       {showEmailGate && !hasAccess && (
@@ -264,10 +270,10 @@ const SafetyGuides = () => {
       {hasAccess && (
         <>
           {/* Introduction */}
-          <section id="content" className="py-20 bg-gradient-card">
+          <section id="content" className="py-20 bg-gradient-card" aria-labelledby="intro-heading">
         <div className="container mx-auto px-4 max-w-4xl">
           <Card className="p-8 md:p-12 bg-card/80 backdrop-blur-sm border-2 border-purple-200/50 shadow-elegant">
-            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <h2 id="intro-heading" className="text-4xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               Your Safety Begins With Awareness
             </h2>
             <p className="text-lg text-foreground/80 leading-relaxed mb-4">
@@ -284,13 +290,14 @@ const SafetyGuides = () => {
       </section>
 
       {/* 12 Keys */}
-      <section className="py-20">
+      <section className="py-20" aria-labelledby="keys-heading">
+        <h2 id="keys-heading" className="sr-only">The 12 Keys to Personal Safety</h2>
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="space-y-24">
             {keys.map((key, index) => {
               const Icon = key.icon;
               return (
-                <div
+                <article
                   key={index}
                   data-section
                   className={`transition-all duration-700 ${
@@ -301,9 +308,9 @@ const SafetyGuides = () => {
                     <div className="flex items-start gap-6">
                       <div className="flex-shrink-0">
                         <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                          <Icon className="w-8 h-8" />
+                          <Icon className="w-8 h-8" aria-hidden="true" />
                         </div>
-                        <div className="text-6xl font-bold text-white/30 mt-2">
+                        <div className="text-6xl font-bold text-white/30 mt-2" aria-hidden="true">
                           {String(index + 1).padStart(2, '0')}
                         </div>
                       </div>
@@ -320,7 +327,7 @@ const SafetyGuides = () => {
                       </div>
                     </div>
                   </Card>
-                </div>
+                </article>
               );
             })}
           </div>
@@ -328,9 +335,9 @@ const SafetyGuides = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-br from-purple-600 via-pink-600 to-cyan-600 text-white">
+      <section className="py-20 bg-gradient-to-br from-purple-600 via-pink-600 to-cyan-600 text-white" aria-labelledby="cta-heading">
         <div className="container mx-auto px-4 text-center max-w-4xl">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 id="cta-heading" className="text-4xl md:text-5xl font-bold mb-6">
             Empowered. Aware. Protected.
           </h2>
           <p className="text-xl md:text-2xl mb-8 text-white/90">
@@ -339,14 +346,14 @@ const SafetyGuides = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
-              className="bg-white text-purple-600 hover:bg-white/90 text-lg px-8 py-6 rounded-full shadow-elegant transition-smooth"
+              className="bg-white text-purple-600 hover:bg-white/90 text-lg px-8 py-6 rounded-full shadow-elegant transition-smooth focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
             >
               Learn More
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-2 border-white text-lg px-8 py-6 rounded-full transition-smooth bg-white text-purple-600"
+              className="border-2 border-white text-lg px-8 py-6 rounded-full transition-smooth bg-white text-purple-600 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
               onClick={handleDownloadPDF}
             >
               Download Guide
@@ -356,14 +363,15 @@ const SafetyGuides = () => {
       </section>
       </>
       )}
+      </main>
 
       {/* Footer */}
-      <footer className="py-12 px-4 border-t border-border bg-card">
+      <footer className="py-12 px-4 border-t border-border bg-card" role="contentinfo">
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-0 mb-1">
-                <img src={transparentLogo} alt="EncryptHer logo" className="h-12 w-12" />
+                <img src={transparentLogo} alt="" className="h-12 w-12" aria-hidden="true" />
                 <span className="font-bold text-lg text-foreground">EncryptHer</span>
               </div>
               <p className="text-sm text-muted-foreground">
@@ -371,38 +379,38 @@ const SafetyGuides = () => {
               </p>
             </div>
             
-            <div>
+            <nav aria-label="Programs navigation">
               <h4 className="font-semibold mb-4 text-foreground">Programs</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/online-privacy" className="hover:text-foreground transition-colors">Online Privacy</Link></li>
-                <li><Link to="/travel-safety" className="hover:text-foreground transition-colors">Travel Safety</Link></li>
-                <li><Link to="/digital-advocacy" className="hover:text-foreground transition-colors">Advocacy</Link></li>
-                <li><Link to="/public-safety" className="hover:text-foreground transition-colors">Public Safety</Link></li>
+              <ul className="space-y-2 text-sm text-muted-foreground" role="list">
+                <li><Link to="/online-privacy" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Online Privacy</Link></li>
+                <li><Link to="/travel-safety" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Travel Safety</Link></li>
+                <li><Link to="/digital-advocacy" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Advocacy</Link></li>
+                <li><Link to="/public-safety" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Public Safety</Link></li>
               </ul>
-            </div>
+            </nav>
             
-            <div>
+            <nav aria-label="Resources navigation">
               <h4 className="font-semibold mb-4 text-foreground">Resources</h4>
-              <ul className="space-y-2 text-sm">
+              <ul className="space-y-2 text-sm" role="list">
                 <li><FooterResourcesDropdown /></li>
-                <li><Link to="/blog" className="text-muted-foreground hover:text-foreground transition-colors">Blog</Link></li>
-                <li><Link to="/safety-guides" className="text-muted-foreground hover:text-foreground transition-colors">Safety Guides</Link></li>
+                <li><Link to="/blog" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Blog</Link></li>
+                <li><Link to="/safety-guides" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Safety Guides</Link></li>
               </ul>
-            </div>
+            </nav>
             
-            <div>
+            <nav aria-label="Connect navigation">
               <h4 className="font-semibold mb-4 text-foreground">Connect</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/about" className="hover:text-foreground transition-colors">About Us</Link></li>
-                <li><Link to="/contact" className="hover:text-foreground transition-colors">Contact</Link></li>
-                <li><Link to="/newsletter" className="hover:text-foreground transition-colors">Newsletter</Link></li>
-                <li><Link to="/donate" className="hover:text-foreground transition-colors">Donate</Link></li>
+              <ul className="space-y-2 text-sm text-muted-foreground" role="list">
+                <li><Link to="/about" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">About Us</Link></li>
+                <li><Link to="/contact" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Contact</Link></li>
+                <li><Link to="/newsletter" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Newsletter</Link></li>
+                <li><Link to="/donate" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Donate</Link></li>
               </ul>
-            </div>
+            </nav>
           </div>
           
           <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            <p>© 2025 EncryptHer. All rights reserved. A nonprofit organization dedicated to women's digital and physical world.</p>
+            <p>© 2025 EncryptHer. All rights reserved. A nonprofit organization dedicated to women's digital and physical safety.</p>
           </div>
         </div>
       </footer>

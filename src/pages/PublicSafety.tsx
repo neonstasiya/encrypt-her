@@ -7,39 +7,46 @@ import { Link } from "react-router-dom";
 import publicSafetyImage from "@/assets/public-safety.jpg";
 import encryptherLogo from "@/assets/encrypther-logo.png";
 import { FooterResourcesDropdown } from "@/components/FooterResourcesDropdown";
+import { SkipLink } from "@/components/SkipLink";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 const PublicSafety = () => {
+  usePageTitle("Public Safety Course | EncryptHer");
+  
   return (
     <div className="min-h-screen bg-background">
+      <SkipLink />
       {/* Header */}
-      <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
+      <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50" role="banner">
         <div className="container mx-auto px-4 flex items-center justify-between py-px">
-          <Link to="/" className="flex items-center gap-0">
-            <img src={encryptherLogo} alt="EncryptHer logo" className="h-24 w-24" />
-            <h1 className="text-2xl font-bold text-foreground">EncryptHer</h1>
+          <Link to="/" className="flex items-center gap-0 focus:outline-none focus:ring-2 focus:ring-ring rounded">
+            <img src={encryptherLogo} alt="" className="h-24 w-24" aria-hidden="true" />
+            <span className="text-2xl font-bold text-foreground">EncryptHer</span>
           </Link>
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
+              <Button variant="ghost" size="icon" aria-label="Open navigation menu">
+                <Menu className="h-6 w-6" aria-hidden="true" />
               </Button>
             </SheetTrigger>
             <SheetContent>
               <SheetHeader>
                 <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
-              <nav className="flex flex-col gap-4 mt-6">
-                <Link to="/" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Home</Link>
-                <a href="/#classes" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Classes</a>
-                <Link to="/safety-guides" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Safety Guides</Link>
-                <Link to="/about" className="text-lg text-muted-foreground hover:text-foreground transition-colors">About</Link>
-                <a href="/#contact" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Contact</a>
-                <Link to="/donate" className="text-lg font-semibold text-primary hover:text-primary/80 transition-colors">Donate</Link>
+              <nav className="flex flex-col gap-4 mt-6" aria-label="Main navigation">
+                <Link to="/" className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Home</Link>
+                <a href="/#classes" className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Classes</a>
+                <Link to="/safety-guides" className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Safety Guides</Link>
+                <Link to="/about" className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">About</Link>
+                <a href="/#contact" className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Contact</a>
+                <Link to="/donate" className="text-lg font-semibold text-primary hover:text-primary/80 transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Donate</Link>
               </nav>
             </SheetContent>
           </Sheet>
         </div>
       </header>
+
+      <main id="main-content">
 
       {/* Hero Section */}
       <section className="relative py-20 px-4 overflow-hidden">

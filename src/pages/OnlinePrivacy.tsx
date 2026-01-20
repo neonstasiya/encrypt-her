@@ -7,67 +7,74 @@ import { Link } from "react-router-dom";
 import encryptherLogo from "@/assets/encrypther-logo.png";
 import onlineSecurityImage from "@/assets/online-security.jpg";
 import { FooterResourcesDropdown } from "@/components/FooterResourcesDropdown";
+import { SkipLink } from "@/components/SkipLink";
+import { usePageTitle } from "@/hooks/usePageTitle";
 const OnlinePrivacy = () => {
+  usePageTitle("Online Privacy & Security | EncryptHer");
+  
   return <div className="min-h-screen bg-background">
+      <SkipLink />
       {/* Header */}
-      <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
+      <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50" role="banner">
         <div className="container mx-auto px-4 flex items-center justify-between py-px">
-          <Link to="/" className="flex items-center gap-0">
-            <img src={encryptherLogo} alt="EncryptHer logo" className="h-24 w-24" />
-            <h1 className="text-2xl font-bold text-foreground">EncryptHer</h1>
+          <Link to="/" className="flex items-center gap-0 focus:outline-none focus:ring-2 focus:ring-ring rounded">
+            <img src={encryptherLogo} alt="" className="h-24 w-24" aria-hidden="true" />
+            <span className="text-2xl font-bold text-foreground">EncryptHer</span>
           </Link>
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
+              <Button variant="ghost" size="icon" aria-label="Open navigation menu">
+                <Menu className="h-6 w-6" aria-hidden="true" />
               </Button>
             </SheetTrigger>
             <SheetContent>
               <SheetHeader>
                 <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
-              <nav className="flex flex-col gap-4 mt-6">
-                <Link to="/" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Home</Link>
-                <a href="/#classes" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Programs</a>
-                <Link to="/safety-guides" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Safety Guides</Link>
-                <Link to="/about" className="text-lg text-muted-foreground hover:text-foreground transition-colors">About</Link>
-                <a href="/#contact" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Contact</a>
-                <Link to="/donate" className="text-lg font-semibold text-primary hover:text-primary/80 transition-colors">Donate</Link>
+              <nav className="flex flex-col gap-4 mt-6" aria-label="Main navigation">
+                <Link to="/" className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Home</Link>
+                <a href="/#classes" className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Programs</a>
+                <Link to="/safety-guides" className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Safety Guides</Link>
+                <Link to="/about" className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">About</Link>
+                <a href="/#contact" className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Contact</a>
+                <Link to="/donate" className="text-lg font-semibold text-primary hover:text-primary/80 transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Donate</Link>
               </nav>
             </SheetContent>
           </Sheet>
         </div>
       </header>
 
+      <main id="main-content">
+
       {/* Hero Section */}
-      <section className="relative py-20 px-4 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img src={onlineSecurityImage} alt="Digital privacy and online security" className="w-full h-full object-cover opacity-20" />
+      <section className="relative py-20 px-4 overflow-hidden" aria-labelledby="hero-heading">
+        <div className="absolute inset-0 z-0" aria-hidden="true">
+          <img src={onlineSecurityImage} alt="" className="w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-br from-primary/40 via-background/90 to-accent/40" />
         </div>
         <div className="container mx-auto text-center max-w-4xl relative z-10">
           <div className="inline-flex items-center gap-2 bg-secondary px-4 py-2 rounded-full mb-6">
-            <Lock className="h-4 w-4 text-primary" />
+            <Lock className="h-4 w-4 text-primary" aria-hidden="true" />
             <span className="text-sm font-medium text-secondary-foreground">Online Privacy & Security</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
+          <h1 id="hero-heading" className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
             Take Control of Your <span className="text-primary">Digital Footprint</span>
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Learn how to manually remove your personal information from the internet, understand your privacy rights, and protect your digital identity.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg">Enroll in Course</Button>
-            <Button size="lg" variant="outline" className="text-lg">Free Resources</Button>
+            <Button size="lg" className="text-lg focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">Enroll in Course</Button>
+            <Button size="lg" variant="outline" className="text-lg focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">Free Resources</Button>
           </div>
         </div>
       </section>
 
       {/* Overview Section */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4" aria-labelledby="overview-heading">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">What You'll Learn</h2>
+            <h2 id="overview-heading" className="text-3xl md:text-4xl font-bold mb-4 text-foreground">What You'll Learn</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Comprehensive training to reduce your digital exposure and protect your privacy
             </p>
@@ -77,7 +84,7 @@ const OnlinePrivacy = () => {
             <Card className="border-border hover:shadow-lg transition-shadow">
               <CardHeader>
                 <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                  <Search className="h-6 w-6 text-primary" />
+                  <Search className="h-6 w-6 text-primary" aria-hidden="true" />
                 </div>
                 <CardTitle>Find Your Data</CardTitle>
                 <CardDescription>
@@ -89,7 +96,7 @@ const OnlinePrivacy = () => {
             <Card className="border-border hover:shadow-lg transition-shadow">
               <CardHeader>
                 <div className="h-12 w-12 rounded-full bg-accent/10 flex items-center justify-center mb-4">
-                  <FileText className="h-6 w-6 text-accent" />
+                  <FileText className="h-6 w-6 text-accent" aria-hidden="true" />
                 </div>
                 <CardTitle>Manual Removal Process</CardTitle>
                 <CardDescription>
@@ -101,7 +108,7 @@ const OnlinePrivacy = () => {
             <Card className="border-border hover:shadow-lg transition-shadow">
               <CardHeader>
                 <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                  <Scale className="h-6 w-6 text-primary" />
+                  <Scale className="h-6 w-6 text-primary" aria-hidden="true" />
                 </div>
                 <CardTitle>Know Your Rights</CardTitle>
                 <CardDescription>
@@ -113,7 +120,7 @@ const OnlinePrivacy = () => {
             <Card className="border-border hover:shadow-lg transition-shadow">
               <CardHeader>
                 <div className="h-12 w-12 rounded-full bg-accent/10 flex items-center justify-center mb-4">
-                  <Shield className="h-6 w-6 text-accent" />
+                  <Shield className="h-6 w-6 text-accent" aria-hidden="true" />
                 </div>
                 <CardTitle>Ongoing Protection</CardTitle>
                 <CardDescription>
@@ -125,7 +132,7 @@ const OnlinePrivacy = () => {
             <Card className="border-border hover:shadow-lg transition-shadow">
               <CardHeader>
                 <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                  <BookOpen className="h-6 w-6 text-primary" />
+                  <BookOpen className="h-6 w-6 text-primary" aria-hidden="true" />
                 </div>
                 <CardTitle>Practical Tools</CardTitle>
                 <CardDescription>
@@ -137,7 +144,7 @@ const OnlinePrivacy = () => {
             <Card className="border-border hover:shadow-lg transition-shadow">
               <CardHeader>
                 <div className="h-12 w-12 rounded-full bg-accent/10 flex items-center justify-center mb-4">
-                  <AlertCircle className="h-6 w-6 text-accent" />
+                  <AlertCircle className="h-6 w-6 text-accent" aria-hidden="true" />
                 </div>
                 <CardTitle>Privacy Best Practices</CardTitle>
                 <CardDescription>
@@ -150,10 +157,10 @@ const OnlinePrivacy = () => {
       </section>
 
       {/* Data Aggregators Section */}
-      <section className="py-20 px-4 bg-muted/50">
+      <section className="py-20 px-4 bg-muted/50" aria-labelledby="aggregators-heading">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Understanding Data Aggregators</h2>
+            <h2 id="aggregators-heading" className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Understanding Data Aggregators</h2>
             <p className="text-lg text-muted-foreground">
               Learn about the companies collecting and selling your personal information
             </p>
@@ -170,37 +177,37 @@ const OnlinePrivacy = () => {
               <CardTitle>Common Types of Data Collected</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="space-y-2 text-muted-foreground">
+              <ul className="space-y-2 text-muted-foreground" role="list">
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Full name, age, date of birth, and aliases</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Current and previous addresses</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Phone numbers and email addresses</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Family members and associates</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Property ownership and financial records</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Court records, arrests, and criminal history</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Professional licenses and education history</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Social media activity and online behavior</span>
                 </li>
               </ul>
@@ -239,10 +246,10 @@ const OnlinePrivacy = () => {
       </section>
 
       {/* Privacy Laws Section */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4" aria-labelledby="laws-heading">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Your Privacy Rights & The Law</h2>
+            <h2 id="laws-heading" className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Your Privacy Rights & The Law</h2>
             <p className="text-lg text-muted-foreground">
               Understanding the legal protections available to you
             </p>
@@ -332,10 +339,10 @@ const OnlinePrivacy = () => {
       </section>
 
       {/* Course Curriculum Section */}
-      <section className="py-20 px-4 bg-muted/50">
+      <section className="py-20 px-4 bg-muted/50" aria-labelledby="curriculum-heading">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Course Curriculum</h2>
+            <h2 id="curriculum-heading" className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Course Curriculum</h2>
             <p className="text-lg text-muted-foreground">
               A comprehensive, step-by-step program to reclaim your privacy
             </p>
@@ -418,32 +425,33 @@ const OnlinePrivacy = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-primary to-accent">
+      <section className="py-20 px-4 bg-gradient-to-br from-primary to-accent" aria-labelledby="cta-heading">
         <div className="container mx-auto max-w-4xl text-center">
-          <h3 className="text-3xl md:text-4xl font-bold mb-4 text-primary-foreground">
+          <h2 id="cta-heading" className="text-3xl md:text-4xl font-bold mb-4 text-primary-foreground">
             Ready to Reclaim Your Privacy?
-          </h3>
+          </h2>
           <p className="text-lg text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             Join our comprehensive online privacy course and take the first step toward protecting your digital identity.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="text-lg">
+            <Button size="lg" variant="secondary" className="text-lg focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
               Enroll Now
             </Button>
-            <Button size="lg" variant="outline" className="text-lg bg-white/10 hover:bg-white/20 text-white border-white/20">
+            <Button size="lg" variant="outline" className="text-lg bg-white/10 hover:bg-white/20 text-white border-white/20 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
               View Free Resources
             </Button>
           </div>
         </div>
       </section>
+      </main>
 
       {/* Footer */}
-      <footer className="py-12 px-4 border-t border-border bg-card">
+      <footer className="py-12 px-4 border-t border-border bg-card" role="contentinfo">
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-1 mb-4">
-                <img src={encryptherLogo} alt="EncryptHer logo" className="h-12 w-12" />
+                <img src={encryptherLogo} alt="" className="h-12 w-12" aria-hidden="true" />
                 <span className="font-bold text-lg text-foreground">EncryptHer</span>
               </div>
               <p className="text-sm text-muted-foreground">
@@ -451,34 +459,34 @@ const OnlinePrivacy = () => {
               </p>
             </div>
             
-            <div>
+            <nav aria-label="Programs navigation">
               <h4 className="font-semibold mb-4 text-foreground">Programs</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/online-privacy" className="hover:text-foreground transition-colors">Online Privacy</Link></li>
-                <li><Link to="/travel-safety" className="hover:text-foreground transition-colors">Travel Safety</Link></li>
-                <li><Link to="/digital-advocacy" className="hover:text-foreground transition-colors">Advocacy</Link></li>
-                <li><Link to="/public-safety" className="hover:text-foreground transition-colors">Public Safety</Link></li>
+              <ul className="space-y-2 text-sm text-muted-foreground" role="list">
+                <li><Link to="/online-privacy" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded" aria-current="page">Online Privacy</Link></li>
+                <li><Link to="/travel-safety" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Travel Safety</Link></li>
+                <li><Link to="/digital-advocacy" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Advocacy</Link></li>
+                <li><Link to="/public-safety" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Public Safety</Link></li>
               </ul>
-            </div>
+            </nav>
             
-            <div>
+            <nav aria-label="Resources navigation">
               <h4 className="font-semibold mb-4 text-foreground">Resources</h4>
-              <ul className="space-y-2 text-sm">
+              <ul className="space-y-2 text-sm" role="list">
                 <li><FooterResourcesDropdown /></li>
-                <li><Link to="/blog" className="text-muted-foreground hover:text-foreground transition-colors">Blog</Link></li>
-                <li><Link to="/safety-guides" className="text-muted-foreground hover:text-foreground transition-colors">Safety Guides</Link></li>
+                <li><Link to="/blog" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Blog</Link></li>
+                <li><Link to="/safety-guides" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Safety Guides</Link></li>
               </ul>
-            </div>
+            </nav>
             
-            <div>
+            <nav aria-label="Connect navigation">
               <h4 className="font-semibold mb-4 text-foreground">Connect</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/about" className="hover:text-foreground transition-colors">About Us</Link></li>
-                <li><Link to="/contact" className="hover:text-foreground transition-colors">Contact</Link></li>
-                <li><Link to="/newsletter" className="hover:text-foreground transition-colors">Newsletter</Link></li>
-                <li><Link to="/donate" className="hover:text-foreground transition-colors">Donate</Link></li>
+              <ul className="space-y-2 text-sm text-muted-foreground" role="list">
+                <li><Link to="/about" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">About Us</Link></li>
+                <li><Link to="/contact" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Contact</Link></li>
+                <li><Link to="/newsletter" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Newsletter</Link></li>
+                <li><Link to="/donate" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Donate</Link></li>
               </ul>
-            </div>
+            </nav>
           </div>
           
           <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
