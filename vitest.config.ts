@@ -13,6 +13,10 @@ export default defineConfig({
       reporter: ['text', 'json', 'html'],
       exclude: ['node_modules/', 'src/test/'],
     },
+    reporters: ['verbose', 'json'],
+    outputFile: {
+      json: 'test-results/results.json',
+    },
   },
   resolve: {
     alias: {

@@ -123,17 +123,42 @@ export async function checkA11y(container: Element) {
 4. **Verify forms** - Ensure all inputs have labels
 5. **Check headings** - Verify proper h1/h2/h3 hierarchy
 
-## CI Integration
+## CI/CD Integration
 
-Add to your CI pipeline:
+This project includes a GitHub Actions workflow (`.github/workflows/accessibility.yml`) that automatically runs WCAG 2.2 accessibility tests on every push and pull request to `main`.
 
-```yaml
-- name: Run accessibility tests
-  run: npx vitest run --reporter=verbose
+### Workflow Features
+
+- **Automatic testing** on push/PR to main branch
+- **Test result artifacts** stored for 30 days
+- **Verbose reporting** with JSON output for analysis
+
+### Running Locally
+
+```bash
+# Run accessibility tests only
+npm run test:a11y
+
+# Run all tests with coverage
+npm run test:coverage
+```
+
+### NPM Script
+
+Add to your `package.json`:
+
+```json
+{
+  "scripts": {
+    "test:a11y": "vitest run --reporter=verbose src/**/*.a11y.test.tsx"
+  }
+}
 ```
 
 ## Resources
 
 - [axe-core Rules](https://dequeuniversity.com/rules/axe/)
+- [WCAG 2.2 Quick Reference](https://www.w3.org/WAI/WCAG22/quickref/)
 - [Vitest Documentation](https://vitest.dev/)
 - [Testing Library](https://testing-library.com/)
+- [vitest-axe](https://github.com/chaance/vitest-axe)
