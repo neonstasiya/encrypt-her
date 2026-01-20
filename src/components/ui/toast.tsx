@@ -37,11 +37,22 @@ const toastVariants = cva(
   },
 );
 
+/**
+ * WCAG 2.2.1 (A) - Timing Adjustable
+ * Toast pauses on hover/focus to give users more time
+ */
 const Toast = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Root>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root> & VariantProps<typeof toastVariants>
 >(({ className, variant, ...props }, ref) => {
-  return <ToastPrimitives.Root ref={ref} className={cn(toastVariants({ variant }), className)} {...props} />;
+  return (
+    <ToastPrimitives.Root
+      ref={ref}
+      className={cn(toastVariants({ variant }), className)}
+      // Radix Toast automatically pauses on hover/focus
+      {...props}
+    />
+  );
 });
 Toast.displayName = ToastPrimitives.Root.displayName;
 
@@ -60,6 +71,10 @@ const ToastAction = React.forwardRef<
 ));
 ToastAction.displayName = ToastPrimitives.Action.displayName;
 
+/**
+ * WCAG 2.5.5 (AAA) - Target Size
+ * Close button has minimum 44px touch target
+ */
 const ToastClose = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Close>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Close>
@@ -67,13 +82,15 @@ const ToastClose = React.forwardRef<
   <ToastPrimitives.Close
     ref={ref}
     className={cn(
-      "absolute right-2 top-2 rounded-md p-1 text-foreground/50 opacity-0 transition-opacity group-hover:opacity-100 group-[.destructive]:text-red-300 hover:text-foreground group-[.destructive]:hover:text-red-50 focus:opacity-100 focus:outline-none focus:ring-2 group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600",
+      // AAA: Always visible for accessibility, 44px touch target
+      "absolute right-1 top-1 rounded-md p-2 min-h-[44px] min-w-[44px] flex items-center justify-center text-foreground/70 transition-colors hover:text-foreground group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50 focus:outline-none focus:ring-2 focus:ring-ring group-[.destructive]:focus:ring-red-400",
       className,
     )}
     toast-close=""
+    aria-label="Close notification"
     {...props}
   >
-    <X className="h-4 w-4" />
+    <X className="h-5 w-5" aria-hidden="true" />
   </ToastPrimitives.Close>
 ));
 ToastClose.displayName = ToastPrimitives.Close.displayName;
