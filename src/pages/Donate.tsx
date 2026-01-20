@@ -1,10 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Heart, Shield, BookOpen, Users, Menu } from "lucide-react";
-import { Link } from "react-router-dom";
-import encryptherLogo from "@/assets/encrypther-logo.png";
+import { Heart, Shield, BookOpen, Users } from "lucide-react";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
+import { AccessibleHeader } from "@/components/AccessibleHeader";
+import { SkipLink } from "@/components/SkipLink";
 import { usePageTitle } from "@/hooks/usePageTitle";
 import { useId } from "react";
 
@@ -14,40 +13,8 @@ const Donate = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Skip Link */}
-      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md">
-        Skip to main content
-      </a>
-
-      {/* Header */}
-      <header role="banner" className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 flex items-center justify-between py-px">
-          <Link to="/" className="flex items-center gap-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg" aria-label="EncryptHer home">
-            <img src={encryptherLogo} alt="" className="h-24 w-24" aria-hidden="true" />
-            <span className="text-2xl font-bold text-foreground">EncryptHer</span>
-          </Link>
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label="Open navigation menu">
-                <Menu className="h-6 w-6" aria-hidden="true" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent>
-              <SheetHeader>
-                <SheetTitle>Menu</SheetTitle>
-              </SheetHeader>
-              <nav className="flex flex-col gap-4 mt-6" aria-label="Main navigation">
-                <Link to="/" className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">Home</Link>
-                <a href="/#classes" className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">Classes</a>
-                <Link to="/safety-guides" className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">Safety Guides</Link>
-                <Link to="/about" className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">About</Link>
-                <a href="/#contact" className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">Contact</a>
-                <Link to="/donate" className="text-lg font-semibold text-primary hover:text-primary/80 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded" aria-current="page">Donate</Link>
-              </nav>
-            </SheetContent>
-          </Sheet>
-        </div>
-      </header>
+      <SkipLink />
+      <AccessibleHeader />
 
       {/* Main Content */}
       <main id="main-content" role="main">

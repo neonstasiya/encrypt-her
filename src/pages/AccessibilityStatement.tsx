@@ -1,10 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Accessibility, Mail, Phone, CheckCircle, Menu, ExternalLink } from "lucide-react";
+import { Accessibility, Mail, Phone, CheckCircle, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
-import encryptherLogo from "@/assets/encrypther-logo.png";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
+import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { SkipLink } from "@/components/SkipLink";
 import { usePageTitle } from "@/hooks/usePageTitle";
 
@@ -14,35 +13,7 @@ const AccessibilityStatement = () => {
   return (
     <div className="min-h-screen bg-background">
       <SkipLink />
-      
-      {/* Header */}
-      <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50" role="banner">
-        <div className="container mx-auto px-4 flex items-center justify-between py-px">
-          <Link to="/" className="flex items-center gap-0 focus:outline-none focus:ring-2 focus:ring-ring rounded">
-            <img src={encryptherLogo} alt="" className="h-24 w-24" aria-hidden="true" />
-            <span className="text-2xl font-bold text-foreground">EncryptHer</span>
-          </Link>
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label="Open navigation menu">
-                <Menu className="h-6 w-6" aria-hidden="true" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent>
-              <SheetHeader>
-                <SheetTitle>Menu</SheetTitle>
-              </SheetHeader>
-              <nav className="flex flex-col gap-4 mt-6" aria-label="Main navigation">
-                <Link to="/" className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Home</Link>
-                <Link to="/about" className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">About</Link>
-                <Link to="/safety-guides" className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Safety Guides</Link>
-                <Link to="/contact" className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Contact</Link>
-                <Link to="/donate" className="text-lg font-semibold text-primary hover:text-primary/80 transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Donate</Link>
-              </nav>
-            </SheetContent>
-          </Sheet>
-        </div>
-      </header>
+      <AccessibleHeader />
 
       <main id="main-content">
         {/* Hero Section */}

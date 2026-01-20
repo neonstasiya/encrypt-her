@@ -1,10 +1,10 @@
-import { SafetyGuidesHeader } from "@/components/SafetyGuidesHeader";
+import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { BookOpen, Megaphone, Lightbulb, Users } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import encryptherLogo from "@/assets/encrypther-logo.png";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
+import { SkipLink } from "@/components/SkipLink";
 import { usePageTitle } from "@/hooks/usePageTitle";
 
 const Newsletter = () => {
@@ -35,7 +35,8 @@ const Newsletter = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SafetyGuidesHeader />
+      <SkipLink />
+      <AccessibleHeader />
       
       {/* Main Content */}
       <main id="main-content" role="main">

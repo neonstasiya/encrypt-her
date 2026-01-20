@@ -2,96 +2,19 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Lock, Plane, Users, BookOpen, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
+import { AccessibleHeader } from "@/components/AccessibleHeader";
+import { SkipLink } from "@/components/SkipLink";
 import heroImage from "@/assets/hero-privacy.jpg";
-import encryptherLogo from "@/assets/encrypther-logo.png";
 import privacyPaperImage from "@/assets/privacy-paper.jpg";
 import travelLuggageImage from "@/assets/travel-luggage.jpg";
 import advocacyImage from "@/assets/advocacy.jpg";
 import streetAwarenessImage from "@/assets/street-awareness.jpg";
+
 const Index = () => {
   return <div className="min-h-screen bg-background">
-      {/* Header - using role="banner" for semantic landmark */}
-      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md">
-        Skip to main content
-      </a>
-      <header role="banner" className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 flex items-center justify-between py-px">
-          <div className="flex items-center gap-0">
-            <img src={encryptherLogo} alt="EncryptHer logo" className="h-28 w-28 object-cover -mr-2" />
-            <h1 className="text-2xl font-bold text-foreground">EncryptHer</h1>
-          </div>
-          <NavigationMenu className="hidden md:flex" aria-label="Main navigation">
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors px-4 py-2">About</Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <a href="#what-we-do" className="text-muted-foreground hover:text-foreground transition-colors px-4 py-2">What We Do</a>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-muted-foreground hover:text-foreground bg-transparent text-base">Programs</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="w-[200px] p-2">
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link to="/online-privacy" className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none mb-1">Online Privacy</div>
-                          <p className="text-xs leading-snug text-muted-foreground line-clamp-2">
-                            Digital security & privacy
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link to="/public-safety" className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none mb-1">Public Safety</div>
-                          <p className="text-xs leading-snug text-muted-foreground line-clamp-2">
-                            Awareness & protection
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link to="/travel-safety" className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none mb-1">Travel Safety</div>
-                          <p className="text-xs leading-snug text-muted-foreground line-clamp-2">
-                            Safe travel practices
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link to="/digital-advocacy" className="text-muted-foreground hover:text-foreground transition-colors px-4 py-2">Advocate</Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link to="/contact" className="text-muted-foreground hover:text-foreground transition-colors px-4 py-2">Contact</Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
-          <Link to="/donate">
-            <Button>Donate</Button>
-          </Link>
-        </div>
-      </header>
+      <SkipLink />
+      <AccessibleHeader showDonateButton />
 
       {/* Main Content */}
       <main id="main-content" role="main">
