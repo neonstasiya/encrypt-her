@@ -5,8 +5,10 @@ import { Button } from "@/components/ui/button";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { SkipLink } from "@/components/SkipLink";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 const Resources = () => {
+  usePageTitle("Free Resources | EncryptHer");
   const resourceCards = [
     {
       title: "Blog",
