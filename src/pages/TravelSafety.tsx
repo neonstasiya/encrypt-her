@@ -37,8 +37,12 @@ const TravelSafety = () => {
             Learn essential techniques to detect hidden cameras, identify tracking devices, and protect your privacy while traveling anywhere in the world.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg">Enroll in Course</Button>
-            <Button size="lg" variant="outline" className="text-lg">Travel Safety Guide</Button>
+            <Button size="lg" className="text-lg" asChild>
+              <Link to="/coming-soon">Enroll in Course</Link>
+            </Button>
+            <Button size="lg" variant="outline" className="text-lg" asChild>
+              <Link to="/resources">Free Resources</Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -466,8 +470,12 @@ const TravelSafety = () => {
             Join our comprehensive Travel Safety course and learn professional security techniques to protect yourself wherever you go.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg">Enroll Now</Button>
-            <Button size="lg" variant="outline" className="text-lg">Download Free Guide</Button>
+            <Button size="lg" className="text-lg" asChild>
+              <Link to="/coming-soon">Enroll Now</Link>
+            </Button>
+            <Button size="lg" variant="outline" className="text-lg" asChild>
+              <Link to="/resources">Download Free Guide</Link>
+            </Button>
           </div>
         </div>
       </section>

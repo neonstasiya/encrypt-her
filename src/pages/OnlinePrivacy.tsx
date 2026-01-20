@@ -36,8 +36,12 @@ const OnlinePrivacy = () => {
             Learn how to manually remove your personal information from the internet, understand your privacy rights, and protect your digital identity.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">Enroll in Course</Button>
-            <Button size="lg" variant="outline" className="text-lg focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">Free Resources</Button>
+            <Button size="lg" className="text-lg focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2" asChild>
+              <Link to="/coming-soon">Enroll in Course</Link>
+            </Button>
+            <Button size="lg" variant="outline" className="text-lg focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2" asChild>
+              <Link to="/resources">Free Resources</Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -406,11 +410,11 @@ const OnlinePrivacy = () => {
             Join our comprehensive online privacy course and take the first step toward protecting your digital identity.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="text-lg focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
-              Enroll Now
+            <Button size="lg" variant="secondary" className="text-lg focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2" asChild>
+              <Link to="/coming-soon">Enroll Now</Link>
             </Button>
-            <Button size="lg" variant="outline" className="text-lg bg-white/10 hover:bg-white/20 text-white border-white/20 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
-              View Free Resources
+            <Button size="lg" variant="outline" className="text-lg bg-white/10 hover:bg-white/20 text-white border-white/20 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2" asChild>
+              <Link to="/resources">View Free Resources</Link>
             </Button>
           </div>
         </div>
