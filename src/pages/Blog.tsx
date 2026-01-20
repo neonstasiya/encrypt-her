@@ -6,36 +6,40 @@ import encryptherLogo from "@/assets/encrypther-logo.png";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useState } from "react";
 import { FooterResourcesDropdown } from "@/components/FooterResourcesDropdown";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 const Blog = () => {
+  usePageTitle();
   const [isOpen, setIsOpen] = useState(false);
+  
   return (
     <div className="min-h-screen bg-background">
       <SafetyGuidesHeader />
-      <main className="container mx-auto px-4 py-12">
+      
+      <main id="main-content" role="main" className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
-          <div className="mb-8">
+          <header className="mb-8">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Blog
             </h1>
             <p className="text-lg text-muted-foreground">
               Insights on digital privacy, safety, and empowerment
             </p>
-          </div>
+          </header>
 
           <Card className="p-8 md:p-12">
-            <article>
+            <article aria-labelledby="blog-article-heading">
               <header className="mb-8 border-b border-border pb-6">
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                <h2 id="blog-article-heading" className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                   The Growing Crisis: How Lack of Privacy Laws Puts Everyone at Risk
                 </h2>
                 <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4" />
-                    <span>October 13, 2025</span>
+                    <Calendar className="h-4 w-4" aria-hidden="true" />
+                    <time dateTime="2025-10-13">October 13, 2025</time>
                   </div>
                   <div className="flex items-center gap-2">
-                    <User className="h-4 w-4" />
+                    <User className="h-4 w-4" aria-hidden="true" />
                     <span>EncryptHer Team</span>
                   </div>
                 </div>
@@ -47,11 +51,13 @@ const Blog = () => {
                 </p>
 
                 <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-                  <CollapsibleTrigger className="flex items-center gap-2 text-primary hover:text-primary/80 font-semibold my-6 transition-colors">
-                    Read More
-                    <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+                  <CollapsibleTrigger 
+                    className="flex items-center gap-2 text-primary hover:text-primary/80 font-semibold my-6 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+                    aria-expanded={isOpen}
+                  >
+                    {isOpen ? "Read Less" : "Read More"}
+                    <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
                   </CollapsibleTrigger>
-                  
                   <CollapsibleContent className="space-y-6">
                     <h3 className="text-2xl font-bold mt-8 mb-4">The Current State of Privacy Protection</h3>
                     <p>
@@ -140,12 +146,12 @@ const Blog = () => {
       </main>
 
       {/* Footer */}
-      <footer className="py-12 px-4 border-t border-border bg-card">
+      <footer role="contentinfo" className="py-12 px-4 border-t border-border bg-card">
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-0 mb-1">
-                <img src={encryptherLogo} alt="EncryptHer logo" className="h-12 w-12" />
+                <img src={encryptherLogo} alt="" className="h-12 w-12" aria-hidden="true" />
                 <span className="font-bold text-lg text-foreground">EncryptHer</span>
               </div>
               <p className="text-sm text-muted-foreground">
@@ -153,38 +159,38 @@ const Blog = () => {
               </p>
             </div>
             
-            <div>
-              <h4 className="font-semibold mb-4 text-foreground">Programs</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/online-privacy" className="hover:text-foreground transition-colors">Online Privacy</Link></li>
-                <li><Link to="/travel-safety" className="hover:text-foreground transition-colors">Travel Safety</Link></li>
-                <li><Link to="/digital-advocacy" className="hover:text-foreground transition-colors">Advocacy</Link></li>
-                <li><Link to="/public-safety" className="hover:text-foreground transition-colors">Public Safety</Link></li>
+            <nav aria-label="Programs navigation">
+              <h2 className="font-semibold mb-4 text-foreground text-base">Programs</h2>
+              <ul className="space-y-2 text-sm text-muted-foreground" role="list">
+                <li><Link to="/online-privacy" className="hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">Online Privacy</Link></li>
+                <li><Link to="/travel-safety" className="hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">Travel Safety</Link></li>
+                <li><Link to="/digital-advocacy" className="hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">Advocacy</Link></li>
+                <li><Link to="/public-safety" className="hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">Public Safety</Link></li>
               </ul>
-            </div>
+            </nav>
             
-            <div>
-              <h4 className="font-semibold mb-4 text-foreground">Resources</h4>
-              <ul className="space-y-2 text-sm">
+            <nav aria-label="Resources navigation">
+              <h2 className="font-semibold mb-4 text-foreground text-base">Resources</h2>
+              <ul className="space-y-2 text-sm" role="list">
                 <li><FooterResourcesDropdown /></li>
-                <li><Link to="/blog" className="text-muted-foreground hover:text-foreground transition-colors">Blog</Link></li>
-                <li><Link to="/safety-guides" className="text-muted-foreground hover:text-foreground transition-colors">Safety Guides</Link></li>
+                <li><Link to="/blog" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded" aria-current="page">Blog</Link></li>
+                <li><Link to="/safety-guides" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">Safety Guides</Link></li>
               </ul>
-            </div>
+            </nav>
             
-            <div>
-              <h4 className="font-semibold mb-4 text-foreground">Connect</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/about" className="hover:text-foreground transition-colors">About Us</Link></li>
-                <li><Link to="/contact" className="hover:text-foreground transition-colors">Contact</Link></li>
-                <li><Link to="/newsletter" className="hover:text-foreground transition-colors">Newsletter</Link></li>
-                <li><Link to="/donate" className="hover:text-foreground transition-colors">Donate</Link></li>
+            <nav aria-label="Connect navigation">
+              <h2 className="font-semibold mb-4 text-foreground text-base">Connect</h2>
+              <ul className="space-y-2 text-sm text-muted-foreground" role="list">
+                <li><Link to="/about" className="hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">About Us</Link></li>
+                <li><Link to="/contact" className="hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">Contact</Link></li>
+                <li><Link to="/newsletter" className="hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">Newsletter</Link></li>
+                <li><Link to="/donate" className="hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">Donate</Link></li>
               </ul>
-            </div>
+            </nav>
           </div>
           
           <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            <p>© 2025 EncryptHer. All rights reserved. A nonprofit organization dedicated to women's digital and physical world.</p>
+            <p>© 2025 EncryptHer. All rights reserved. A nonprofit organization dedicated to women's digital and physical safety.</p>
           </div>
         </div>
       </footer>
