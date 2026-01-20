@@ -1,4 +1,3 @@
-import { SafetyGuidesHeader } from "@/components/SafetyGuidesHeader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -9,9 +8,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
-import encryptherLogo from "@/assets/encrypther-logo.png";
 import { supabase } from "@/integrations/supabase/client";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
+import { AccessibleHeader } from "@/components/AccessibleHeader";
+import { SkipLink } from "@/components/SkipLink";
 import { usePageTitle } from "@/hooks/usePageTitle";
 import { useId } from "react";
 
@@ -62,7 +62,8 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SafetyGuidesHeader />
+      <SkipLink />
+      <AccessibleHeader />
       
       <main id="main-content">
         {/* Hero Section */}

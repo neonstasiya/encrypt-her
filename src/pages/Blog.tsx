@@ -1,11 +1,11 @@
-import { SafetyGuidesHeader } from "@/components/SafetyGuidesHeader";
+import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { Card } from "@/components/ui/card";
 import { Calendar, User, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
-import encryptherLogo from "@/assets/encrypther-logo.png";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useState } from "react";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
+import { SkipLink } from "@/components/SkipLink";
 import { usePageTitle } from "@/hooks/usePageTitle";
 
 const Blog = () => {
@@ -14,7 +14,8 @@ const Blog = () => {
   
   return (
     <div className="min-h-screen bg-background">
-      <SafetyGuidesHeader />
+      <SkipLink />
+      <AccessibleHeader />
       
       <main id="main-content" role="main" className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">

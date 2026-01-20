@@ -7,7 +7,7 @@ import heroImage from "@/assets/hero-privacy.jpg";
 import transparentLogo from "@/assets/encrypther-logo.png";
 import jsPDF from "jspdf";
 import { EmailGateForm } from "@/components/EmailGateForm";
-import { SafetyGuidesHeader } from "@/components/SafetyGuidesHeader";
+import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { Toaster } from "@/components/ui/toaster";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { SkipLink } from "@/components/SkipLink";
@@ -223,7 +223,7 @@ const SafetyGuides = () => {
   return (
     <div className="min-h-screen bg-background">
       <SkipLink />
-      <SafetyGuidesHeader />
+      <AccessibleHeader />
       
       {/* Hero Section */}
       <main id="main-content">

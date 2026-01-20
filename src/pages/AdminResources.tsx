@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Plus, Trash2, Edit2, Save, X, Menu } from "lucide-react";
+import { Plus, Trash2, Edit2, Save, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,9 +9,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useToast } from "@/hooks/use-toast";
-import encryptherLogo from "@/assets/encrypther-logo.png";
+import { AccessibleHeader } from "@/components/AccessibleHeader";
+import { SkipLink } from "@/components/SkipLink";
 import type { Tables, TablesInsert } from "@/integrations/supabase/types";
 
 type SafetyResource = Tables<"safety_resources">;
@@ -168,32 +168,8 @@ const AdminResources = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 flex items-center justify-between py-px">
-          <Link to="/" className="flex items-center gap-0">
-            <img src={encryptherLogo} alt="EncryptHer logo" className="h-24 w-24" />
-            <h1 className="text-2xl font-bold text-foreground">EncryptHer</h1>
-          </Link>
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent>
-              <SheetHeader>
-                <SheetTitle>Menu</SheetTitle>
-              </SheetHeader>
-              <nav className="flex flex-col gap-4 mt-6">
-                <Link to="/" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Home</Link>
-                <Link to="/resources" className="text-lg text-muted-foreground hover:text-foreground transition-colors">Resources</Link>
-                <Link to="/admin/resources" className="text-lg text-primary hover:text-primary/80 transition-colors font-semibold">Admin Resources</Link>
-              </nav>
-            </SheetContent>
-          </Sheet>
-        </div>
-      </header>
+      <SkipLink />
+      <AccessibleHeader />
 
       <main className="container mx-auto px-4 py-8">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
