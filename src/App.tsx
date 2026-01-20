@@ -29,6 +29,7 @@ import AdminBlogEditor from "./pages/AdminBlogEditor";
 import AdminContributions from "./pages/AdminContributions";
 import AdminDashboard from "./pages/AdminDashboard";
 import Auth from "./pages/Auth";
+import ResetPassword from "./pages/ResetPassword";
 import AccessibilityStatement from "./pages/AccessibilityStatement";
 import ComingSoon from "./pages/ComingSoon";
 
@@ -61,6 +62,8 @@ const App = () => (
             <Route path="/resources-by-state" element={<ResourcesByState />} />
             <Route path="/coming-soon" element={<ComingSoon />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/accessibility" element={<AccessibilityStatement />} />
             <Route path="/accessibility" element={<AccessibilityStatement />} />
             
             {/* Protected Admin Routes */}
