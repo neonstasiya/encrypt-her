@@ -134,10 +134,10 @@ const AdminBlog = () => {
       <main id="main-content" className="flex-grow container mx-auto px-4 py-12" role="main" aria-label="Blog post management">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-4">
-            <Link to="/admin/resources">
-              <Button variant="ghost" className="min-h-[44px]" aria-label="Back to admin">
+            <Link to="/admin">
+              <Button variant="ghost" className="min-h-[44px]" aria-label="Back to admin dashboard">
                 <ArrowLeft className="h-4 w-4 mr-2" aria-hidden="true" />
-                Admin
+                Dashboard
               </Button>
             </Link>
             <h1 className="text-3xl font-bold text-foreground">Manage Blog Posts</h1>
