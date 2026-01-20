@@ -640,9 +640,10 @@ const PublicSafety = () => {
           </div>
         </div>
       </section>
+      </main>
 
       {/* Footer */}
-      <footer className="py-12 px-4 border-t border-border bg-card">
+      <footer className="py-12 px-4 border-t border-border bg-card" role="contentinfo">
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
