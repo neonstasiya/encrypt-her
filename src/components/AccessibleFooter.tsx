@@ -85,6 +85,11 @@ export const AccessibleFooter = () => {
                   Donate
                 </Link>
               </li>
+              <li>
+                <Link to="/accessibility" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">
+                  Accessibility
+                </Link>
+              </li>
             </ul>
           </nav>
         </div>

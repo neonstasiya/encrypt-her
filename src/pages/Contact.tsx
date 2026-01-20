@@ -321,6 +321,7 @@ const Contact = () => {
                 <li><Link to="/contact" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded" aria-current="page">Contact</Link></li>
                 <li><Link to="/newsletter" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Newsletter</Link></li>
                 <li><Link to="/donate" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Donate</Link></li>
+                <li><Link to="/accessibility" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Accessibility</Link></li>
               </ul>
             </nav>
           </div>

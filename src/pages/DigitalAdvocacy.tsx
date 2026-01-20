@@ -801,10 +801,11 @@ const DigitalAdvocacy = () => {
             <div>
               <h4 className="font-semibold mb-4 text-foreground">Connect</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/about" className="hover:text-foreground transition-colors">About Us</Link></li>
-                <li><Link to="/contact" className="hover:text-foreground transition-colors">Contact</Link></li>
-                <li><Link to="/newsletter" className="hover:text-foreground transition-colors">Newsletter</Link></li>
-                <li><Link to="/donate" className="hover:text-foreground transition-colors">Donate</Link></li>
+                <li><Link to="/about" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">About Us</Link></li>
+                <li><Link to="/contact" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Contact</Link></li>
+                <li><Link to="/newsletter" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Newsletter</Link></li>
+                <li><Link to="/donate" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Donate</Link></li>
+                <li><Link to="/accessibility" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Accessibility</Link></li>
               </ul>
             </div>
           </div>
