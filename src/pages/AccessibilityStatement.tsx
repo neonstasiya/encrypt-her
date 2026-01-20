@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Accessibility, Mail, Phone, CheckCircle, ExternalLink } from "lucide-react";
+import { Accessibility, Mail, CheckCircle, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { AccessibleHeader } from "@/components/AccessibleHeader";
@@ -176,19 +176,11 @@ const AccessibilityStatement = () => {
                 
                 <div className="space-y-3">
                   <a 
-                    href="mailto:accessibility@encrypther.org" 
+                    href="mailto:info@encrypther.org" 
                     className="flex items-center gap-3 text-foreground hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded p-2 -ml-2"
                   >
                     <Mail className="h-5 w-5 text-primary" aria-hidden="true" />
-                    <span>accessibility@encrypther.org</span>
-                  </a>
-                  
-                  <a 
-                    href="tel:+1-555-ENCRYPT" 
-                    className="flex items-center gap-3 text-foreground hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded p-2 -ml-2"
-                  >
-                    <Phone className="h-5 w-5 text-primary" aria-hidden="true" />
-                    <span>1-555-ENCRYPT (1-555-362-7978)</span>
+                    <span>info@encrypther.org</span>
                   </a>
                 </div>
 
