@@ -19,6 +19,7 @@ import NotFound from "./pages/NotFound";
 import AdminAssetUpload from "./pages/AdminAssetUpload";
 import Resources from "./pages/Resources";
 import AdminResources from "./pages/AdminResources";
+import AccessibilityStatement from "./pages/AccessibilityStatement";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,7 @@ const App = () => (
           <Route path="/resources" element={<Resources />} />
           <Route path="/admin/upload-assets" element={<AdminAssetUpload />} />
           <Route path="/admin/resources" element={<AdminResources />} />
+          <Route path="/accessibility" element={<AccessibilityStatement />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
