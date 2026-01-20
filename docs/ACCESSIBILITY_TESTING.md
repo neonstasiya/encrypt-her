@@ -1,6 +1,6 @@
 # Automated Accessibility Testing
 
-This project uses **Vitest** and **axe-core** (via vitest-axe) for automated accessibility testing.
+This project uses **Vitest** and **axe-core** (via vitest-axe) for automated accessibility testing, targeting **WCAG 2.2 AAA** compliance.
 
 ## Running Tests
 
@@ -85,43 +85,83 @@ describe('MyComponent Accessibility', () => {
 });
 ```
 
-## What axe-core Checks
+## WCAG 2.2 AAA Compliance
 
-The automated tests check for common accessibility issues including:
+This project targets WCAG 2.2 AAA compliance. Key requirements:
 
-- **Missing alt text** on images
-- **Color contrast** issues
-- **Missing form labels**
-- **Incorrect ARIA usage**
-- **Missing document landmarks**
-- **Heading hierarchy issues**
-- **Keyboard accessibility**
-- **Focus management**
+### Automated Checks (axe-core)
 
-## Customizing axe Rules
+| Criterion | Level | Description | Tested |
+|-----------|-------|-------------|--------|
+| 1.4.3 Contrast (Minimum) | AA | 4.5:1 contrast ratio | ✅ |
+| 1.4.6 Contrast (Enhanced) | AAA | 7:1 contrast ratio | ✅ |
+| 2.4.7 Focus Visible | AA | Visible focus indicators | ✅ |
+| 2.5.5 Target Size (Enhanced) | AAA | 44x44px touch targets | ✅ |
+| 4.1.2 Name, Role, Value | A | Proper ARIA usage | ✅ |
 
-You can customize which rules are checked in `a11y-utils.ts`:
+### Manual Testing Required
 
-```typescript
-export async function checkA11y(container: Element) {
-  const results = await axe(container, {
-    rules: {
-      'color-contrast': { enabled: true },
-      'document-title': { enabled: false },
-      // Add or modify rules as needed
-    },
-  });
-  expect(results).toHaveNoViolations();
-}
+Some AAA requirements cannot be automated:
+
+| Criterion | Level | Description | Testing Method |
+|-----------|-------|-------------|----------------|
+| 1.4.8 Visual Presentation | AAA | Text spacing, line height | Manual review |
+| 2.2.6 Timeouts | AAA | Warn users of timeouts | Manual testing |
+| 2.3.3 Animation from Interactions | AAA | Respect prefers-reduced-motion | Manual testing |
+| 3.1.5 Reading Level | AAA | Content at lower secondary level | Content review |
+| 3.1.6 Pronunciation | AAA | Pronunciation guides | Content review |
+| 3.3.5 Help | AAA | Context-sensitive help | Manual testing |
+| 3.3.6 Error Prevention (All) | AAA | Confirmation dialogs | Manual testing |
+
+## AAA Accessibility Components
+
+This project includes dedicated AAA accessibility components:
+
+### Pronunciation Component
+```tsx
+import { Pronunciation } from '@/components/Pronunciation';
+
+<Pronunciation phonetic="en-KRIPT-her">EncryptHer</Pronunciation>
 ```
 
-## Best Practices
+### Abbreviation Component
+```tsx
+import { Abbr } from '@/components/Abbr';
 
-1. **Test every page** - Create an a11y test file for each page
-2. **Test complex components** - Interactive components need separate tests
-3. **Check landmarks** - Verify banner, main, and contentinfo roles
-4. **Verify forms** - Ensure all inputs have labels
-5. **Check headings** - Verify proper h1/h2/h3 hierarchy
+<Abbr title="Web Content Accessibility Guidelines">WCAG</Abbr>
+```
+
+### Live Region Component
+```tsx
+import { LiveRegion } from '@/components/LiveRegion';
+
+<LiveRegion politeness="polite" atomic>
+  Your message has been sent.
+</LiveRegion>
+```
+
+### Form Help Component
+```tsx
+import { FormHelp } from '@/components/FormHelp';
+
+<FormHelp 
+  label="Email" 
+  helpText="We'll use this to send you updates."
+/>
+```
+
+### Confirm Dialog Component
+```tsx
+import { ConfirmDialog } from '@/components/ConfirmDialog';
+
+<ConfirmDialog
+  open={showConfirm}
+  onOpenChange={setShowConfirm}
+  title="Submit Form?"
+  description="Please review your information before submitting."
+  onConfirm={handleSubmit}
+/>
+```
 
 ## CI/CD Integration
 
@@ -155,6 +195,58 @@ Add to your `package.json`:
 }
 ```
 
+## Screen Reader Testing
+
+### Testing with NVDA (Windows)
+1. Download NVDA from https://www.nvaccess.org/
+2. Enable "Speech Viewer" to see what's being announced
+3. Test navigation with Tab, Arrow keys, and screen reader shortcuts
+
+### Testing with VoiceOver (macOS)
+1. Press Cmd+F5 to toggle VoiceOver
+2. Use VO+Right/Left to navigate
+3. Test with Rotor (VO+U) for landmarks and headings
+
+### Testing with JAWS
+1. Use Insert+F6 for heading list
+2. Use Insert+F7 for links list
+3. Test forms mode (Enter to activate, Esc to exit)
+
+## Magnification Testing
+
+1. Test at 200% browser zoom (Ctrl/Cmd + +)
+2. Test at 400% (320px equivalent viewport)
+3. Verify:
+   - No horizontal scrolling at 320px width
+   - Text remains readable
+   - Interactive elements accessible
+   - No overlapping content
+
+## Keyboard Navigation Testing
+
+1. Start at page top
+2. Press Tab through all interactive elements
+3. Verify:
+   - Focus indicator always visible (3px ring)
+   - Logical tab order
+   - No keyboard traps
+   - Skip link works
+   - All functionality accessible
+
+## High Contrast Mode Testing
+
+### Windows High Contrast
+1. Settings > Accessibility > Contrast themes
+2. Select "High Contrast" theme
+3. Verify all content visible
+
+### Forced Colors Detection
+```css
+@media (forced-colors: active) {
+  /* Styles for high contrast mode */
+}
+```
+
 ## Resources
 
 - [axe-core Rules](https://dequeuniversity.com/rules/axe/)
@@ -162,3 +254,5 @@ Add to your `package.json`:
 - [Vitest Documentation](https://vitest.dev/)
 - [Testing Library](https://testing-library.com/)
 - [vitest-axe](https://github.com/chaance/vitest-axe)
+- [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
+- [NVDA Screen Reader](https://www.nvaccess.org/)

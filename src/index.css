@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================
+   WCAG 2.2 AAA Accessibility Utilities
+   ============================================ */
+
 /* Screen reader only content - visually hidden but accessible */
 .sr-only {
   position: absolute;
@@ -29,9 +33,9 @@
   white-space: normal;
 }
 
-/* Enhanced focus styles for accessibility */
+/* Enhanced focus styles for accessibility - WCAG 2.4.7 (AA) */
 *:focus-visible {
-  outline: 2px solid hsl(var(--ring));
+  outline: 3px solid hsl(var(--ring));
   outline-offset: 2px;
 }
 
@@ -40,88 +44,198 @@
   outline: none;
 }
 
+/* ============================================
+   WCAG 2.3.3 (AAA) - Animation from Interactions
+   Comprehensive reduced motion support
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Disable specific animations */
+  .animate-fade-in,
+  .animate-fade-out,
+  .animate-scale-in,
+  .animate-scale-out,
+  .animate-slide-in-right,
+  .animate-slide-out-right,
+  .animate-enter,
+  .animate-exit,
+  .animate-spin,
+  .animate-pulse,
+  .animate-bounce {
+    animation: none !important;
+  }
+
+  /* Disable hover transforms */
+  .hover\:scale-105:hover,
+  .hover-scale:hover {
+    transform: none !important;
+  }
+}
+
+/* ============================================
+   WCAG 1.4.12 (AA) - Text Spacing
+   Support for user text spacing preferences
+   ============================================ */
+.accessible-text {
+  line-height: 1.5 !important;
+  letter-spacing: 0.12em !important;
+  word-spacing: 0.16em !important;
+}
+
+.accessible-text p {
+  margin-bottom: 2em !important;
+}
+
+/* ============================================
+   WCAG 1.4.4 (AA) - Resize Text
+   Ensure content reflows at 200% zoom
+   ============================================ */
+html {
+  font-size: 100%; /* Respect browser font size preferences */
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: auto; /* Prevent content clipping at zoom */
+}
+
+/* ============================================
+   WCAG 2.5.5 (AAA) - Target Size (Enhanced)
+   Minimum 44x44px touch targets
+   ============================================ */
+.min-touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* ============================================
+   High Contrast Mode Support
+   ============================================ */
+@media (prefers-contrast: more) {
+  :root {
+    --muted-foreground: 240 5% 25%;
+    --border: 240 10% 50%;
+  }
+
+  .dark {
+    --muted-foreground: 240 5% 80%;
+    --border: 240 10% 60%;
+  }
+}
+
+/* ============================================
+   Forced Colors Mode (Windows High Contrast)
+   ============================================ */
+@media (forced-colors: active) {
+  *:focus-visible {
+    outline: 3px solid CanvasText;
+  }
+
+  a {
+    color: LinkText;
+  }
+
+  button {
+    border: 1px solid ButtonText;
+  }
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
 
+/* ============================================
+   Design System Variables
+   All colors MUST be HSL.
+   WCAG 1.4.6 (AAA) - Enhanced Contrast (7:1 ratio)
+   ============================================ */
+
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 15%;
+    --foreground: 240 10% 10%; /* Darker for AAA contrast */
 
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 15%;
+    --card-foreground: 240 10% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 15%;
+    --popover-foreground: 240 10% 10%;
 
-    --primary: 280 70% 45%;
+    --primary: 280 70% 40%; /* Slightly darker for better contrast */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 280 50% 95%;
-    --secondary-foreground: 280 70% 45%;
+    --secondary-foreground: 280 70% 35%; /* Darker for AAA */
 
     --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 46%;
+    --muted-foreground: 240 5% 30%; /* AAA: Changed from 46% to 30% for 7:1 ratio */
 
-    --accent: 320 65% 55%;
+    --accent: 320 65% 45%; /* Slightly darker for contrast */
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84.2% 50%; /* Darker for better contrast */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 280 70% 45%;
+    --border: 240 6% 85%; /* Slightly darker borders */
+    --input: 240 6% 85%;
+    --ring: 280 70% 40%;
 
     --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 280 70% 45%;
+    --sidebar-foreground: 240 5.3% 20%; /* Darker for AAA */
+    --sidebar-primary: 280 70% 40%;
     --sidebar-primary-foreground: 0 0% 98%;
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 280 70% 45%;
+    --sidebar-border: 220 13% 85%;
+    --sidebar-ring: 280 70% 40%;
   }
 
   .dark {
     --background: 240 10% 8%;
-    --foreground: 0 0% 95%;
+    --foreground: 0 0% 98%; /* Brighter for AAA contrast */
 
     --card: 240 10% 10%;
-    --card-foreground: 0 0% 95%;
+    --card-foreground: 0 0% 98%;
 
     --popover: 240 10% 10%;
-    --popover-foreground: 0 0% 95%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 280 65% 60%;
+    --primary: 280 65% 65%; /* Brighter for dark mode contrast */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 240 8% 15%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary-foreground: 0 0% 98%;
 
     --muted: 240 8% 15%;
-    --muted-foreground: 240 5% 65%;
+    --muted-foreground: 240 5% 75%; /* AAA: Changed from 65% to 75% for better contrast */
 
-    --accent: 320 60% 50%;
+    --accent: 320 60% 55%; /* Brighter for dark mode */
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 62.8% 45%; /* Brighter for dark mode contrast */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 8% 20%;
-    --input: 240 8% 20%;
-    --ring: 280 65% 60%;
+    --border: 240 8% 25%; /* Brighter borders for visibility */
+    --input: 240 8% 25%;
+    --ring: 280 65% 65%;
     --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 280 65% 60%;
+    --sidebar-foreground: 240 4.8% 98%; /* Brighter for AAA */
+    --sidebar-primary: 280 65% 65%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 280 65% 60%;
+    --sidebar-accent-foreground: 240 4.8% 98%;
+    --sidebar-border: 240 3.7% 20%;
+    --sidebar-ring: 280 65% 65%;
   }
 }
 

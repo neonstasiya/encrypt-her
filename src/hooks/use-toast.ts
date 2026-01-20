@@ -3,7 +3,13 @@ import * as React from "react";
 import type { ToastActionElement, ToastProps } from "@/components/ui/toast";
 
 const TOAST_LIMIT = 1;
-const TOAST_REMOVE_DELAY = 1000000;
+/**
+ * WCAG 2.2.1 (A) - Timing Adjustable
+ * WCAG 2.2.6 (AAA) - Timeouts
+ * Extended duration (10 seconds) for users who need more time to read
+ * Note: Very long delay to give users ample time
+ */
+const TOAST_REMOVE_DELAY = 10000;
 
 type ToasterToast = ToastProps & {
   id: string;

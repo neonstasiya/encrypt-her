@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SkipLink } from "@/components/SkipLink";
+import { KeyboardShortcuts } from "@/components/KeyboardShortcuts";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Donate from "./pages/Donate";
@@ -32,6 +33,8 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <SkipLink />
+        {/* WCAG 2.1.4 (A) - Keyboard Shortcuts with discoverable help */}
+        <KeyboardShortcuts />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
