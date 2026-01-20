@@ -6,7 +6,7 @@ import { Camera, Radio, Eye, Shield, AlertTriangle, CheckCircle, MapPin, Smartph
 import { Link } from "react-router-dom";
 import encryptherLogo from "@/assets/encrypther-logo.png";
 import travelSafetyImage from "@/assets/travel-safety.jpg";
-import { FooterResourcesDropdown } from "@/components/FooterResourcesDropdown";
+import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { SkipLink } from "@/components/SkipLink";
 import { usePageTitle } from "@/hooks/usePageTitle";
 
@@ -502,56 +502,7 @@ const TravelSafety = () => {
       </section>
       </main>
 
-      {/* Footer */}
-      <footer className="py-12 px-4 border-t border-border bg-card" role="contentinfo">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="flex items-center gap-0 mb-1">
-                <img src={encryptherLogo} alt="EncryptHer logo" className="h-12 w-12" />
-                <span className="font-bold text-lg text-foreground">EncryptHer</span>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Empowering women through digital safety education and real-world protection strategies.
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-4 text-foreground">Programs</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/online-privacy" className="hover:text-foreground transition-colors">Online Privacy</Link></li>
-                <li><Link to="/travel-safety" className="hover:text-foreground transition-colors">Travel Safety</Link></li>
-                <li><Link to="/digital-advocacy" className="hover:text-foreground transition-colors">Advocacy</Link></li>
-                <li><Link to="/public-safety" className="hover:text-foreground transition-colors">Public Safety</Link></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-4 text-foreground">Resources</h4>
-              <ul className="space-y-2 text-sm">
-                <li><FooterResourcesDropdown /></li>
-                <li><Link to="/blog" className="text-muted-foreground hover:text-foreground transition-colors">Blog</Link></li>
-                <li><Link to="/safety-guides" className="text-muted-foreground hover:text-foreground transition-colors">Safety Guides</Link></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-4 text-foreground">Connect</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/about" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">About Us</Link></li>
-                <li><Link to="/contact" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Contact</Link></li>
-                <li><Link to="/newsletter" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Newsletter</Link></li>
-                <li><Link to="/donate" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Donate</Link></li>
-                <li><Link to="/accessibility" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Accessibility</Link></li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            <p>© 2025 EncryptHer. All rights reserved. A nonprofit organization dedicated to women's digital and physical world.</p>
-          </div>
-        </div>
-      </footer>
+      <AccessibleFooter />
     </div>
   );
 };
