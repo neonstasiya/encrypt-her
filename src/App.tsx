@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SkipLink } from "@/components/SkipLink";
 import { KeyboardShortcuts } from "@/components/KeyboardShortcuts";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Donate from "./pages/Donate";
@@ -25,6 +27,8 @@ import AdminResources from "./pages/AdminResources";
 import AdminBlog from "./pages/AdminBlog";
 import AdminBlogEditor from "./pages/AdminBlogEditor";
 import AdminContributions from "./pages/AdminContributions";
+import AdminDashboard from "./pages/AdminDashboard";
+import Auth from "./pages/Auth";
 import AccessibilityStatement from "./pages/AccessibilityStatement";
 import ComingSoon from "./pages/ComingSoon";
 
@@ -36,35 +40,70 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <SkipLink />
-        {/* WCAG 2.1.4 (A) - Keyboard Shortcuts with discoverable help */}
-        <KeyboardShortcuts />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/donate" element={<Donate />} />
-          <Route path="/online-privacy" element={<OnlinePrivacy />} />
-          <Route path="/travel-safety" element={<TravelSafety />} />
-          <Route path="/digital-advocacy" element={<DigitalAdvocacy />} />
-          <Route path="/safety-guides" element={<SafetyGuides />} />
-          <Route path="/newsletter" element={<Newsletter />} />
-          <Route path="/public-safety" element={<PublicSafety />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/resources" element={<Resources />} />
-          <Route path="/resources-by-state" element={<ResourcesByState />} />
-          <Route path="/coming-soon" element={<ComingSoon />} />
-          <Route path="/admin/upload-assets" element={<AdminAssetUpload />} />
-          <Route path="/admin/resources" element={<AdminResources />} />
-          <Route path="/admin/blog" element={<AdminBlog />} />
-          <Route path="/admin/blog/new" element={<AdminBlogEditor />} />
-          <Route path="/admin/blog/edit/:id" element={<AdminBlogEditor />} />
-          <Route path="/admin/contributions" element={<AdminContributions />} />
-          <Route path="/accessibility" element={<AccessibilityStatement />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <AuthProvider>
+          <SkipLink />
+          {/* WCAG 2.1.4 (A) - Keyboard Shortcuts with discoverable help */}
+          <KeyboardShortcuts />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/donate" element={<Donate />} />
+            <Route path="/online-privacy" element={<OnlinePrivacy />} />
+            <Route path="/travel-safety" element={<TravelSafety />} />
+            <Route path="/digital-advocacy" element={<DigitalAdvocacy />} />
+            <Route path="/safety-guides" element={<SafetyGuides />} />
+            <Route path="/newsletter" element={<Newsletter />} />
+            <Route path="/public-safety" element={<PublicSafety />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/resources-by-state" element={<ResourcesByState />} />
+            <Route path="/coming-soon" element={<ComingSoon />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/accessibility" element={<AccessibilityStatement />} />
+            
+            {/* Protected Admin Routes */}
+            <Route path="/admin" element={
+              <ProtectedRoute requireAdmin>
+                <AdminDashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/upload-assets" element={
+              <ProtectedRoute requireAdmin>
+                <AdminAssetUpload />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/resources" element={
+              <ProtectedRoute requireAdmin>
+                <AdminResources />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/blog" element={
+              <ProtectedRoute requireAdmin>
+                <AdminBlog />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/blog/new" element={
+              <ProtectedRoute requireAdmin>
+                <AdminBlogEditor />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/blog/edit/:id" element={
+              <ProtectedRoute requireAdmin>
+                <AdminBlogEditor />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/contributions" element={
+              <ProtectedRoute requireAdmin>
+                <AdminContributions />
+              </ProtectedRoute>
+            } />
+            
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

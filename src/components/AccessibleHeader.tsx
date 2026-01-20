@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import { Menu, Settings, LogIn } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import encryptherLogo from "@/assets/encrypther-logo.png";
 import { VisuallyHidden } from "@/components/VisuallyHidden";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { useAuth } from "@/contexts/AuthContext";
+import { Separator } from "@/components/ui/separator";
 
 interface AccessibleHeaderProps {
   showDonateButton?: boolean;
@@ -12,6 +14,7 @@ interface AccessibleHeaderProps {
 
 export const AccessibleHeader = ({ showDonateButton = false }: AccessibleHeaderProps) => {
   const location = useLocation();
+  const { user, isAdmin } = useAuth();
   
   const isCurrentPage = (path: string) => location.pathname === path;
   
@@ -101,6 +104,28 @@ export const AccessibleHeader = ({ showDonateButton = false }: AccessibleHeaderP
                 >
                   Donate
                 </Link>
+
+                <Separator className="my-2" />
+
+                {isAdmin ? (
+                  <Link 
+                    to="/admin" 
+                    className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded px-2 py-1 flex items-center gap-2"
+                    aria-current={isCurrentPage("/admin") ? "page" : undefined}
+                  >
+                    <Settings className="h-5 w-5" aria-hidden="true" />
+                    Admin Dashboard
+                  </Link>
+                ) : !user ? (
+                  <Link 
+                    to="/auth" 
+                    className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded px-2 py-1 flex items-center gap-2"
+                    aria-current={isCurrentPage("/auth") ? "page" : undefined}
+                  >
+                    <LogIn className="h-5 w-5" aria-hidden="true" />
+                    Sign In
+                  </Link>
+                ) : null}
               </nav>
             </SheetContent>
           </Sheet>
