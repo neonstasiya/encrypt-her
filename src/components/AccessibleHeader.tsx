@@ -64,13 +64,6 @@ export const AccessibleHeader = ({ showDonateButton = false }: AccessibleHeaderP
                   Programs
                 </a>
                 <Link 
-                  to="/safety-guides" 
-                  className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded px-2 py-1"
-                  aria-current={isCurrentPage("/safety-guides") ? "page" : undefined}
-                >
-                  Safety Guides
-                </Link>
-                <Link 
                   to="/resources" 
                   className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded px-2 py-1"
                   aria-current={isCurrentPage("/resources") ? "page" : undefined}

@@ -18,8 +18,10 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import AdminAssetUpload from "./pages/AdminAssetUpload";
 import Resources from "./pages/Resources";
+import ResourcesByState from "./pages/ResourcesByState";
 import AdminResources from "./pages/AdminResources";
 import AccessibilityStatement from "./pages/AccessibilityStatement";
+import ComingSoon from "./pages/ComingSoon";
 
 const queryClient = new QueryClient();
 
@@ -43,6 +45,8 @@ const App = () => (
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/resources" element={<Resources />} />
+          <Route path="/resources-by-state" element={<ResourcesByState />} />
+          <Route path="/coming-soon" element={<ComingSoon />} />
           <Route path="/admin/upload-assets" element={<AdminAssetUpload />} />
           <Route path="/admin/resources" element={<AdminResources />} />
           <Route path="/accessibility" element={<AccessibilityStatement />} />

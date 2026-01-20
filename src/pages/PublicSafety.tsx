@@ -37,8 +37,12 @@ const PublicSafety = () => {
             Comprehensive training in situational awareness, self-defense, personal safety tools, and protective strategies for everyday life.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg">Enroll in Course</Button>
-            <Button size="lg" variant="outline" className="text-lg">Free Resources</Button>
+            <Button size="lg" className="text-lg" asChild>
+              <Link to="/coming-soon">Enroll in Course</Link>
+            </Button>
+            <Button size="lg" variant="outline" className="text-lg" asChild>
+              <Link to="/resources">Free Resources</Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -606,8 +610,12 @@ const PublicSafety = () => {
             Join thousands of women taking control of their personal safety. Enroll today and start building confidence, awareness, and practical protection skills.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg">Enroll Now</Button>
-            <Button size="lg" variant="outline" className="text-lg">View Free Resources</Button>
+            <Button size="lg" className="text-lg" asChild>
+              <Link to="/coming-soon">Enroll Now</Link>
+            </Button>
+            <Button size="lg" variant="outline" className="text-lg" asChild>
+              <Link to="/resources">View Free Resources</Link>
+            </Button>
           </div>
         </div>
       </section>

@@ -207,10 +207,10 @@ const Index = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" className="text-lg" asChild>
-                <a href="#courses">Enroll Now</a>
+                <Link to="/coming-soon">Enroll Now</Link>
               </Button>
               <Button size="lg" variant="outline" className="text-lg bg-white/10 hover:bg-white/20 text-white border-white/20" asChild>
-                <Link to="/contact">Contact Us</Link>
+                <Link to="/resources">Free Resources</Link>
               </Button>
             </div>
           </div>
