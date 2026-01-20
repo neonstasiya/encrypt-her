@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useId } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -10,6 +10,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { CheckCircle2, Loader2 } from "lucide-react";
+import { VisuallyHidden } from "@/components/VisuallyHidden";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
@@ -28,6 +29,8 @@ const interestOptions = [
 export const NewsletterForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const formId = useId();
+  const statusId = useId();
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -97,11 +100,11 @@ export const NewsletterForm = () => {
 
   if (isSubmitted) {
     return (
-      <Card className="border-border bg-card/50 backdrop-blur-sm">
+      <Card className="border-border bg-card/50 backdrop-blur-sm" role="status" aria-live="polite">
         <CardContent className="pt-6">
           <div className="text-center py-8 animate-fade-in">
             <div className="mb-4 flex justify-center">
-              <CheckCircle2 className="h-16 w-16 text-green-500" />
+              <CheckCircle2 className="h-16 w-16 text-green-500" aria-hidden="true" />
             </div>
             <h3 className="text-2xl font-bold mb-2 text-foreground">Welcome to EncryptHer!</h3>
             <p className="text-muted-foreground">
@@ -116,14 +119,23 @@ export const NewsletterForm = () => {
   return (
     <Card className="border-border bg-card/50 backdrop-blur-sm">
       <CardHeader>
-        <CardTitle className="text-2xl">Subscribe to Our Newsletter</CardTitle>
-        <CardDescription>
+        <CardTitle className="text-2xl" id={`${formId}-title`}>Subscribe to Our Newsletter</CardTitle>
+        <CardDescription id={`${formId}-desc`}>
           Choose what you'd like to receive and we'll keep you updated
         </CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form 
+            onSubmit={form.handleSubmit(onSubmit)} 
+            className="space-y-6"
+            aria-labelledby={`${formId}-title`}
+            aria-describedby={`${formId}-desc`}
+          >
+            {/* Status announcer for screen readers */}
+            <div aria-live="polite" aria-atomic="true" className="sr-only" id={statusId}>
+              {isLoading ? "Submitting your subscription..." : ""}
+            </div>
             <FormField
               control={form.control}
               name="email"
@@ -188,11 +200,13 @@ export const NewsletterForm = () => {
                 className="w-full" 
                 size="lg"
                 disabled={isLoading}
+                aria-describedby={isLoading ? statusId : undefined}
               >
                 {isLoading ? (
                   <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Subscribing...
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />
+                    <span>Subscribing...</span>
+                    <VisuallyHidden>Please wait</VisuallyHidden>
                   </>
                 ) : (
                   "Subscribe to Newsletter"
@@ -200,9 +214,12 @@ export const NewsletterForm = () => {
               </Button>
             </div>
 
-            <p className="text-xs text-muted-foreground text-center">
+            <p className="text-xs text-muted-foreground text-center" aria-hidden="true">
               🔒 We respect your privacy. Unsubscribe anytime. No spam, ever.
             </p>
+            <VisuallyHidden>
+              We respect your privacy. You can unsubscribe anytime. We never send spam.
+            </VisuallyHidden>
           </form>
         </Form>
       </CardContent>

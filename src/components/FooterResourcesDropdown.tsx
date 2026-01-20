@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import {
@@ -21,34 +22,57 @@ const US_STATES = [
 ];
 
 export const FooterResourcesDropdown = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <Popover>
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
-        <button className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors text-left">
+        <button 
+          className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors text-left"
+          aria-expanded={isOpen}
+          aria-haspopup="true"
+          aria-label="Resources by State - opens dropdown menu"
+        >
           Resources by State
-          <ChevronDown className="h-4 w-4" />
+          <ChevronDown className="h-4 w-4" aria-hidden="true" />
         </button>
       </PopoverTrigger>
-      <PopoverContent className="w-56 p-2 bg-card border border-border z-50" align="start">
+      <PopoverContent 
+        className="w-56 p-2 bg-card border border-border z-50" 
+        align="start"
+        role="menu"
+        aria-label="State resources navigation"
+      >
         <ScrollArea className="h-72">
-          <div className="flex flex-col gap-1">
-            <Link
-              to="/resources"
-              className="px-3 py-2 text-sm font-medium text-primary hover:bg-muted rounded-md transition-colors"
-            >
-              View All Resources
-            </Link>
-            <div className="border-t border-border my-1" />
-            {US_STATES.map((state) => (
-              <Link
-                key={state}
-                to={`/resources?state=${encodeURIComponent(state)}`}
-                className="px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors"
-              >
-                {state}
-              </Link>
-            ))}
-          </div>
+          <nav aria-label="Resources by state">
+            <ul className="flex flex-col gap-1" role="list">
+              <li>
+                <Link
+                  to="/resources"
+                  className="block px-3 py-2 text-sm font-medium text-primary hover:bg-muted rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-ring"
+                  role="menuitem"
+                  onClick={() => setIsOpen(false)}
+                >
+                  View All Resources
+                </Link>
+              </li>
+              <li aria-hidden="true">
+                <div className="border-t border-border my-1" />
+              </li>
+              {US_STATES.map((state) => (
+                <li key={state}>
+                  <Link
+                    to={`/resources?state=${encodeURIComponent(state)}`}
+                    className="block px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-ring"
+                    role="menuitem"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {state}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </ScrollArea>
       </PopoverContent>
     </Popover>
