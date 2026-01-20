@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { FooterResourcesDropdown } from "@/components/FooterResourcesDropdown";
+import { AccessibleFooter } from "@/components/AccessibleFooter";
 import encryptherLogo from "@/assets/encrypther-logo.png";
 import type { Tables } from "@/integrations/supabase/types";
 
@@ -315,50 +315,7 @@ const Resources = () => {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer role="contentinfo" className="border-t border-border bg-card/50 py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <img src={encryptherLogo} alt="" className="h-10 w-10" aria-hidden="true" />
-                <span className="font-bold text-lg">EncryptHer</span>
-              </div>
-              <p className="text-muted-foreground text-sm">
-                Empowering women through digital safety education and advocacy.
-              </p>
-            </div>
-            <nav aria-label="Programs navigation">
-              <h2 className="font-semibold mb-4 text-base">Programs</h2>
-              <ul className="space-y-2 text-sm text-muted-foreground" role="list">
-                <li><Link to="/online-privacy" className="hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">Online Privacy</Link></li>
-                <li><Link to="/public-safety" className="hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">Public Safety</Link></li>
-                <li><Link to="/travel-safety" className="hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">Travel Safety</Link></li>
-              </ul>
-            </nav>
-            <nav aria-label="Resources navigation">
-              <h2 className="font-semibold mb-4 text-base">Resources</h2>
-              <ul className="space-y-2 text-sm" role="list">
-                <li><FooterResourcesDropdown /></li>
-                <li><Link to="/safety-guides" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">Safety Guides</Link></li>
-                <li><Link to="/blog" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">Blog</Link></li>
-              </ul>
-            </nav>
-            <nav aria-label="Connect navigation">
-              <h2 className="font-semibold mb-4 text-base">Connect</h2>
-              <ul className="space-y-2 text-sm text-muted-foreground" role="list">
-                <li><Link to="/about" className="hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">About Us</Link></li>
-                <li><Link to="/contact" className="hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">Contact</Link></li>
-                <li><Link to="/donate" className="hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">Donate</Link></li>
-                <li><Link to="/accessibility" className="hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">Accessibility</Link></li>
-              </ul>
-            </nav>
-          </div>
-          <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-            <p>© {new Date().getFullYear()} EncryptHer. Empowering women to protect themselves in the digital age.</p>
-          </div>
-        </div>
-      </footer>
+      <AccessibleFooter />
     </div>
   );
 };

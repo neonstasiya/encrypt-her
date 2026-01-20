@@ -11,7 +11,7 @@ import { toast } from "sonner";
 import { Link } from "react-router-dom";
 import encryptherLogo from "@/assets/encrypther-logo.png";
 import { supabase } from "@/integrations/supabase/client";
-import { FooterResourcesDropdown } from "@/components/FooterResourcesDropdown";
+import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { usePageTitle } from "@/hooks/usePageTitle";
 import { useId } from "react";
 
@@ -281,56 +281,7 @@ const Contact = () => {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-muted/30 border-t mt-20" role="contentinfo">
-        <div className="max-w-7xl mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="flex items-center gap-0 mb-4">
-                <img src={encryptherLogo} alt="" className="h-12 w-12" aria-hidden="true" />
-                <span className="font-bold text-lg text-foreground">EncryptHer</span>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                A nonprofit organization dedicated to women's safety in the digital and physical world.
-              </p>
-            </div>
-
-            <nav aria-label="Programs">
-              <h3 className="font-semibold mb-4">Programs</h3>
-              <ul className="space-y-2 text-sm" role="list">
-                <li><Link to="/online-privacy" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Online Privacy</Link></li>
-                <li><Link to="/travel-safety" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Travel Safety</Link></li>
-                <li><Link to="/digital-advocacy" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Advocacy</Link></li>
-                <li><Link to="/public-safety" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Public Safety</Link></li>
-              </ul>
-            </nav>
-
-            <nav aria-label="Resources">
-              <h3 className="font-semibold mb-4">Resources</h3>
-              <ul className="space-y-2 text-sm" role="list">
-                <li><FooterResourcesDropdown /></li>
-                <li><Link to="/blog" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Blog</Link></li>
-                <li><Link to="/safety-guides" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Safety Guides</Link></li>
-              </ul>
-            </nav>
-
-            <nav aria-label="Connect">
-              <h3 className="font-semibold mb-4">Connect</h3>
-              <ul className="space-y-2 text-sm" role="list">
-                <li><Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">About Us</Link></li>
-                <li><Link to="/contact" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded" aria-current="page">Contact</Link></li>
-                <li><Link to="/newsletter" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Newsletter</Link></li>
-                <li><Link to="/donate" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Donate</Link></li>
-                <li><Link to="/accessibility" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">Accessibility</Link></li>
-              </ul>
-            </nav>
-          </div>
-
-          <div className="pt-8 border-t text-center text-sm text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} EncryptHer. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <AccessibleFooter />
     </div>
   );
 };
