@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import { useNavigate, useLocation } from "react-router-dom";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -13,6 +14,8 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Loader2, Lock, Mail } from "lucide-react";
 
@@ -30,6 +33,9 @@ const Auth = () => {
   const { user, signIn, signUp, isLoading: authLoading } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [activeTab, setActiveTab] = useState<"signin" | "signup">("signin");
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [resetEmail, setResetEmail] = useState("");
+  const [isResetting, setIsResetting] = useState(false);
 
   const from = (location.state as { from?: { pathname: string } })?.from?.pathname || "/";
 
@@ -92,6 +98,30 @@ const Auth = () => {
     } else {
       await handleSignUp(values);
     }
+  };
+
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!resetEmail || !z.string().email().safeParse(resetEmail).success) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
+    setIsResetting(true);
+    const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
+      redirectTo: `${window.location.origin}/reset-password`,
+    });
+    setIsResetting(false);
+
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
+
+    toast.success("Password reset email sent! Check your inbox.");
+    setShowForgotPassword(false);
+    setResetEmail("");
   };
 
   if (authLoading) {
@@ -173,7 +203,7 @@ const Auth = () => {
                     )}
                   />
 
-                  <TabsContent value="signin" className="mt-0 pt-2">
+                  <TabsContent value="signin" className="mt-0 pt-2 space-y-4">
                     <Button
                       type="submit"
                       className="w-full min-h-[44px]"
@@ -187,6 +217,15 @@ const Auth = () => {
                       ) : (
                         "Sign In"
                       )}
+                    </Button>
+                    
+                    <Button
+                      type="button"
+                      variant="link"
+                      className="w-full text-muted-foreground hover:text-primary"
+                      onClick={() => setShowForgotPassword(true)}
+                    >
+                      Forgot your password?
                     </Button>
                   </TabsContent>
 
@@ -214,6 +253,62 @@ const Auth = () => {
       </main>
 
       <AccessibleFooter />
+
+      {/* Forgot Password Dialog */}
+      <Dialog open={showForgotPassword} onOpenChange={setShowForgotPassword}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Reset Password</DialogTitle>
+            <DialogDescription>
+              Enter your email address and we'll send you a link to reset your password.
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleForgotPassword} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="reset-email">Email</Label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" aria-hidden="true" />
+                <Input
+                  id="reset-email"
+                  type="email"
+                  placeholder="you@example.com"
+                  value={resetEmail}
+                  onChange={(e) => setResetEmail(e.target.value)}
+                  className="pl-10 min-h-[44px]"
+                  autoComplete="email"
+                />
+              </div>
+            </div>
+            <div className="flex gap-3 justify-end">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  setShowForgotPassword(false);
+                  setResetEmail("");
+                }}
+                className="min-h-[44px]"
+              >
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                disabled={isResetting}
+                className="min-h-[44px]"
+              >
+                {isResetting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />
+                    Sending...
+                  </>
+                ) : (
+                  "Send Reset Link"
+                )}
+              </Button>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
