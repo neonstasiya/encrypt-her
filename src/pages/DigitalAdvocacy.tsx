@@ -31,7 +31,7 @@ const DigitalAdvocacy = () => {
         </div>
         <div className="container mx-auto text-center max-w-4xl relative z-10">
           <div className="inline-flex items-center gap-2 bg-secondary px-4 py-2 rounded-full mb-6">
-            <Megaphone className="h-4 w-4 text-primary" />
+            <Megaphone className="h-4 w-4 text-primary" aria-hidden="true" />
             <span className="text-sm font-medium text-secondary-foreground">Our Mission</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">

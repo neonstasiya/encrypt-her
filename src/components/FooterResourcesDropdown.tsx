@@ -48,7 +48,7 @@ export const FooterResourcesDropdown = () => {
             <ul className="flex flex-col gap-1" role="list">
               <li>
                 <Link
-                  to="/resources"
+                  to="/resources-by-state"
                   className="block px-3 py-2 text-sm font-medium text-primary hover:bg-muted rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-ring"
                   role="menuitem"
                   onClick={() => setIsOpen(false)}
@@ -62,7 +62,7 @@ export const FooterResourcesDropdown = () => {
               {US_STATES.map((state) => (
                 <li key={state}>
                   <Link
-                    to={`/resources?state=${encodeURIComponent(state)}`}
+                    to={`/resources-by-state?state=${encodeURIComponent(state)}`}
                     className="block px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-ring"
                     role="menuitem"
                     onClick={() => setIsOpen(false)}
