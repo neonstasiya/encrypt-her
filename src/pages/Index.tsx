@@ -5,13 +5,51 @@ import { Link } from "react-router-dom";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { SkipLink } from "@/components/SkipLink";
+import { usePageContent, PageContent } from "@/hooks/usePageContent";
 import heroImage from "@/assets/hero-privacy.jpg";
 import privacyPaperImage from "@/assets/privacy-paper.jpg";
 import travelLuggageImage from "@/assets/travel-luggage.jpg";
 import advocacyImage from "@/assets/advocacy.jpg";
 import streetAwarenessImage from "@/assets/street-awareness.jpg";
 
+// Default content fallbacks
+const defaultContent = {
+  hero: {
+    badge: "Empowering Women Through Digital Safety",
+    title: "Your Safety, Your Privacy, Your Power",
+    description: "EncryptHer provides essential education on online privacy, personal safety, and digital advocacy for women worldwide.",
+    buttonText: "Get Empowered",
+  },
+  whatWeDo: {
+    title: "What We Do",
+    description: "EncryptHer empowers women through comprehensive educational courses and active advocacy for digital rights and privacy legislation.",
+    educationTitle: "Educational Courses",
+    educationDescription: "Comprehensive courses covering online privacy, travel safety, and public awareness—designed to protect and empower you in the digital and physical world.",
+    advocacyTitle: "Advocacy Work",
+    advocacyDescription: "Active advocacy for comprehensive federal privacy legislation and stronger data protection laws to safeguard women's digital rights across America.",
+  },
+  courses: {
+    title: "Learn It",
+    description: "Comprehensive courses designed to protect and empower you",
+  },
+  cta: {
+    title: "Ready to Take Control?",
+    description: "Join thousands of women who have strengthened their safety and privacy through our programs.",
+    primaryButton: "Enroll Now",
+    secondaryButton: "Free Resources",
+  },
+};
+
 const Index = () => {
+  const { data: content } = usePageContent("index");
+  
+  // Helper to get content with fallback
+  const getContent = (section: keyof typeof defaultContent, field: string): string => {
+    const sectionContent = content?.[section] as PageContent | undefined;
+    const value = sectionContent?.[field] as string | undefined;
+    return value || (defaultContent[section] as Record<string, string>)[field];
+  };
+
   return <div className="min-h-screen bg-background">
       <SkipLink />
       <AccessibleHeader showDonateButton />
@@ -27,16 +65,29 @@ const Index = () => {
           <div className="container mx-auto text-center max-w-4xl relative z-10">
             <div className="inline-flex items-center gap-2 bg-secondary px-4 py-2 rounded-full mb-6">
               <Lock className="h-4 w-4 text-primary" aria-hidden="true" />
-              <span className="text-sm font-medium text-secondary-foreground">Empowering Women Through Digital Safety</span>
+              <span className="text-sm font-medium text-secondary-foreground">
+                {getContent("hero", "badge")}
+              </span>
             </div>
             <h1 id="hero-heading" className="text-5xl md:text-6xl font-bold mb-6 text-foreground">
-              Your Safety, Your Privacy, <span className="text-primary">Your Power</span>
+              {getContent("hero", "title").includes("Your Power") ? (
+                <>
+                  {getContent("hero", "title").replace(", Your Power", ", ")}
+                  <span className="text-primary">Your Power</span>
+                </>
+              ) : (
+                getContent("hero", "title")
+              )}
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              EncryptHer provides essential education on online privacy, personal safety, and digital advocacy for women worldwide.
+              {getContent("hero", "description")}
             </p>
             <div className="flex justify-center">
-              <a href="#courses"><Button size="lg" className="text-lg">Get Empowered</Button></a>
+              <a href="#courses">
+                <Button size="lg" className="text-lg">
+                  {getContent("hero", "buttonText")}
+                </Button>
+              </a>
             </div>
           </div>
         </section>
@@ -45,9 +96,11 @@ const Index = () => {
         <section id="what-we-do" aria-labelledby="what-we-do-heading" className="py-20 px-4 bg-background">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-12">
-              <h2 id="what-we-do-heading" className="text-3xl md:text-4xl font-bold mb-4 text-foreground">What We Do</h2>
+              <h2 id="what-we-do-heading" className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+                {getContent("whatWeDo", "title")}
+              </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                EncryptHer empowers women through comprehensive educational courses and active advocacy for digital rights and privacy legislation.
+                {getContent("whatWeDo", "description")}
               </p>
             </div>
 
@@ -57,9 +110,9 @@ const Index = () => {
                   <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4" aria-hidden="true">
                     <BookOpen className="h-6 w-6 text-primary" aria-hidden="true" />
                   </div>
-                  <CardTitle>Educational Courses</CardTitle>
+                  <CardTitle>{getContent("whatWeDo", "educationTitle")}</CardTitle>
                   <CardDescription>
-                    Comprehensive courses covering online privacy, travel safety, and public awareness—designed to protect and empower you in the digital and physical world.
+                    {getContent("whatWeDo", "educationDescription")}
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -69,9 +122,9 @@ const Index = () => {
                   <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4" aria-hidden="true">
                     <AlertCircle className="h-6 w-6 text-accent" aria-hidden="true" />
                   </div>
-                  <CardTitle>Advocacy Work</CardTitle>
+                  <CardTitle>{getContent("whatWeDo", "advocacyTitle")}</CardTitle>
                   <CardDescription>
-                    Active advocacy for comprehensive federal privacy legislation and stronger data protection laws to safeguard women's digital rights across America.
+                    {getContent("whatWeDo", "advocacyDescription")}
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -83,9 +136,11 @@ const Index = () => {
         <section id="courses" aria-labelledby="courses-heading" className="py-20 px-4 bg-muted/50">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-12">
-              <h2 id="courses-heading" className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Learn It</h2>
+              <h2 id="courses-heading" className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+                {getContent("courses", "title")}
+              </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Comprehensive courses designed to protect and empower you
+                {getContent("courses", "description")}
               </p>
             </div>
 
@@ -200,17 +255,17 @@ const Index = () => {
         <section aria-labelledby="cta-heading" className="py-20 px-4 bg-gradient-to-br from-primary to-accent">
           <div className="container mx-auto max-w-4xl text-center">
             <h2 id="cta-heading" className="text-3xl md:text-4xl font-bold mb-4 text-primary-foreground">
-              Ready to Take Control?
+              {getContent("cta", "title")}
             </h2>
             <p className="text-lg text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
-              Join thousands of women who have strengthened their safety and privacy through our programs.
+              {getContent("cta", "description")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" className="text-lg" asChild>
-                <Link to="/coming-soon">Enroll Now</Link>
+                <Link to="/coming-soon">{getContent("cta", "primaryButton")}</Link>
               </Button>
               <Button size="lg" variant="outline" className="text-lg bg-white/10 hover:bg-white/20 text-white border-white/20" asChild>
-                <Link to="/resources">Free Resources</Link>
+                <Link to="/resources">{getContent("cta", "secondaryButton")}</Link>
               </Button>
             </div>
           </div>

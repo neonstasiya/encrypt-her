@@ -6,7 +6,8 @@ import {
   Upload, 
   LogOut,
   Settings,
-  ArrowRight
+  ArrowRight,
+  Edit
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -30,6 +31,13 @@ const AdminDashboard = () => {
   };
 
   const adminLinks = [
+    {
+      title: "Edit Page Content",
+      description: "Update text and content on website pages without editing code.",
+      icon: Edit,
+      link: "/admin/content",
+      color: "primary"
+    },
     {
       title: "Manage Blog Posts",
       description: "Create, edit, publish, and delete blog posts. Manage drafts and published articles.",
