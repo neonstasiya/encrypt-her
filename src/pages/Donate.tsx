@@ -170,10 +170,10 @@ const Donate = () => {
 
             <div className="mt-12 p-8 bg-primary/10 rounded-lg border border-primary/20">
               <p className="text-center text-foreground font-semibold mb-2">
-                EncryptHer is a registered nonprofit organization
+                EncryptHer is a nonprofit organization
               </p>
               <p className="text-center text-sm text-muted-foreground">
-                All donations are tax-deductible to the extent allowed by law
+                We are currently awaiting 501(c)(3) status from the IRS. Once approved, donations will be tax-deductible to the extent allowed by law.
               </p>
             </div>
           </div>
