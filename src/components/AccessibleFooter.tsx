@@ -95,7 +95,13 @@ export const AccessibleFooter = () => {
         </div>
         
         <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          <p>© {currentYear} EncryptHer. All rights reserved. A nonprofit organization dedicated to women's digital and physical safety.</p>
+          <p>
+            © {currentYear} EncryptHer. All rights reserved. A nonprofit organization dedicated to women's digital and physical safety.
+            <span className="mx-2">·</span>
+            <Link to="/auth" className="hover:text-foreground transition-colors">
+              Admin
+            </Link>
+          </p>
         </div>
       </div>
     </footer>
