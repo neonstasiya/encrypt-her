@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Plus, Trash2, Edit2, Save, X } from "lucide-react";
+import { Plus, Trash2, Edit2, Save, X, ArrowLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -172,6 +172,14 @@ const AdminResources = () => {
       <AccessibleHeader />
 
       <main className="container mx-auto px-4 py-8">
+        <div className="flex items-center gap-4 mb-4">
+          <Link to="/admin">
+            <Button variant="ghost" className="min-h-[44px]" aria-label="Back to admin dashboard">
+              <ArrowLeft className="h-4 w-4 mr-2" aria-hidden="true" />
+              Dashboard
+            </Button>
+          </Link>
+        </div>
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
             <h1 className="text-3xl font-bold">Manage Safety Resources</h1>

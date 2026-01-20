@@ -68,8 +68,8 @@ const AdminAssetUpload = () => {
   return (
     <div className="min-h-screen bg-background p-6">
       <div className="max-w-2xl mx-auto space-y-6">
-        <Link to="/" className="text-primary hover:underline text-sm">
-          ← Back to Home
+        <Link to="/admin" className="text-primary hover:underline text-sm">
+          ← Back to Dashboard
         </Link>
 
         <Card>
