@@ -15,12 +15,16 @@ import SafetyGuides from "./pages/SafetyGuides";
 import Newsletter from "./pages/Newsletter";
 import PublicSafety from "./pages/PublicSafety";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import AdminAssetUpload from "./pages/AdminAssetUpload";
 import Resources from "./pages/Resources";
 import ResourcesByState from "./pages/ResourcesByState";
 import AdminResources from "./pages/AdminResources";
+import AdminBlog from "./pages/AdminBlog";
+import AdminBlogEditor from "./pages/AdminBlogEditor";
+import AdminContributions from "./pages/AdminContributions";
 import AccessibilityStatement from "./pages/AccessibilityStatement";
 import ComingSoon from "./pages/ComingSoon";
 
@@ -46,12 +50,17 @@ const App = () => (
           <Route path="/newsletter" element={<Newsletter />} />
           <Route path="/public-safety" element={<PublicSafety />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/resources-by-state" element={<ResourcesByState />} />
           <Route path="/coming-soon" element={<ComingSoon />} />
           <Route path="/admin/upload-assets" element={<AdminAssetUpload />} />
           <Route path="/admin/resources" element={<AdminResources />} />
+          <Route path="/admin/blog" element={<AdminBlog />} />
+          <Route path="/admin/blog/new" element={<AdminBlogEditor />} />
+          <Route path="/admin/blog/edit/:id" element={<AdminBlogEditor />} />
+          <Route path="/admin/contributions" element={<AdminContributions />} />
           <Route path="/accessibility" element={<AccessibilityStatement />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

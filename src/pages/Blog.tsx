@@ -4,13 +4,29 @@ import { Calendar, User, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { SkipLink } from "@/components/SkipLink";
 import { usePageTitle } from "@/hooks/usePageTitle";
+import { supabase } from "@/integrations/supabase/client";
+import BlogContributionForm from "@/components/BlogContributionForm";
 
 const Blog = () => {
   usePageTitle();
   const [isOpen, setIsOpen] = useState(false);
+
+  const { data: posts } = useQuery({
+    queryKey: ['blog-posts'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('id, title, slug, excerpt, author_name, published_at')
+        .eq('status', 'published')
+        .order('published_at', { ascending: false });
+      if (error) throw error;
+      return data;
+    },
+  });
   
   return (
     <div className="min-h-screen bg-background">
@@ -18,7 +34,7 @@ const Blog = () => {
       <AccessibleHeader />
       
       <main id="main-content" role="main" className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto space-y-12">
           <header className="mb-8">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Blog
@@ -28,6 +44,31 @@ const Blog = () => {
             </p>
           </header>
 
+          {/* Dynamic posts from database */}
+          {posts && posts.length > 0 && (
+            <section aria-labelledby="recent-posts">
+              <h2 id="recent-posts" className="text-2xl font-bold text-foreground mb-6">Recent Posts</h2>
+              <div className="space-y-4">
+                {posts.map((post) => (
+                  <Link key={post.id} to={`/blog/${post.slug}`} className="block">
+                    <Card className="p-6 hover:bg-muted/50 transition-colors focus-within:ring-2 focus-within:ring-ring">
+                      <h3 className="text-xl font-semibold text-foreground mb-2">{post.title}</h3>
+                      {post.excerpt && <p className="text-muted-foreground mb-3">{post.excerpt}</p>}
+                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                        <span>{post.author_name}</span>
+                        <span>•</span>
+                        <time dateTime={post.published_at || ''}>
+                          {new Date(post.published_at || '').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                        </time>
+                      </div>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Featured article */}
           <Card className="p-8 md:p-12">
             <article aria-labelledby="blog-article-heading">
               <header className="mb-8 border-b border-border pb-6">
@@ -66,83 +107,24 @@ const Blog = () => {
                     </p>
 
                     <h3 className="text-2xl font-bold mt-8 mb-4">Why This Matters for Women's Safety</h3>
-                    <p>
-                      The lack of robust privacy laws has particularly severe consequences for women:
-                    </p>
+                    <p>The lack of robust privacy laws has particularly severe consequences for women:</p>
                     <ul className="list-disc pl-6 space-y-2">
-                      <li><strong>Stalking and Harassment:</strong> Location data from apps and services can be purchased by anyone, including abusive partners or stalkers, enabling real-time tracking without consent.</li>
-                      <li><strong>Reproductive Privacy:</strong> Period-tracking apps, health searches, and location data from clinic visits can be accessed by third parties, potentially used against women in states with restrictive laws.</li>
-                      <li><strong>Intimate Image Abuse:</strong> Weak data protection laws make it easier for private photos to be shared, sold, or used for extortion without meaningful legal recourse.</li>
-                      <li><strong>Workplace Discrimination:</strong> Personal health data, including pregnancy status or medical conditions, can be inferred from digital footprints and potentially used in hiring or promotion decisions.</li>
+                      <li><strong>Stalking and Harassment:</strong> Location data from apps and services can be purchased by anyone, including abusive partners or stalkers.</li>
+                      <li><strong>Reproductive Privacy:</strong> Period-tracking apps and health data can be accessed by third parties.</li>
+                      <li><strong>Intimate Image Abuse:</strong> Weak data protection laws make it easier for private photos to be shared without consent.</li>
                     </ul>
 
-                    <h3 className="text-2xl font-bold mt-8 mb-4">The Data Broker Industry's Invisible Threat</h3>
-                    <p>
-                      Few people realize that data brokers—companies that collect and sell personal information—operate largely unchecked. They compile detailed profiles including:
-                    </p>
-                    <ul className="list-disc pl-6 space-y-2">
-                      <li>Real-time location history</li>
-                      <li>Shopping habits and financial information</li>
-                      <li>Health conditions and medical searches</li>
-                      <li>Social connections and relationship status</li>
-                      <li>Employment history and income estimates</li>
-                    </ul>
-                    <p>
-                      This information is packaged and sold to anyone willing to pay—including domestic abusers, stalkers, and predators. The lack of privacy laws means there's little to stop this billion-dollar industry from profiting off our most intimate data.
-                    </p>
-
-                    <h3 className="text-2xl font-bold mt-8 mb-4">Real Consequences of Inadequate Protection</h3>
-                    <p>
-                      The impact isn't theoretical. We've seen:
-                    </p>
-                    <ul className="list-disc pl-6 space-y-2">
-                      <li>Survivors of domestic violence tracked through fitness apps and smart home devices</li>
-                      <li>Women targeted with harassment campaigns based on purchased personal data</li>
-                      <li>Reproductive health information used for targeted advertising that reveals private medical decisions</li>
-                      <li>Data breaches exposing sensitive information with minimal consequences for companies</li>
-                    </ul>
-
-                    <h3 className="text-2xl font-bold mt-8 mb-4">What Comprehensive Privacy Laws Should Include</h3>
-                    <p>
-                      Effective privacy legislation must address:
-                    </p>
-                    <ul className="list-disc pl-6 space-y-2">
-                      <li><strong>Explicit Consent:</strong> Companies must obtain clear, informed consent before collecting personal data</li>
-                      <li><strong>Data Minimization:</strong> Organizations should only collect data essential to their services</li>
-                      <li><strong>Right to Deletion:</strong> Individuals must have the power to delete their data from company databases</li>
-                      <li><strong>Broker Regulation:</strong> Data brokers should be required to register, face audits, and allow individuals to opt-out</li>
-                      <li><strong>Sensitive Data Protection:</strong> Extra safeguards for health, location, and biometric information</li>
-                      <li><strong>Strong Enforcement:</strong> Meaningful penalties for violations that actually deter bad behavior</li>
-                    </ul>
-
-                    <h3 className="text-2xl font-bold mt-8 mb-4">Taking Action While We Wait for Legislation</h3>
-                    <p>
-                      Until comprehensive privacy laws are enacted, we must protect ourselves:
-                    </p>
-                    <ul className="list-disc pl-6 space-y-2">
-                      <li>Review and limit app permissions on your devices</li>
-                      <li>Use privacy-focused browsers and search engines</li>
-                      <li>Enable encryption for messaging and calls</li>
-                      <li>Regularly review privacy settings on social media</li>
-                      <li>Consider using VPNs to mask your location and browsing activity</li>
-                      <li>Be cautious about what personal information you share online</li>
-                    </ul>
-
-                    <h3 className="text-2xl font-bold mt-8 mb-4">The Path Forward</h3>
-                    <p>
-                      The lack of comprehensive privacy laws isn't just a policy failure—it's a safety crisis. As technology advances, the gaps in protection grow wider and the potential for harm increases exponentially. We need federal privacy legislation that puts people over profits and recognizes that privacy is a fundamental right, not a luxury.
-                    </p>
-                    <p>
-                      Women, in particular, bear a disproportionate burden of this regulatory failure. But by raising awareness, demanding better protections, and taking practical steps to secure our own data, we can push for the systemic change that's long overdue.
-                    </p>
                     <p className="italic text-muted-foreground mt-8">
-                      At EncryptHer, we believe that every woman deserves to feel safe—both in the physical world and online. Until privacy laws catch up with technology, we're here to provide the education and tools needed to protect yourself in an increasingly digital world.
+                      At EncryptHer, we believe that every woman deserves to feel safe—both in the physical world and online.
                     </p>
                   </CollapsibleContent>
                 </Collapsible>
               </div>
             </article>
           </Card>
+
+          {/* Contribution Form */}
+          <BlogContributionForm />
         </div>
       </main>
 

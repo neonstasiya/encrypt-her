@@ -38,6 +38,81 @@ export type Database = {
         }
         Relationships: []
       }
+      blog_contributions: {
+        Row: {
+          admin_notes: string | null
+          created_at: string | null
+          email: string
+          id: string
+          name: string
+          status: string
+          story: string | null
+          topic: string
+        }
+        Insert: {
+          admin_notes?: string | null
+          created_at?: string | null
+          email: string
+          id?: string
+          name: string
+          status?: string
+          story?: string | null
+          topic: string
+        }
+        Update: {
+          admin_notes?: string | null
+          created_at?: string | null
+          email?: string
+          id?: string
+          name?: string
+          status?: string
+          story?: string | null
+          topic?: string
+        }
+        Relationships: []
+      }
+      blog_posts: {
+        Row: {
+          author_name: string
+          content: string
+          created_at: string | null
+          excerpt: string | null
+          featured_image: string | null
+          id: string
+          published_at: string | null
+          slug: string
+          status: string
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          author_name?: string
+          content: string
+          created_at?: string | null
+          excerpt?: string | null
+          featured_image?: string | null
+          id?: string
+          published_at?: string | null
+          slug: string
+          status?: string
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          author_name?: string
+          content?: string
+          created_at?: string | null
+          excerpt?: string | null
+          featured_image?: string | null
+          id?: string
+          published_at?: string | null
+          slug?: string
+          status?: string
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       contact_messages: {
         Row: {
           created_at: string | null
