@@ -4,6 +4,7 @@ import { Menu } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import encryptherLogo from "@/assets/encrypther-logo.png";
 import { VisuallyHidden } from "@/components/VisuallyHidden";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 interface AccessibleHeaderProps {
   showDonateButton?: boolean;
@@ -27,6 +28,8 @@ export const AccessibleHeader = ({ showDonateButton = false }: AccessibleHeaderP
         </Link>
         
         <div className="flex items-center gap-2">
+          <ThemeToggle />
+          
           {showDonateButton && (
             <Link to="/donate">
               <Button>Donate</Button>
