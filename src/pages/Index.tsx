@@ -72,13 +72,6 @@ const Index = () => {
               </span>
             </div>
             <GlitchText
-              element="div"
-              className="mx-auto mb-6 w-48 md:w-64"
-              animationType="logo"
-            >
-              <img src={logoText} alt="EncryptHer" className="w-full h-auto" />
-            </GlitchText>
-            <GlitchText
               element="h1"
               className="text-5xl md:text-6xl font-bold mb-6 text-foreground"
               animationType="text"

@@ -99,7 +99,7 @@ const GlitchText = ({
     };
   }, [animationType]);
 
-  const Element = element;
+  const Element = element as React.ElementType;
 
   return (
     <Element ref={ref} className={`${className} glitch-fallback`} data-glitch-type={animationType}>
