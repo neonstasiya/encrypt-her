@@ -5,12 +5,14 @@ import { Link } from "react-router-dom";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { SkipLink } from "@/components/SkipLink";
+import GlitchText from "@/components/GlitchText";
 import { usePageContent, PageContent } from "@/hooks/usePageContent";
 import heroImage from "@/assets/hero-privacy.jpg";
 import privacyPaperImage from "@/assets/privacy-paper.jpg";
 import travelLuggageImage from "@/assets/travel-luggage.jpg";
 import advocacyImage from "@/assets/advocacy.jpg";
 import streetAwarenessImage from "@/assets/street-awareness.jpg";
+import logoText from "@/assets/encrypther-logo-text.png";
 
 // Default content fallbacks
 const defaultContent = {
@@ -69,16 +71,29 @@ const Index = () => {
                 {getContent("hero", "badge")}
               </span>
             </div>
-            <h1 id="hero-heading" className="text-5xl md:text-6xl font-bold mb-6 text-foreground">
-              {getContent("hero", "title").includes("Your Power") ? (
-                <>
-                  {getContent("hero", "title").replace(", Your Power", ", ")}
-                  <span className="text-primary">Your Power</span>
-                </>
-              ) : (
-                getContent("hero", "title")
-              )}
-            </h1>
+            <GlitchText
+              element="div"
+              className="mx-auto mb-6 w-48 md:w-64"
+              animationType="logo"
+            >
+              <img src={logoText} alt="EncryptHer" className="w-full h-auto" />
+            </GlitchText>
+            <GlitchText
+              element="h1"
+              className="text-5xl md:text-6xl font-bold mb-6 text-foreground"
+              animationType="text"
+            >
+              <span>
+                {getContent("hero", "title").includes("Your Power") ? (
+                  <>
+                    {getContent("hero", "title").replace(", Your Power", ", ")}
+                    <span className="text-primary">Your Power</span>
+                  </>
+                ) : (
+                  getContent("hero", "title")
+                )}
+              </span>
+            </GlitchText>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               {getContent("hero", "description")}
             </p>
