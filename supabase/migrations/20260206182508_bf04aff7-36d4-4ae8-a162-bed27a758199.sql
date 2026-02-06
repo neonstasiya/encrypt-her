@@ -1,0 +1,3 @@
+CREATE POLICY "Block authenticated non-admin read" ON public.blog_contributions FOR SELECT TO authenticated USING (has_role(auth.uid(), 'admin'::app_role));
+CREATE POLICY "Block authenticated non-admin read" ON public.contact_messages FOR SELECT TO authenticated USING (has_role(auth.uid(), 'admin'::app_role));
+CREATE POLICY "Block authenticated non-admin read" ON public.safety_guide_emails FOR SELECT TO authenticated USING (has_role(auth.uid(), 'admin'::app_role));
