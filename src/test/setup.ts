@@ -32,12 +32,15 @@ global.IntersectionObserver = class IntersectionObserver {
   readonly root: Element | null = null;
   readonly rootMargin: string = '';
   readonly thresholds: ReadonlyArray<number> = [];
+  readonly scrollMargin: string = '';
+  readonly delay: number = 0;
+  readonly trackVisibility: boolean = false;
   
-  constructor() {}
+  constructor(_callback?: IntersectionObserverCallback, _options?: IntersectionObserverInit) {}
   observe() {}
   unobserve() {}
   disconnect() {}
   takeRecords(): IntersectionObserverEntry[] {
     return [];
   }
-};
+} as unknown as typeof globalThis.IntersectionObserver;
