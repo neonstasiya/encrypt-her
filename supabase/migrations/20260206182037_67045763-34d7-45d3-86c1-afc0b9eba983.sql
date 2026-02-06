@@ -1,0 +1,1 @@
+CREATE POLICY "Block public read" ON public.safety_guide_emails FOR SELECT TO anon USING (false);
