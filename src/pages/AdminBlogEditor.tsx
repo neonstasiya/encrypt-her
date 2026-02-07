@@ -231,9 +231,17 @@ const AdminBlogEditor = () => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="content">
-              Content * <span className="text-muted-foreground font-normal text-xs">(Supports Markdown: ## Heading, **bold**, *italic*, - list items)</span>
-            </Label>
+            <Label htmlFor="content">Content *</Label>
+            <div className="rounded-md border border-border bg-muted/30 p-3 text-xs text-muted-foreground space-y-1 mb-2">
+              <p className="font-semibold text-foreground text-sm mb-2">Formatting Guide</p>
+              <p><code className="bg-muted px-1 rounded">## Heading</code> — Section heading (large, bold)</p>
+              <p><code className="bg-muted px-1 rounded">### Subheading</code> — Smaller subheading</p>
+              <p><code className="bg-muted px-1 rounded">**bold text**</code> — <strong>Bold text</strong></p>
+              <p><code className="bg-muted px-1 rounded">*italic text*</code> — <em>Italic text</em></p>
+              <p><code className="bg-muted px-1 rounded">- item</code> — Bullet list item</p>
+              <p><code className="bg-muted px-1 rounded">[link text](https://url)</code> — Clickable link</p>
+              <p className="pt-1 text-muted-foreground">Separate paragraphs with a blank line.</p>
+            </div>
             <Textarea
               id="content"
               value={formData.content}
