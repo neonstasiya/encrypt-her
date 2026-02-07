@@ -20,7 +20,7 @@ export const AccessibleFooter = () => {
           </div>
           
           <nav aria-label="Programs navigation">
-            <h4 className="font-semibold mb-4 text-foreground">Programs</h4>
+            <h2 className="font-semibold mb-4 text-foreground text-base">Programs</h2>
             <ul className="space-y-2 text-sm text-muted-foreground" role="list">
               <li>
                 <Link to="/online-privacy" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">
@@ -46,7 +46,7 @@ export const AccessibleFooter = () => {
           </nav>
           
           <nav aria-label="Resources navigation">
-            <h4 className="font-semibold mb-4 text-foreground">Resources</h4>
+            <h2 className="font-semibold mb-4 text-foreground text-base">Resources</h2>
             <ul className="space-y-2 text-sm" role="list">
               <li><FooterResourcesDropdown /></li>
               <li>
@@ -63,7 +63,7 @@ export const AccessibleFooter = () => {
           </nav>
           
           <nav aria-label="Connect navigation">
-            <h4 className="font-semibold mb-4 text-foreground">Connect</h4>
+            <h2 className="font-semibold mb-4 text-foreground text-base">Connect</h2>
             <ul className="space-y-2 text-sm text-muted-foreground" role="list">
               <li>
                 <Link to="/about" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">

@@ -41,7 +41,7 @@ const ComingSoon = () => {
                 <CardHeader>
                   <div className="flex items-center justify-center gap-2 mb-2">
                     <Sparkles className="h-5 w-5 text-primary" aria-hidden="true" />
-                    <CardTitle className="text-lg">What to Expect</CardTitle>
+                    <h2 className="text-lg font-semibold leading-none tracking-tight">What to Expect</h2>
                   </div>
                   <CardDescription className="text-base">
                     Expert-led courses on online privacy, personal safety, and digital advocacy designed specifically for women.
