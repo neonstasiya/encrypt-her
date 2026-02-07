@@ -52,6 +52,20 @@ const Contact = () => {
 
       if (error) throw error;
 
+      // Fire-and-forget email notification
+      try {
+        await supabase.functions.invoke('send-contact-email', {
+          body: {
+            name: data.name,
+            email: data.email,
+            subject: data.subject,
+            message: data.message,
+          },
+        });
+      } catch (emailError) {
+        console.error('Contact email notification failed (non-blocking):', emailError);
+      }
+
       toast.success("Message sent successfully! We'll get back to you soon.");
       reset();
     } catch (error) {
