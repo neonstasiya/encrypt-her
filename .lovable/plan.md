@@ -1,87 +1,46 @@
 
 
-## Goal
-Deploy your site to GitHub Pages directly from the `encrypther` repo, so every push to `master` automatically builds and publishes your React/Vite app to `encrypther.org`.
+## Plan: Forward Blog Contributions via Email + Add Email Contact
 
-## Why This Is Needed
-Your app is a React/Vite project that requires a build step (`npm run build`) to produce static files. GitHub Pages can only serve static files, so you need a GitHub Actions workflow to handle the build automatically.
+### What This Does
+1. When someone submits a blog contribution through the form, an email with their submission details will automatically be sent to **socialmedia@encrypther.org**
+2. The blog contribution section will also display the email address so people can submit directly via email if they prefer
 
-## What Changes
+### Setup Required From You
+This feature needs an email sending service called **Resend** to forward submissions. You will need to:
+1. Go to [resend.com](https://resend.com) and create a free account (if you don't have one)
+2. Verify the **encrypther.org** domain at [resend.com/domains](https://resend.com/domains) so emails can be sent from your domain
+3. Create an API key at [resend.com/api-keys](https://resend.com/api-keys)
+4. Provide the API key when prompted
 
-### 1. Add a GitHub Actions deploy workflow
-Create `.github/workflows/deploy.yml` that:
-- Triggers on every push to `master`
-- Installs dependencies, builds the app (`npm run build`)
-- Deploys the `dist/` folder to GitHub Pages
+### Changes
 
-### 2. Update Vite config for custom domain
-Add a `base: "/"` setting to `vite.config.ts` to ensure assets load correctly on your custom domain.
+**1. Add the email address to the contribution form UI**
+- In `BlogContributionForm.tsx`, add a line below the description text: "You can also email your contribution directly to socialmedia@encrypther.org"
+- The email will be a clickable mailto link
 
-### 3. Add CNAME file for custom domain
-Create `public/CNAME` containing `encrypther.org` so GitHub Pages serves on your custom domain.
+**2. Create a backend function to send emails**
+- New file: `supabase/functions/send-contribution-email/index.ts`
+- Receives contribution details (name, email, topic, story) and sends a formatted email to socialmedia@encrypther.org via Resend
+- Includes the submitter's name, email, topic, and story in the email body
 
-## What You'll Need to Do After
-1. **In the GitHub repo** (`encrypther` repo Settings --> Pages): set the source to **"GitHub Actions"** (not "Deploy from a branch")
-2. **Add environment variables as GitHub secrets** (repo Settings --> Secrets and variables --> Actions):
-   - `VITE_SUPABASE_URL`
-   - `VITE_SUPABASE_PUBLISHABLE_KEY`
-3. **Verify DNS**: your domain registrar should have an A record pointing `encrypther.org` to GitHub's IPs (`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`) -- this may already be set up from before
-4. You do NOT need to use Lovable's Publish button -- everything deploys through GitHub
+**3. Update the contribution form to trigger the email**
+- After successfully inserting into the database, call the backend function to send the notification email
+- Email sending is fire-and-forget -- if it fails, the submission still succeeds (the database entry is the source of truth)
 
-## Technical Details
+**4. Update config**
+- Add the new function to `supabase/config.toml` with `verify_jwt = false` (the function validates input server-side)
 
-The deploy workflow file (`.github/workflows/deploy.yml`):
+### Technical Details
 
-```yaml
-name: Deploy to GitHub Pages
+The backend function will:
+- Accept POST requests with contribution data
+- Use Resend SDK to send an HTML-formatted email to socialmedia@encrypther.org
+- Include CORS headers for browser requests
+- Log activity for debugging
+- The "from" address will use your verified encrypther.org domain (e.g., `noreply@encrypther.org`)
 
-on:
-  push:
-    branches: [master]
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run build
-        env:
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
-```
-
-The `public/CNAME` file ensures GitHub Pages uses your custom domain. The Vite config update ensures correct asset paths.
-
-## Summary
-- Lovable stays connected to GitHub for code sync (every edit pushes to `master`)
-- GitHub Actions automatically builds and deploys to GitHub Pages on each push
-- `encrypther.org` serves your site via GitHub Pages
-- No need to use Lovable's Publish button
+The frontend change in `BlogContributionForm.tsx`:
+- Call `supabase.functions.invoke('send-contribution-email', { body: { ... } })` after the database insert succeeds
+- Wrap in try/catch so email failure doesn't affect the user experience
 
