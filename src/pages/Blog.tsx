@@ -71,9 +71,9 @@ const Blog = () => {
           {/* Featured article */}
           <Card className="p-6 hover:bg-muted/50 transition-colors">
             <article aria-labelledby="blog-article-heading">
-              <h2 id="blog-article-heading" className="text-xl font-semibold text-foreground mb-2">
+              <h3 id="blog-article-heading" className="text-xl font-semibold text-foreground mb-2">
                 The Growing Crisis: How Lack of Privacy Laws Puts Everyone at Risk
-              </h2>
+              </h3>
               <p className="text-muted-foreground mb-3">
                 In an era where our entire lives are increasingly digital, the absence of comprehensive privacy laws has created a dangerous vulnerability that affects us all—but disproportionately impacts women and marginalized communities.
               </p>
@@ -92,12 +92,12 @@ const Blog = () => {
                   <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
                 </CollapsibleTrigger>
                 <CollapsibleContent className="space-y-4 text-foreground text-sm">
-                  <h3 className="text-lg font-bold mt-4 mb-2">The Current State of Privacy Protection</h3>
+                  <h4 className="text-lg font-bold mt-4 mb-2">The Current State of Privacy Protection</h4>
                   <p>
                     While the European Union has implemented GDPR and California has enacted CCPA, the United States lacks a federal privacy law that protects all citizens uniformly. This patchwork approach leaves massive gaps in protection, creating a digital Wild West where personal data is harvested, sold, and exploited with minimal oversight.
                   </p>
 
-                  <h3 className="text-lg font-bold mt-4 mb-2">Why This Matters for Women's Safety</h3>
+                  <h4 className="text-lg font-bold mt-4 mb-2">Why This Matters for Women's Safety</h4>
                   <p>The lack of robust privacy laws has particularly severe consequences for women:</p>
                   <ul className="list-disc pl-6 space-y-2">
                     <li><strong>Stalking and Harassment:</strong> Location data from apps and services can be purchased by anyone, including abusive partners or stalkers.</li>
