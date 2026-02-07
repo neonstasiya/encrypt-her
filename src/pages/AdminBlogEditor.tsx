@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { ArrowLeft, Save, Send } from "lucide-react";
+import { ArrowLeft, Save, Send, Upload, Loader2 } from "lucide-react";
 import { z } from "zod";
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
@@ -15,10 +15,9 @@ import { usePageTitle } from "@/hooks/usePageTitle";
 
 const blogPostSchema = z.object({
   title: z.string().trim().min(1, "Title is required").max(200, "Title must be less than 200 characters"),
-  excerpt: z.string().trim().max(500, "Excerpt must be less than 500 characters").optional(),
   content: z.string().trim().min(1, "Content is required"),
   author_name: z.string().trim().min(1, "Author name is required").max(100, "Author name must be less than 100 characters"),
-  featured_image: z.string().url("Must be a valid URL").optional().or(z.literal('')),
+  featured_image: z.string().optional().or(z.literal('')),
 });
 
 type BlogPostFormData = z.infer<typeof blogPostSchema>;
@@ -38,12 +37,13 @@ const AdminBlogEditor = () => {
   const queryClient = useQueryClient();
   const { toast } = useToast();
   const isEditing = !!id;
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
 
   usePageTitle(isEditing ? "Edit Blog Post | Admin | EncryptHer" : "New Blog Post | Admin | EncryptHer");
 
   const [formData, setFormData] = useState<BlogPostFormData>({
     title: '',
-    excerpt: '',
     content: '',
     author_name: 'EncryptHer Team',
     featured_image: '',
@@ -69,13 +69,52 @@ const AdminBlogEditor = () => {
     if (existingPost) {
       setFormData({
         title: existingPost.title,
-        excerpt: existingPost.excerpt || '',
         content: existingPost.content,
         author_name: existingPost.author_name,
         featured_image: existingPost.featured_image || '',
       });
     }
   }, [existingPost]);
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      toast({ title: "Invalid file", description: "Please select an image file.", variant: "destructive" });
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      toast({ title: "File too large", description: "Image must be under 5MB.", variant: "destructive" });
+      return;
+    }
+
+    setUploading(true);
+    try {
+      const ext = file.name.split('.').pop();
+      const fileName = `blog/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('assets')
+        .upload(fileName, file);
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('assets')
+        .getPublicUrl(fileName);
+
+      setFormData(prev => ({ ...prev, featured_image: publicUrl }));
+      toast({ title: "Image uploaded", description: "Featured image has been set." });
+    } catch (error) {
+      console.error('Upload error:', error);
+      toast({ title: "Upload failed", description: "Could not upload image. You may not have admin permissions.", variant: "destructive" });
+    } finally {
+      setUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
+  };
 
   const saveMutation = useMutation({
     mutationFn: async ({ data, publish }: { data: BlogPostFormData; publish: boolean }) => {
@@ -86,7 +125,7 @@ const AdminBlogEditor = () => {
         content: data.content,
         author_name: data.author_name,
         featured_image: data.featured_image || null,
-        excerpt: data.excerpt || null,
+        excerpt: null,
         status: publish ? 'published' : 'draft',
         published_at: publish ? new Date().toISOString() : null,
       };
@@ -210,38 +249,54 @@ const AdminBlogEditor = () => {
             )}
           </div>
 
-
           <div className="space-y-2">
-            <Label htmlFor="featured_image">Featured Image URL</Label>
-            <Input
-              id="featured_image"
-              type="url"
-              value={formData.featured_image}
-              onChange={(e) => setFormData(prev => ({ ...prev, featured_image: e.target.value }))}
-              placeholder="https://example.com/image.jpg"
-              aria-invalid={!!errors.featured_image}
-              aria-describedby={errors.featured_image ? "image-error" : undefined}
-              className="min-h-[44px]"
-            />
-            {errors.featured_image && (
-              <p id="image-error" className="text-sm text-destructive" role="alert">
-                {errors.featured_image}
-              </p>
-            )}
+            <Label>Featured Image</Label>
+            <div className="flex items-center gap-3">
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                className="hidden"
+                aria-label="Upload featured image"
+              />
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={uploading}
+                className="min-h-[44px]"
+              >
+                {uploading ? (
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" aria-hidden="true" />
+                ) : (
+                  <Upload className="h-4 w-4 mr-2" aria-hidden="true" />
+                )}
+                {uploading ? 'Uploading...' : 'Upload Image'}
+              </Button>
+              {formData.featured_image && (
+                <div className="flex items-center gap-2">
+                  <img 
+                    src={formData.featured_image} 
+                    alt="Featured image preview" 
+                    className="h-10 w-10 object-cover rounded"
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setFormData(prev => ({ ...prev, featured_image: '' }))}
+                    className="text-muted-foreground text-xs"
+                  >
+                    Remove
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="content">Content *</Label>
-            <div className="rounded-md border border-border bg-muted/30 p-3 text-xs text-muted-foreground space-y-1 mb-2">
-              <p className="font-semibold text-foreground text-sm mb-2">Formatting Guide</p>
-              <p><code className="bg-muted px-1 rounded">## Heading</code> — Section heading (large, bold)</p>
-              <p><code className="bg-muted px-1 rounded">### Subheading</code> — Smaller subheading</p>
-              <p><code className="bg-muted px-1 rounded">**bold text**</code> — <strong>Bold text</strong></p>
-              <p><code className="bg-muted px-1 rounded">*italic text*</code> — <em>Italic text</em></p>
-              <p><code className="bg-muted px-1 rounded">- item</code> — Bullet list item</p>
-              <p><code className="bg-muted px-1 rounded">[link text](https://url)</code> — Clickable link</p>
-              <p className="pt-1 text-muted-foreground">Separate paragraphs with a blank line.</p>
-            </div>
             <Textarea
               id="content"
               value={formData.content}
@@ -279,6 +334,17 @@ const AdminBlogEditor = () => {
               <Send className="h-4 w-4 mr-2" aria-hidden="true" />
               {saveMutation.isPending ? 'Publishing...' : 'Publish'}
             </Button>
+          </div>
+
+          <div className="pt-6 text-xs text-muted-foreground space-y-1">
+            <p className="font-semibold text-sm text-foreground mb-2">Formatting Guide</p>
+            <p><code className="bg-muted px-1 rounded">## Heading</code> — Section heading (large, bold)</p>
+            <p><code className="bg-muted px-1 rounded">### Subheading</code> — Smaller subheading</p>
+            <p><code className="bg-muted px-1 rounded">**bold text**</code> — <strong>Bold text</strong></p>
+            <p><code className="bg-muted px-1 rounded">*italic text*</code> — <em>Italic text</em></p>
+            <p><code className="bg-muted px-1 rounded">- item</code> — Bullet list item</p>
+            <p><code className="bg-muted px-1 rounded">[link text](https://url)</code> — Clickable link</p>
+            <p className="pt-1">Separate paragraphs with a blank line.</p>
           </div>
         </form>
       </main>
