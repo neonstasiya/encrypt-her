@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { supabase } from "@/integrations/supabase/client";
 import { usePageTitle } from "@/hooks/usePageTitle";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -29,7 +30,6 @@ const BlogPost = () => {
 
   usePageTitle(post?.title ? `${post.title} | EncryptHer Blog` : 'Blog Post | EncryptHer');
 
-  // Calculate reading time (roughly 200 words per minute)
   const getReadingTime = (content: string) => {
     const words = content.split(/\s+/).length;
     const minutes = Math.ceil(words / 200);
@@ -72,38 +72,18 @@ const BlogPost = () => {
           )}
 
           {error && (
-            <div 
-              className="text-center py-12"
-              role="alert"
-              aria-live="polite"
-            >
-              <h1 className="text-2xl font-bold text-foreground mb-4">
-                Error Loading Post
-              </h1>
-              <p className="text-muted-foreground mb-6">
-                We couldn't load this blog post. Please try again later.
-              </p>
-              <Link to="/blog">
-                <Button className="min-h-[44px]">Return to Blog</Button>
-              </Link>
+            <div className="text-center py-12" role="alert" aria-live="polite">
+              <h1 className="text-2xl font-bold text-foreground mb-4">Error Loading Post</h1>
+              <p className="text-muted-foreground mb-6">We couldn't load this blog post. Please try again later.</p>
+              <Link to="/blog"><Button className="min-h-[44px]">Return to Blog</Button></Link>
             </div>
           )}
 
           {!isLoading && !error && !post && (
-            <div 
-              className="text-center py-12"
-              role="alert"
-              aria-live="polite"
-            >
-              <h1 className="text-2xl font-bold text-foreground mb-4">
-                Post Not Found
-              </h1>
-              <p className="text-muted-foreground mb-6">
-                The blog post you're looking for doesn't exist or has been removed.
-              </p>
-              <Link to="/blog">
-                <Button className="min-h-[44px]">Return to Blog</Button>
-              </Link>
+            <div className="text-center py-12" role="alert" aria-live="polite">
+              <h1 className="text-2xl font-bold text-foreground mb-4">Post Not Found</h1>
+              <p className="text-muted-foreground mb-6">The blog post you're looking for doesn't exist or has been removed.</p>
+              <Link to="/blog"><Button className="min-h-[44px]">Return to Blog</Button></Link>
             </div>
           )}
 
@@ -113,7 +93,6 @@ const BlogPost = () => {
                 <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                   {post.title}
                 </h1>
-                
                 <div className="flex flex-wrap gap-4 text-muted-foreground text-sm">
                   <span className="flex items-center gap-2">
                     <User className="h-4 w-4" aria-hidden="true" />
@@ -141,12 +120,10 @@ const BlogPost = () => {
                 />
               )}
 
-              <div 
-                className="prose prose-lg max-w-none text-foreground"
-                style={{ whiteSpace: 'pre-wrap' }}
-              >
-                {post.content}
-              </div>
+              <MarkdownRenderer 
+                content={post.content} 
+                className="text-foreground text-base leading-relaxed"
+              />
             </>
           )}
         </article>

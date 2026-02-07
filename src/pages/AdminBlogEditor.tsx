@@ -15,8 +15,6 @@ import { usePageTitle } from "@/hooks/usePageTitle";
 
 const blogPostSchema = z.object({
   title: z.string().trim().min(1, "Title is required").max(200, "Title must be less than 200 characters"),
-  slug: z.string().trim().min(1, "Slug is required").max(200, "Slug must be less than 200 characters")
-    .regex(/^[a-z0-9-]+$/, "Slug can only contain lowercase letters, numbers, and hyphens"),
   excerpt: z.string().trim().max(500, "Excerpt must be less than 500 characters").optional(),
   content: z.string().trim().min(1, "Content is required"),
   author_name: z.string().trim().min(1, "Author name is required").max(100, "Author name must be less than 100 characters"),
@@ -24,6 +22,15 @@ const blogPostSchema = z.object({
 });
 
 type BlogPostFormData = z.infer<typeof blogPostSchema>;
+
+const generateSlug = (title: string) => {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .trim();
+};
 
 const AdminBlogEditor = () => {
   const { id } = useParams<{ id: string }>();
@@ -36,7 +43,6 @@ const AdminBlogEditor = () => {
 
   const [formData, setFormData] = useState<BlogPostFormData>({
     title: '',
-    slug: '',
     excerpt: '',
     content: '',
     author_name: 'EncryptHer Team',
@@ -44,7 +50,6 @@ const AdminBlogEditor = () => {
   });
   const [errors, setErrors] = useState<Partial<Record<keyof BlogPostFormData, string>>>({});
 
-  // Fetch existing post if editing
   const { data: existingPost, isLoading } = useQuery({
     queryKey: ['admin-blog-post', id],
     queryFn: async () => {
@@ -54,7 +59,6 @@ const AdminBlogEditor = () => {
         .select('*')
         .eq('id', id)
         .maybeSingle();
-      
       if (error) throw error;
       return data;
     },
@@ -65,7 +69,6 @@ const AdminBlogEditor = () => {
     if (existingPost) {
       setFormData({
         title: existingPost.title,
-        slug: existingPost.slug,
         excerpt: existingPost.excerpt || '',
         content: existingPost.content,
         author_name: existingPost.author_name,
@@ -74,29 +77,12 @@ const AdminBlogEditor = () => {
     }
   }, [existingPost]);
 
-  // Generate slug from title
-  const generateSlug = (title: string) => {
-    return title
-      .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
-      .trim();
-  };
-
-  const handleTitleChange = (value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      title: value,
-      slug: prev.slug || generateSlug(value),
-    }));
-  };
-
   const saveMutation = useMutation({
     mutationFn: async ({ data, publish }: { data: BlogPostFormData; publish: boolean }) => {
+      const slug = generateSlug(data.title);
       const postData = {
         title: data.title,
-        slug: data.slug,
+        slug,
         content: data.content,
         author_name: data.author_name,
         featured_image: data.featured_image || null,
@@ -141,7 +127,6 @@ const AdminBlogEditor = () => {
 
   const handleSubmit = (publish: boolean) => {
     const result = blogPostSchema.safeParse(formData);
-    
     if (!result.success) {
       const fieldErrors: Partial<Record<keyof BlogPostFormData, string>> = {};
       result.error.errors.forEach(err => {
@@ -151,7 +136,6 @@ const AdminBlogEditor = () => {
       setErrors(fieldErrors);
       return;
     }
-
     setErrors({});
     saveMutation.mutate({ data: result.data, publish });
   };
@@ -195,7 +179,7 @@ const AdminBlogEditor = () => {
             <Input
               id="title"
               value={formData.title}
-              onChange={(e) => handleTitleChange(e.target.value)}
+              onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
               placeholder="Enter post title"
               aria-invalid={!!errors.title}
               aria-describedby={errors.title ? "title-error" : undefined}
@@ -204,27 +188,6 @@ const AdminBlogEditor = () => {
             {errors.title && (
               <p id="title-error" className="text-sm text-destructive" role="alert">
                 {errors.title}
-              </p>
-            )}
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="slug">URL Slug *</Label>
-            <Input
-              id="slug"
-              value={formData.slug}
-              onChange={(e) => setFormData(prev => ({ ...prev, slug: e.target.value.toLowerCase() }))}
-              placeholder="url-friendly-slug"
-              aria-invalid={!!errors.slug}
-              aria-describedby={errors.slug ? "slug-error" : "slug-hint"}
-              className="min-h-[44px]"
-            />
-            <p id="slug-hint" className="text-sm text-muted-foreground">
-              This will be the URL: /blog/{formData.slug || 'your-slug'}
-            </p>
-            {errors.slug && (
-              <p id="slug-error" className="text-sm text-destructive" role="alert">
-                {errors.slug}
               </p>
             )}
           </div>
@@ -286,16 +249,18 @@ const AdminBlogEditor = () => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="content">Content *</Label>
+            <Label htmlFor="content">
+              Content * <span className="text-muted-foreground font-normal text-xs">(Supports Markdown: ## Heading, **bold**, *italic*, - list items)</span>
+            </Label>
             <Textarea
               id="content"
               value={formData.content}
               onChange={(e) => setFormData(prev => ({ ...prev, content: e.target.value }))}
-              placeholder="Write your blog post content here..."
+              placeholder={"Write your blog post content here...\n\n## Section Heading\n\nParagraph text here.\n\n- Bullet point\n- Another point\n\n**Bold text** for emphasis."}
               rows={15}
               aria-invalid={!!errors.content}
               aria-describedby={errors.content ? "content-error" : undefined}
-              className="min-h-[300px]"
+              className="min-h-[300px] font-mono text-sm"
             />
             {errors.content && (
               <p id="content-error" className="text-sm text-destructive" role="alert">
