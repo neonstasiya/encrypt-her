@@ -78,6 +78,20 @@ const BlogContributionForm = () => {
 
       if (error) throw error;
 
+      // Fire-and-forget email notification
+      try {
+        await supabase.functions.invoke('send-contribution-email', {
+          body: {
+            name: formData.name.trim(),
+            email: formData.email.trim().toLowerCase(),
+            topic: formData.topic.trim(),
+            story: formData.story?.trim() || undefined,
+          },
+        });
+      } catch (emailError) {
+        console.error('Email notification failed (non-blocking):', emailError);
+      }
+
       toast({
         title: "Thank you for your submission!",
         description: "We'll review your idea and be in touch soon.",
@@ -110,6 +124,13 @@ const BlogContributionForm = () => {
       </h2>
       <p className="text-muted-foreground mb-6">
         Would you like to contribute and be featured on our blog? Share your topic or story idea with us, and we'll be in touch!
+        You can also email your contribution directly to{" "}
+        <a
+          href="mailto:socialmedia@encrypther.org"
+          className="text-primary underline hover:text-primary/80"
+        >
+          socialmedia@encrypther.org
+        </a>.
       </p>
 
       <form onSubmit={handleSubmitClick} noValidate className="space-y-5">
