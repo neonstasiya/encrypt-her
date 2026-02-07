@@ -100,7 +100,7 @@ const Contact = () => {
               <Card role="listitem">
                 <CardHeader>
                   <Mail className="w-8 h-8 text-primary mb-2" aria-hidden="true" />
-                  <CardTitle>General Inquiries</CardTitle>
+                  <h2 className="text-2xl font-semibold leading-none tracking-tight">General Inquiries</h2>
                 </CardHeader>
                 <CardContent>
                   <a href="mailto:info@encrypther.org" className="text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring rounded">
@@ -112,7 +112,7 @@ const Contact = () => {
               <Card role="listitem">
                 <CardHeader>
                   <Mail className="w-8 h-8 text-primary mb-2" aria-hidden="true" />
-                  <CardTitle>Support</CardTitle>
+                  <h2 className="text-2xl font-semibold leading-none tracking-tight">Support</h2>
                 </CardHeader>
                 <CardContent>
                   <a href="mailto:support@encrypther.org" className="text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring rounded">
@@ -124,7 +124,7 @@ const Contact = () => {
               <Card role="listitem">
                 <CardHeader>
                   <Mail className="w-8 h-8 text-primary mb-2" aria-hidden="true" />
-                  <CardTitle>Media & Press</CardTitle>
+                  <h2 className="text-2xl font-semibold leading-none tracking-tight">Media &amp; Press</h2>
                 </CardHeader>
                 <CardContent>
                   <a href="mailto:media@encrypther.org" className="text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring rounded">
@@ -250,7 +250,7 @@ const Contact = () => {
                 <Card>
                   <CardHeader>
                     <Clock className="w-8 h-8 text-primary mb-2" aria-hidden="true" />
-                    <CardTitle>Response Time</CardTitle>
+                    <h2 className="text-2xl font-semibold leading-none tracking-tight">Response Time</h2>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground">
@@ -262,7 +262,7 @@ const Contact = () => {
 
                 <Card>
                   <CardHeader>
-                    <CardTitle>Frequently Asked Questions</CardTitle>
+                    <h2 className="text-2xl font-semibold leading-none tracking-tight">Frequently Asked Questions</h2>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground mb-4">
@@ -278,7 +278,7 @@ const Contact = () => {
                 <Card className="bg-destructive/5 border-destructive/20" role="region" aria-label="Emergency contact information">
                   <CardHeader>
                     <Phone className="w-8 h-8 text-destructive mb-2" aria-hidden="true" />
-                    <CardTitle>Emergency Resources</CardTitle>
+                    <h2 className="text-2xl font-semibold leading-none tracking-tight">Emergency Resources</h2>
                     <CardDescription>If you're in immediate danger, contact emergency services</CardDescription>
                   </CardHeader>
                   <CardContent>

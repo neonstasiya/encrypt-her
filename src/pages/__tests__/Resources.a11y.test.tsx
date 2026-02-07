@@ -25,7 +25,7 @@ describe('Resources Page Accessibility', () => {
   it('should have accessible resource cards with proper headings', () => {
     render(<Resources />);
     expect(screen.getByRole('heading', { name: /blog/i })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /safety guides/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /12 keys to safety/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /resources by state/i })).toBeInTheDocument();
   });
 

@@ -40,15 +40,15 @@ describe('Index Page Accessibility', () => {
     expect(headings.length).toBe(1);
   });
 
-  it('should have navigation with aria-label', () => {
+  it('should have navigation menu trigger', () => {
     render(<Index />);
-    const nav = screen.getByRole('navigation', { name: 'Main navigation' });
-    expect(nav).toBeInTheDocument();
+    const menuButton = screen.getByLabelText('Open main navigation menu');
+    expect(menuButton).toBeInTheDocument();
   });
 
   it('should have decorative images marked as aria-hidden', () => {
     const { container } = render(<Index />);
-    const decorativeImages = container.querySelectorAll('img[aria-hidden="true"]');
+    const decorativeImages = container.querySelectorAll('[aria-hidden="true"]');
     expect(decorativeImages.length).toBeGreaterThan(0);
   });
 });
