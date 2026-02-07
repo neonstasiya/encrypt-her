@@ -210,24 +210,6 @@ const AdminBlogEditor = () => {
             )}
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="excerpt">Excerpt</Label>
-            <Textarea
-              id="excerpt"
-              value={formData.excerpt}
-              onChange={(e) => setFormData(prev => ({ ...prev, excerpt: e.target.value }))}
-              placeholder="A brief summary of the post (optional)"
-              rows={2}
-              aria-invalid={!!errors.excerpt}
-              aria-describedby={errors.excerpt ? "excerpt-error" : undefined}
-              className="min-h-[88px]"
-            />
-            {errors.excerpt && (
-              <p id="excerpt-error" className="text-sm text-destructive" role="alert">
-                {errors.excerpt}
-              </p>
-            )}
-          </div>
 
           <div className="space-y-2">
             <Label htmlFor="featured_image">Featured Image URL</Label>
