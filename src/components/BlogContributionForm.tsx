@@ -78,7 +78,9 @@ const BlogContributionForm = () => {
 
       if (error) throw error;
 
-      // Fire-and-forget email notification
+      // Fire-and-forget email notification (with honeypot)
+      const honeypotField = document.getElementById('contribution-website') as HTMLInputElement;
+      const honeypotValue = honeypotField?.value || '';
       try {
         await supabase.functions.invoke('send-contribution-email', {
           body: {
@@ -86,6 +88,7 @@ const BlogContributionForm = () => {
             email: formData.email.trim().toLowerCase(),
             topic: formData.topic.trim(),
             story: formData.story?.trim() || undefined,
+            website: honeypotValue,
           },
         });
       } catch (emailError) {
@@ -228,6 +231,18 @@ const BlogContributionForm = () => {
               {errors.story}
             </p>
           )}
+        </div>
+
+        {/* Honeypot field - hidden from real users */}
+        <div className="absolute opacity-0 -z-10" aria-hidden="true" style={{ position: 'absolute', left: '-9999px' }}>
+          <label htmlFor="contribution-website">Website</label>
+          <input
+            id="contribution-website"
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+          />
         </div>
 
         <Button 

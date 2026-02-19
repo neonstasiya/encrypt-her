@@ -12,6 +12,7 @@ interface ContributionPayload {
   email: string;
   topic: string;
   story?: string;
+  website?: string; // honeypot field
 }
 
 const escapeHtml = (str: string): string =>
@@ -59,7 +60,15 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     const resend = new Resend(apiKey);
-    const { name, email, topic, story }: ContributionPayload = await req.json();
+    const { name, email, topic, story, website }: ContributionPayload = await req.json();
+
+    // Honeypot: if the hidden "website" field is filled, it's a bot
+    if (website) {
+      return new Response(JSON.stringify({ success: true }), {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     if (!name || !email || !topic) {
       return new Response(

@@ -39,6 +39,10 @@ const Contact = () => {
 
   const onSubmit = async (data: ContactFormData) => {
     try {
+      // Get honeypot value
+      const honeypotField = document.getElementById(`${formId}-website`) as HTMLInputElement;
+      const honeypotValue = honeypotField?.value || '';
+
       const { error } = await supabase
         .from('contact_messages')
         .insert([
@@ -52,7 +56,7 @@ const Contact = () => {
 
       if (error) throw error;
 
-      // Fire-and-forget email notification
+      // Fire-and-forget email notification (with honeypot)
       try {
         await supabase.functions.invoke('send-contact-email', {
           body: {
@@ -60,6 +64,7 @@ const Contact = () => {
             email: data.email,
             subject: data.subject,
             message: data.message,
+            website: honeypotValue,
           },
         });
       } catch (emailError) {
@@ -238,6 +243,18 @@ const Contact = () => {
                         {errors.message.message}
                       </p>
                     )}
+                  </div>
+
+                  {/* Honeypot field - hidden from real users */}
+                  <div className="absolute opacity-0 -z-10" aria-hidden="true" style={{ position: 'absolute', left: '-9999px' }}>
+                    <label htmlFor={`${formId}-website`}>Website</label>
+                    <input
+                      id={`${formId}-website`}
+                      type="text"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
                   </div>
 
                   <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
