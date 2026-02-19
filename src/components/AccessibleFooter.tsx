@@ -90,6 +90,16 @@ export const AccessibleFooter = () => {
                   Accessibility
                 </Link>
               </li>
+              <li>
+                <Link to="/privacy-policy" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">
+                  Terms &amp; Conditions
+                </Link>
+              </li>
             </ul>
           </nav>
         </div>

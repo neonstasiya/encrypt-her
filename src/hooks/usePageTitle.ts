@@ -14,6 +14,9 @@ const pageTitles: Record<string, string> = {
   "/blog": "Blog - EncryptHer",
   "/contact": "Contact Us - EncryptHer",
   "/resources": "Safety Resources by State - EncryptHer",
+  "/privacy-policy": "Privacy Policy - EncryptHer",
+  "/terms": "Terms & Conditions - EncryptHer",
+  "/accessibility": "Accessibility Statement - EncryptHer",
 };
 
 export const usePageTitle = (customTitle?: string) => {

@@ -34,6 +34,8 @@ import Auth from "./pages/Auth";
 import ResetPassword from "./pages/ResetPassword";
 import AccessibilityStatement from "./pages/AccessibilityStatement";
 import ComingSoon from "./pages/ComingSoon";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsAndConditions from "./pages/TermsAndConditions";
 
 const queryClient = new QueryClient();
 
@@ -67,7 +69,8 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/accessibility" element={<AccessibilityStatement />} />
-            <Route path="/accessibility" element={<AccessibilityStatement />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsAndConditions />} />
             
             {/* Protected Admin Routes */}
             <Route path="/admin" element={
