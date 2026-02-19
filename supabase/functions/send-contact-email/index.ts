@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.3";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -31,20 +32,47 @@ const escapeHtml = (str: string): string =>
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
 
-// Simple in-memory rate limiter (per-IP, resets on cold start)
-const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
-const RATE_LIMIT = 5; // max requests per window
-const RATE_WINDOW_MS = 60_000; // 1 minute
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const RATE_LIMIT = 5;
+const RATE_WINDOW_SECONDS = 60;
 
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const entry = rateLimitMap.get(ip);
-  if (!entry || now > entry.resetAt) {
-    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS });
-    return false;
+async function isRateLimited(
+  supabase: ReturnType<typeof createClient>,
+  ip: string,
+  functionName: string
+): Promise<boolean> {
+  // Clean up old entries periodically
+  try {
+    await supabase.rpc("cleanup_old_rate_limits");
+  } catch {
+    // Non-critical, continue
   }
-  entry.count++;
-  return entry.count > RATE_LIMIT;
+
+  const windowStart = new Date(Date.now() - RATE_WINDOW_SECONDS * 1000).toISOString();
+
+  const { count, error } = await supabase
+    .from("edge_function_rate_limits")
+    .select("*", { count: "exact", head: true })
+    .eq("ip_address", ip)
+    .eq("function_name", functionName)
+    .gte("created_at", windowStart);
+
+  if (error) {
+    console.error("Rate limit check error:", error.message);
+    return false; // Fail open to not block legitimate users
+  }
+
+  if ((count ?? 0) >= RATE_LIMIT) {
+    return true;
+  }
+
+  // Record this request
+  await supabase.from("edge_function_rate_limits").insert({
+    ip_address: ip,
+    function_name: functionName,
+  });
+
+  return false;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -52,9 +80,14 @@ const handler = async (req: Request): Promise<Response> => {
     return new Response("ok", { headers: corsHeaders });
   }
 
-  // Rate limiting
+  // Create Supabase client with service role for rate limiting
+  const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+  const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+  const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+  // Database-backed rate limiting (persistent across cold starts)
   const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-  if (isRateLimited(clientIp)) {
+  if (await isRateLimited(supabase, clientIp, "send-contact-email")) {
     return new Response(
       JSON.stringify({ error: "Too many requests. Please try again later." }),
       { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
@@ -72,7 +105,6 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Honeypot: if the hidden "website" field is filled, it's a bot
     if (website) {
-      // Return success to not tip off the bot
       return new Response(JSON.stringify({ success: true }), {
         status: 200,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -82,6 +114,14 @@ const handler = async (req: Request): Promise<Response> => {
     if (!name || !email || !subject || !message) {
       return new Response(
         JSON.stringify({ error: "Missing required fields" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Validate email format server-side
+    if (!EMAIL_REGEX.test(email)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid email format" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
