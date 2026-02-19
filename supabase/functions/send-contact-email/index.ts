@@ -12,6 +12,7 @@ interface ContactPayload {
   email: string;
   subject: string;
   message: string;
+  website?: string; // honeypot field
 }
 
 const subjectLabels: Record<string, string> = {
@@ -67,7 +68,16 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     const resend = new Resend(apiKey);
-    const { name, email, subject, message }: ContactPayload = await req.json();
+    const { name, email, subject, message, website }: ContactPayload = await req.json();
+
+    // Honeypot: if the hidden "website" field is filled, it's a bot
+    if (website) {
+      // Return success to not tip off the bot
+      return new Response(JSON.stringify({ success: true }), {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     if (!name || !email || !subject || !message) {
       return new Response(

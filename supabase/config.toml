@@ -1,4 +1,7 @@
 project_id = "oxtobnimllpaybkmycpl"
 
+[functions.send-contact-email]
+verify_jwt = false
+
 [functions.send-contribution-email]
 verify_jwt = false
