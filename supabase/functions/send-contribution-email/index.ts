@@ -25,13 +25,15 @@ const escapeHtml = (str: string): string =>
     .replace(/'/g, "&#039;");
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const RATE_LIMIT = 5;
+const RATE_LIMIT_ANON = 3;
+const RATE_LIMIT_AUTH = 10;
 const RATE_WINDOW_SECONDS = 60;
 
 async function isRateLimited(
   supabase: ReturnType<typeof createClient>,
   ip: string,
-  functionName: string
+  functionName: string,
+  limit: number
 ): Promise<boolean> {
   try {
     await supabase.rpc("cleanup_old_rate_limits");
@@ -53,7 +55,7 @@ async function isRateLimited(
     return false;
   }
 
-  if ((count ?? 0) >= RATE_LIMIT) {
+  if ((count ?? 0) >= limit) {
     return true;
   }
 
@@ -65,17 +67,53 @@ async function isRateLimited(
   return false;
 }
 
+/**
+ * Validate JWT from Authorization header.
+ * Returns user ID if valid, null if anonymous/invalid.
+ */
+async function validateAuth(req: Request): Promise<{ userId: string | null; isAuthenticated: boolean }> {
+  const authHeader = req.headers.get("Authorization");
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return { userId: null, isAuthenticated: false };
+  }
+
+  try {
+    const token = authHeader.replace("Bearer ", "");
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
+
+    const anonClient = createClient(supabaseUrl, supabaseAnonKey, {
+      global: { headers: { Authorization: authHeader } },
+    });
+
+    const { data, error } = await anonClient.auth.getUser(token);
+
+    if (error || !data?.user) {
+      return { userId: null, isAuthenticated: false };
+    }
+
+    return { userId: data.user.id, isAuthenticated: true };
+  } catch {
+    return { userId: null, isAuthenticated: false };
+  }
+}
+
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
   }
+
+  // Validate JWT - authenticated users get higher rate limits
+  const { isAuthenticated } = await validateAuth(req);
 
   const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
   const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
   const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
   const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-  if (await isRateLimited(supabase, clientIp, "send-contribution-email")) {
+  const rateLimit = isAuthenticated ? RATE_LIMIT_AUTH : RATE_LIMIT_ANON;
+
+  if (await isRateLimited(supabase, clientIp, "send-contribution-email", rateLimit)) {
     return new Response(
       JSON.stringify({ error: "Too many requests. Please try again later." }),
       { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
@@ -122,7 +160,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    console.log(`Sending contribution notification for: ${escapeHtml(name)}, topic: ${escapeHtml(topic)}`);
+    console.log(`Sending contribution notification for: ${escapeHtml(name)}, topic: ${escapeHtml(topic)}, authenticated: ${isAuthenticated}`);
 
     const emailResponse = await resend.emails.send({
       from: "EncryptHer <noreply@encrypther.org>",
