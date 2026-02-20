@@ -98,13 +98,6 @@ Deno.serve(async (req: Request) => {
     const path = url.searchParams.get('path') || '/';
     const userAgent = req.headers.get('user-agent') || '';
 
-    // Only serve OG HTML to bots
-    if (!isBot(userAgent)) {
-      return new Response(JSON.stringify({ redirect: true }), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
-    }
-
     const meta = pageMeta[path] || pageMeta['/']!;
     const pageUrl = `${BASE_URL}${path}`;
     const imageUrl = `${BASE_URL}/og-image.jpg`;
