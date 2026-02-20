@@ -12,7 +12,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { SkipLink } from "@/components/SkipLink";
-import { usePageTitle } from "@/hooks/usePageTitle";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { useId } from "react";
 
 const contactFormSchema = z.object({
@@ -25,7 +25,7 @@ const contactFormSchema = z.object({
 type ContactFormData = z.infer<typeof contactFormSchema>;
 
 const Contact = () => {
-  usePageTitle();
+  usePageMeta();
   const formId = useId();
   
   const {

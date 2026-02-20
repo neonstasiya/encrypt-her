@@ -7,7 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { SkipLink } from "@/components/SkipLink";
-import { usePageTitle } from "@/hooks/usePageTitle";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -26,7 +26,7 @@ const resetSchema = z.object({
 type ResetFormValues = z.infer<typeof resetSchema>;
 
 const ResetPassword = () => {
-  usePageTitle("Reset Password | EncryptHer");
+  usePageMeta("Reset Password | EncryptHer");
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isValidSession, setIsValidSession] = useState(false);

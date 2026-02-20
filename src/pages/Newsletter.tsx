@@ -5,10 +5,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { SkipLink } from "@/components/SkipLink";
-import { usePageTitle } from "@/hooks/usePageTitle";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const Newsletter = () => {
-  usePageTitle();
+  usePageMeta();
   
   const benefits = [
     {

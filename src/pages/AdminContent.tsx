@@ -11,7 +11,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { SkipLink } from "@/components/SkipLink";
-import { usePageTitle } from "@/hooks/usePageTitle";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { useAllPageContent, useUpdatePageContent, PageContent } from "@/hooks/usePageContent";
 import { toast } from "sonner";
 
@@ -120,7 +120,7 @@ const pageConfigs: PageConfig[] = [
 ];
 
 const AdminContent = () => {
-  usePageTitle("Edit Page Content | EncryptHer");
+  usePageMeta("Edit Page Content | EncryptHer");
   const { data: allContent, isLoading } = useAllPageContent();
   const updateContent = useUpdatePageContent();
   

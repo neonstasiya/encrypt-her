@@ -25,11 +25,11 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { SkipLink } from "@/components/SkipLink";
-import { usePageTitle } from "@/hooks/usePageTitle";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import heroImage from "@/assets/hero-privacy.jpg";
 
 const Resources = () => {
-  usePageTitle("Free Resources | EncryptHer");
+  usePageMeta();
 
   const navigationCards = [
     {

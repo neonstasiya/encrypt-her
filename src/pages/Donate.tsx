@@ -4,11 +4,11 @@ import { Heart, Shield, BookOpen, Users } from "lucide-react";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { SkipLink } from "@/components/SkipLink";
-import { usePageTitle } from "@/hooks/usePageTitle";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { useId } from "react";
 
 const Donate = () => {
-  usePageTitle();
+  usePageMeta();
   const formId = useId();
 
   return (

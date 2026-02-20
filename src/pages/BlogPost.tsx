@@ -6,7 +6,7 @@ import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { supabase } from "@/integrations/supabase/client";
-import { usePageTitle } from "@/hooks/usePageTitle";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 
 const BlogPost = () => {
@@ -28,7 +28,10 @@ const BlogPost = () => {
     enabled: !!slug,
   });
 
-  usePageTitle(post?.title ? `${post.title} | EncryptHer Blog` : 'Blog Post | EncryptHer');
+  usePageMeta(
+    post?.title ? `${post.title} | EncryptHer Blog` : 'Blog Post | EncryptHer',
+    post?.excerpt || undefined
+  );
 
   const getReadingTime = (content: string) => {
     const words = content.split(/\s+/).length;

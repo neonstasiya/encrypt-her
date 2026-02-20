@@ -7,10 +7,10 @@ import advocacyImage from "@/assets/advocacy.jpg";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { SkipLink } from "@/components/SkipLink";
-import { usePageTitle } from "@/hooks/usePageTitle";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const DigitalAdvocacy = () => {
-  usePageTitle("Digital Privacy Advocacy | EncryptHer");
+  usePageMeta();
   
   return (
     <div className="min-h-screen bg-background">

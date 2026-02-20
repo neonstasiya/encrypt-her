@@ -14,13 +14,13 @@ import { Button } from "@/components/ui/button";
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { SkipLink } from "@/components/SkipLink";
-import { usePageTitle } from "@/hooks/usePageTitle";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const AdminDashboard = () => {
-  usePageTitle("Admin Dashboard | EncryptHer");
+  usePageMeta("Admin Dashboard | EncryptHer");
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
 
