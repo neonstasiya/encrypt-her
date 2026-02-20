@@ -1,50 +1,73 @@
 
 
-## Dynamic Link Previews Per Page
+## Fix Page-Specific Link Previews
 
-### The Challenge
-Your app is a Single Page Application (SPA). When someone shares a link like `encrypt-her.lovable.app/privacy-policy`, messaging apps request that URL but always receive the same `index.html` with the home page's title and description. They can't see page-specific content because the page is rendered by JavaScript after loading.
+### Why It's Not Working
+The current setup has two pieces that don't connect:
+- The backend function has the correct per-page metadata but crawlers never reach it
+- The JavaScript hook updates meta tags, but crawlers (iMessage, WhatsApp, Facebook) don't run JavaScript — they only read the raw HTML of `index.html`, which always shows homepage content
 
-### The Solution
-We'll add **Open Graph meta tags back** to `index.html` with sensible defaults, **plus** create a `usePageMeta` hook that dynamically updates these tags when each page loads. This approach works with messaging apps that execute JavaScript (iMessage, many modern crawlers).
+### The Solution: Redirect Crawlers via the Backend
 
-For apps that **don't** execute JavaScript (some older platforms), we'll also create a small **backend function** that detects bot/crawler requests and returns page-specific meta tags in the HTML before JavaScript runs.
+We need to make `index.html` detect when a bot/crawler is visiting and redirect it to the backend function. Since crawlers don't run JavaScript, we'll use an alternative approach:
 
-### What We'll Do
+**Add a `<noscript>` meta-refresh tag** plus a small inline script in `index.html` that redirects bot-like requests to the backend function. While this won't catch all crawlers, the more reliable approach is:
 
-**Step 1: Add default Open Graph tags back to `index.html`**
-- Add `og:title`, `og:description`, `og:type`, `og:url`, and `og:image` with sensible defaults
+**Recommended: Use your custom domain (`encrypther.org`) with Cloudflare** to add a Worker that intercepts crawler traffic and proxies it to the backend function. This is the industry-standard solution for SPAs.
 
-**Step 2: Create a `usePageMeta` hook**
-- Extends the existing `usePageTitle` pattern
-- Dynamically updates `og:title`, `og:description`, and `og:url` meta tags in the document head based on the current route
-- Each page will have its own title and description mapping (similar to the existing `pageTitles` map in `usePageTitle.ts`)
+However, since that requires setup outside of Lovable, here's what we **can** do within the app:
 
-**Step 3: Update all page components**
-- Replace `usePageTitle` calls with `usePageMeta` calls in each page component, providing page-specific descriptions
+### Practical Fix (within Lovable)
 
-**Step 4: Create a backend function for bot detection**
-- A backend function that intercepts requests from known crawlers/bots (WhatsApp, iMessage, Facebook, Twitter)
-- Returns a lightweight HTML page with the correct Open Graph tags for the requested URL
-- This ensures previews work even on platforms that don't run JavaScript
+**Approach: Pre-populate `index.html` meta tags with a synchronous script**
 
-### Important Note
-- **Most messaging apps** (iMessage, WhatsApp, Facebook Messenger) will show the correct page-specific preview after these changes
-- The preview will show the **title and description** of the specific page being shared, not the home page
-- Some platforms cache previews aggressively, so previously shared links may take time to update
+Add an inline `<script>` block at the top of `index.html` that runs **immediately** (before React loads) and rewrites the OG meta tags based on `window.location.pathname`. This is a synchronous operation that completes before the HTML is fully parsed.
+
+- This **does** work with **Google's crawler** (which executes JS)
+- This **does NOT** work with iMessage, WhatsApp, or Facebook crawlers (they don't execute JS at all)
+
+For full coverage on all platforms, the only real solution is a server-side proxy.
+
+### What We'll Change
+
+**File: `index.html`**
+- Add an inline `<script>` in the `<head>` before the React entry point
+- The script contains the same route-to-metadata map
+- It reads `window.location.pathname` and immediately updates the `<meta>` tag `content` attributes
+- This helps with Google and any JS-executing crawler
+
+**File: `supabase/functions/og-meta/index.ts`**
+- Remove the bot-only restriction — make it serve OG HTML for all requests so it can be used as a direct sharing URL
+- Update the function to accept the path and always return the correct HTML
+
+### Limitations (Important to Understand)
+
+| Platform | Executes JS? | Will show correct preview? |
+|----------|-------------|---------------------------|
+| Google Search | Yes | Yes (with inline script) |
+| iMessage | No | No (shows homepage info) |
+| WhatsApp | No | No (shows homepage info) |
+| Facebook | No | No (shows homepage info) |
+| Twitter/X | No | No (shows homepage info) |
+| Slack | Partial | Maybe |
+
+To get iMessage/WhatsApp/Facebook working, you would need to set up a **Cloudflare Worker** on your `encrypther.org` domain that detects bot traffic and returns the correct HTML. This is a one-time setup outside of Lovable.
 
 ### Technical Details
 
-**New file:** `src/hooks/usePageMeta.ts`
-- Contains a map of routes to `{ title, description }` objects
-- Updates `document.title` and `<meta>` tags in `<head>` on route change
+**`index.html` inline script:**
+```javascript
+(function() {
+  var path = window.location.pathname;
+  var meta = { /* route map */ };
+  var m = meta[path] || meta['/'];
+  if (m) {
+    document.querySelector('meta[property="og:title"]').content = m.title;
+    document.querySelector('meta[property="og:description"]').content = m.description;
+    document.querySelector('meta[property="og:url"]').content = 'https://encrypt-her.lovable.app' + path;
+    document.title = m.title;
+  }
+})();
+```
 
-**Modified file:** `index.html`
-- Re-add `og:title`, `og:description`, `og:type`, `og:url` meta tags with default values
-
-**Modified files:** All page components (~20 files)
-- Switch from `usePageTitle()` to `usePageMeta()` 
-
-**New file:** `supabase/functions/og-meta/index.ts`
-- Bot-detection edge function that returns correct meta tags per route
-
+This runs synchronously before React mounts and updates the meta tags for any JS-executing crawler.
