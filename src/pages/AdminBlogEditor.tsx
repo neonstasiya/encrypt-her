@@ -11,7 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { usePageTitle } from "@/hooks/usePageTitle";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const blogPostSchema = z.object({
   title: z.string().trim().min(1, "Title is required").max(200, "Title must be less than 200 characters"),
@@ -40,7 +40,7 @@ const AdminBlogEditor = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
 
-  usePageTitle(isEditing ? "Edit Blog Post | Admin | EncryptHer" : "New Blog Post | Admin | EncryptHer");
+  usePageMeta(isEditing ? "Edit Blog Post | Admin | EncryptHer" : "New Blog Post | Admin | EncryptHer");
 
   const [formData, setFormData] = useState<BlogPostFormData>({
     title: '',

@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { usePageTitle } from "@/hooks/usePageTitle";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 interface BlogPost {
   id: string;
@@ -39,7 +39,7 @@ interface BlogPost {
 }
 
 const AdminBlog = () => {
-  usePageTitle("Manage Blog Posts | Admin | EncryptHer");
+  usePageMeta("Manage Blog Posts | Admin | EncryptHer");
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { toast } = useToast();

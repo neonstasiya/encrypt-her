@@ -2,10 +2,10 @@ import { Shield, Mail } from "lucide-react";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { SkipLink } from "@/components/SkipLink";
-import { usePageTitle } from "@/hooks/usePageTitle";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const PrivacyPolicy = () => {
-  usePageTitle("Privacy Policy | EncryptHer");
+  usePageMeta();
 
   return (
     <div className="min-h-screen bg-background">

@@ -32,7 +32,7 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { usePageTitle } from "@/hooks/usePageTitle";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 interface BlogContribution {
   id: string;
@@ -53,7 +53,7 @@ const statusColors: Record<string, 'default' | 'secondary' | 'destructive' | 'ou
 };
 
 const AdminContributions = () => {
-  usePageTitle("Blog Contributions | Admin | EncryptHer");
+  usePageMeta("Blog Contributions | Admin | EncryptHer");
   const queryClient = useQueryClient();
   const { toast } = useToast();
   const [selectedContribution, setSelectedContribution] = useState<BlogContribution | null>(null);

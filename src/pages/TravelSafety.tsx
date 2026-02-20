@@ -7,10 +7,10 @@ import travelSafetyImage from "@/assets/travel-safety.jpg";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { SkipLink } from "@/components/SkipLink";
-import { usePageTitle } from "@/hooks/usePageTitle";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const TravelSafety = () => {
-  usePageTitle("Travel Safety & Security | EncryptHer");
+  usePageMeta();
   
   return (
     <div className="min-h-screen bg-background">

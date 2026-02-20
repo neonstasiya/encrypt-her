@@ -7,12 +7,12 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { SkipLink } from "@/components/SkipLink";
-import { usePageTitle } from "@/hooks/usePageTitle";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { supabase } from "@/integrations/supabase/client";
 import BlogContributionForm from "@/components/BlogContributionForm";
 
 const Blog = () => {
-  usePageTitle();
+  usePageMeta();
   const [isOpen, setIsOpen] = useState(false);
 
   const { data: posts } = useQuery({

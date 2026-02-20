@@ -5,10 +5,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { SkipLink } from "@/components/SkipLink";
-import { usePageTitle } from "@/hooks/usePageTitle";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const ComingSoon = () => {
-  usePageTitle("Coming Soon | EncryptHer");
+  usePageMeta("Coming Soon | EncryptHer");
   return (
     <div className="min-h-screen bg-background">
       <SkipLink />

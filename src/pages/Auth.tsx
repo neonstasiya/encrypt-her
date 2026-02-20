@@ -8,7 +8,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { SkipLink } from "@/components/SkipLink";
-import { usePageTitle } from "@/hooks/usePageTitle";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -26,7 +26,7 @@ const authSchema = z.object({
 type AuthFormValues = z.infer<typeof authSchema>;
 
 const Auth = () => {
-  usePageTitle("Admin Sign In | EncryptHer");
+  usePageMeta("Admin Sign In | EncryptHer");
   const navigate = useNavigate();
   const location = useLocation();
   const { user, signIn, isLoading: authLoading } = useAuth();

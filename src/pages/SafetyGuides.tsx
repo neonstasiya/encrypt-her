@@ -11,10 +11,10 @@ import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { Toaster } from "@/components/ui/toaster";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { SkipLink } from "@/components/SkipLink";
-import { usePageTitle } from "@/hooks/usePageTitle";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const SafetyGuides = () => {
-  usePageTitle("12 Keys to Personal Safety | EncryptHer");
+  usePageMeta();
   const [activeSection, setActiveSection] = useState(0);
   const [hasAccess, setHasAccess] = useState(false);
   const [showEmailGate, setShowEmailGate] = useState(false);

@@ -3,7 +3,7 @@ import { Users, BookOpen, AlertCircle } from "lucide-react";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { SkipLink } from "@/components/SkipLink";
-import { usePageTitle } from "@/hooks/usePageTitle";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { usePageContent, PageContent } from "@/hooks/usePageContent";
 
 // Default content fallbacks
@@ -30,7 +30,7 @@ const defaultContent = {
 };
 
 const About = () => {
-  usePageTitle();
+  usePageMeta();
   const { data: content } = usePageContent("about");
   
   // Helper to get content with fallback
