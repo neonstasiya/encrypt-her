@@ -69,6 +69,10 @@ const pageMeta: Record<string, PageMeta> = {
     title: "Accessibility Statement - EncryptHer",
     description: "EncryptHer is committed to digital accessibility. Learn about our efforts to ensure our website is usable by everyone.",
   },
+  "/emergency-grant": {
+    title: "EncryptHer Emergency Grant – HerStory Spotlight",
+    description: "Support women and mothers in developing countries through the EncryptHer Emergency Grant. Read real stories and donate to make a direct impact.",
+  },
 };
 
 // Exported for the edge function to use the same data

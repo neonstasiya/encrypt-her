@@ -17,6 +17,7 @@ const pageTitles: Record<string, string> = {
   "/privacy-policy": "Privacy Policy - EncryptHer",
   "/terms": "Terms & Conditions - EncryptHer",
   "/accessibility": "Accessibility Statement - EncryptHer",
+  "/emergency-grant": "EncryptHer Emergency Grant – HerStory Spotlight",
 };
 
 export const usePageTitle = (customTitle?: string) => {
