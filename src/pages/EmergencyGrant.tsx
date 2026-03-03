@@ -6,6 +6,8 @@ import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { SkipLink } from "@/components/SkipLink";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
 const GRANT_GOAL = 1200;
 const GRANT_RAISED = 0;
@@ -16,6 +18,18 @@ const EmergencyGrant = () => {
     "EncryptHer Emergency Grant – HerStory Spotlight",
     "Support women and mothers in developing countries through the EncryptHer Emergency Grant. Read real stories and donate to make a direct impact."
   );
+
+  const { data: grantMedia = [] } = useQuery({
+    queryKey: ["emergency-grant-media-public"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("emergency_grant_media")
+        .select("*")
+        .order("display_order", { ascending: true });
+      if (error) throw error;
+      return data;
+    },
+  });
 
   return (
     <div className="min-h-screen bg-background">
@@ -146,26 +160,49 @@ const EmergencyGrant = () => {
                   </CardContent>
                 </Card>
 
-                {/* Photo placeholders */}
+                {/* Photos & Videos */}
                 <Card className="border-border">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-lg">Photos</CardTitle>
+                    <CardTitle className="text-lg">Photos &amp; Videos</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
-                    <div
-                      className="aspect-square rounded-lg bg-muted flex items-center justify-center text-muted-foreground text-sm"
-                      role="img"
-                      aria-label="Photo of Rhea and her baby — coming soon"
-                    >
-                      Photo coming soon
-                    </div>
-                    <div
-                      className="aspect-video rounded-lg bg-muted flex items-center justify-center text-muted-foreground text-sm"
-                      role="img"
-                      aria-label="Additional photo — coming soon"
-                    >
-                      Additional photo
-                    </div>
+                    {grantMedia.length === 0 ? (
+                      <div
+                        className="aspect-square rounded-lg bg-muted flex items-center justify-center text-muted-foreground text-sm"
+                        role="img"
+                        aria-label="Photo coming soon"
+                      >
+                        Photo coming soon
+                      </div>
+                    ) : (
+                      grantMedia.map((item) =>
+                        item.media_type === "video" ? (
+                          <div key={item.id} className="space-y-1">
+                            <video
+                              src={item.file_url}
+                              controls
+                              className="w-full rounded-lg"
+                              aria-label={item.caption || "Grant video"}
+                            />
+                            {item.caption && (
+                              <p className="text-xs text-muted-foreground">{item.caption}</p>
+                            )}
+                          </div>
+                        ) : (
+                          <div key={item.id} className="space-y-1">
+                            <img
+                              src={item.file_url}
+                              alt={item.caption || "Grant photo"}
+                              className="w-full rounded-lg object-cover"
+                              loading="lazy"
+                            />
+                            {item.caption && (
+                              <p className="text-xs text-muted-foreground">{item.caption}</p>
+                            )}
+                          </div>
+                        )
+                      )
+                    )}
                   </CardContent>
                 </Card>
               </div>

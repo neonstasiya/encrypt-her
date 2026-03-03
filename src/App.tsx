@@ -30,6 +30,7 @@ import AdminBlogEditor from "./pages/AdminBlogEditor";
 import AdminContributions from "./pages/AdminContributions";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminContent from "./pages/AdminContent";
+import AdminEmergencyGrant from "./pages/AdminEmergencyGrant";
 import Auth from "./pages/Auth";
 import ResetPassword from "./pages/ResetPassword";
 import AccessibilityStatement from "./pages/AccessibilityStatement";
@@ -113,6 +114,11 @@ const App = () => (
             <Route path="/admin/contributions" element={
               <ProtectedRoute requireAdmin>
                 <AdminContributions />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/emergency-grant" element={
+              <ProtectedRoute requireAdmin>
+                <AdminEmergencyGrant />
               </ProtectedRoute>
             } />
             
