@@ -130,16 +130,13 @@ const EmergencyGrant = () => {
               {/* Story */}
               <div className="md:col-span-2 space-y-4 text-lg text-muted-foreground">
                 <p>
-                  Rhea is a young mother in the Philippines who spends every day doing what mothers do — making sure her baby is safe, fed, and loved. For nine months, she's poured everything she has into her child. But recently, things took a turn that no parent should have to face alone.
+                  Rhea is a young mother in the Philippines who has spent the last nine months doing everything in her power to protect her child. But today, she is facing a crisis that no parent should have to navigate alone.
                 </p>
                 <p>
-                  Her baby became seriously ill with a bacterial infection. The kind of sick where you don't sleep, where you hold your child in a hospital waiting room and pray that someone can help. The doctors prescribed treatment, but the medications and hospital visits started adding up fast — far more than Rhea can afford on her own.
+                  Her baby has been hospitalized with severe pneumonia, a bacterial infection that requires urgent — and expensive — medical intervention. As the bills for medications and hospital stays climb, Rhea is being forced into a heartbreaking position. She is also battling severe postpartum depression, a condition that requires professional care and antidepressants she simply cannot afford.
                 </p>
                 <p>
-                  What makes this harder is something Rhea doesn't talk about much. Since giving birth, she's been quietly struggling with her own health. Postpartum challenges have been weighing on her — physically and emotionally — but she's been pushing through it because her baby comes first. She needs to see a doctor. She needs medication. But right now, every peso she has goes toward keeping her child alive.
-                </p>
-                <p>
-                  No mother should have to choose between her baby's health and her own. Through the EncryptHer Emergency Grant, we're raising funds so Rhea doesn't have to make that choice. Your support means her baby gets the treatment he needs — and Rhea finally gets the care she's been putting off.
+                  Right now, every peso Rhea has is going toward her son's survival, leaving her own health in a dangerous decline. At the EncryptHer Emergency Grant, we believe a mother shouldn't have to choose between her baby's life and her own mental health. Your support will provide the life-saving treatment her baby needs and the psychiatric care Rhea urgently requires to be the mother she wants to be.
                 </p>
 
                 <Card className="border-primary/20 bg-primary/5 mt-6">
