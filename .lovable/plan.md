@@ -1,22 +1,52 @@
 
 
-## Plan: Reorder Emergency Grant Page — Story First
+## Plan: Admin Emergency Grant Media Manager
 
-### What Changes
+Currently, the Emergency Grant page has hardcoded "Photo coming soon" placeholders, and there is no admin section to manage this page's media. This plan adds an admin page for uploading photos and videos for Rhea's story, and wires the Emergency Grant page to display them.
 
-Reorganize the page so Rhea's spotlight appears immediately after the hero, followed by the donation form. The program info sections ("HerStory Spotlight" intro, "Why We Created This", "How Funded") move below the donation area, condensed into an "About This Program" section with anchor link from the hero.
+### What Gets Built
 
-### New Section Order
+**1. Database: `emergency_grant_media` table**
 
-1. **Hero** (keep as-is, add a small "Learn about this program" anchor link)
-2. **Current Spotlight: Rhea** (moved up from line 117)
-3. **Zeffy Donation Embed** (moved up from line 240)
-4. **Tax Status Disclaimer** (stays near donation)
-5. **Grant Updates** (stays)
-6. **About This Program** — combines the HerStory intro, Why We Created This, and How Funded into one section with an `id="about-program"` anchor
-7. **Transparency Commitment** (stays at bottom)
+A new table to store uploaded media references:
+- `id` (uuid, primary key)
+- `file_url` (text) — public storage URL
+- `media_type` (text) — "photo" or "video"
+- `caption` (text, nullable)
+- `display_order` (integer, default 0)
+- `created_at` (timestamp)
 
-### File Changed
+RLS: admin-only for insert/update/delete, public read (since the grant page is public).
 
-- `src/pages/EmergencyGrant.tsx` — Reorder existing sections, add anchor link in hero pointing to `#about-program`, merge the three program-info sections into one condensed section near the bottom.
+**2. Storage bucket: `emergency-grant`**
+
+A public storage bucket for grant photos and videos. Admin-only upload/delete policies.
+
+**3. New admin page: `src/pages/AdminEmergencyGrant.tsx`**
+
+- Upload photos (drag-and-drop or file picker, accepts images and video)
+- Preview uploaded media
+- Add/edit captions
+- Reorder or delete media
+- Link from the Admin Dashboard
+
+**4. Update Admin Dashboard**
+
+Add a new card: "Emergency Grant Media" linking to `/admin/emergency-grant`.
+
+**5. Update `src/pages/EmergencyGrant.tsx`**
+
+Replace the hardcoded photo placeholders (lines 149–170) with a query to `emergency_grant_media` that renders actual uploaded images/videos. Falls back to "Photo coming soon" if none exist.
+
+**6. Add route in `src/App.tsx`**
+
+Protected admin route for `/admin/emergency-grant`.
+
+### Files Changed
+
+- **Migration SQL** — create table + storage bucket + RLS policies
+- `src/pages/AdminEmergencyGrant.tsx` — new file (upload UI)
+- `src/pages/AdminDashboard.tsx` — add link card
+- `src/pages/EmergencyGrant.tsx` — replace placeholder with dynamic media
+- `src/App.tsx` — add route
 
