@@ -13,11 +13,21 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { usePageMeta } from "@/hooks/usePageMeta";
 
+const CATEGORY_OPTIONS = [
+  "Privacy & Policy",
+  "Community & Advocacy",
+  "Digital Safety",
+  "Travel Safety",
+  "Online Privacy",
+  "Public Safety",
+];
+
 const blogPostSchema = z.object({
   title: z.string().trim().min(1, "Title is required").max(200, "Title must be less than 200 characters"),
   content: z.string().trim().min(1, "Content is required"),
   author_name: z.string().trim().min(1, "Author name is required").max(100, "Author name must be less than 100 characters"),
   featured_image: z.string().optional().or(z.literal('')),
+  category: z.string().optional().or(z.literal('')),
 });
 
 type BlogPostFormData = z.infer<typeof blogPostSchema>;
@@ -47,6 +57,7 @@ const AdminBlogEditor = () => {
     content: '',
     author_name: 'EncryptHer Team',
     featured_image: '',
+    category: '',
   });
   const [errors, setErrors] = useState<Partial<Record<keyof BlogPostFormData, string>>>({});
 
@@ -72,6 +83,7 @@ const AdminBlogEditor = () => {
         content: existingPost.content,
         author_name: existingPost.author_name,
         featured_image: existingPost.featured_image || '',
+        category: existingPost.category || '',
       });
     }
   }, [existingPost]);
@@ -125,6 +137,7 @@ const AdminBlogEditor = () => {
         content: data.content,
         author_name: data.author_name,
         featured_image: data.featured_image || null,
+        category: data.category || null,
         excerpt: null,
         status: publish ? 'published' : 'draft',
         published_at: publish ? new Date().toISOString() : null,
@@ -229,6 +242,21 @@ const AdminBlogEditor = () => {
                 {errors.title}
               </p>
             )}
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="category">Category</Label>
+            <select
+              id="category"
+              value={formData.category}
+              onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value }))}
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-h-[44px]"
+            >
+              <option value="">No category</option>
+              {CATEGORY_OPTIONS.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
           </div>
 
           <div className="space-y-2">
