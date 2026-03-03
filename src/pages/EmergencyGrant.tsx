@@ -13,6 +13,10 @@ const GRANT_GOAL = 1200;
 const GRANT_RAISED = 0;
 const GRANT_PERCENT = Math.round((GRANT_RAISED / GRANT_GOAL) * 100);
 
+const RedGrant = ({ text = "EncryptHer Emergency Grant" }: { text?: string }) => (
+  <span className="text-destructive font-semibold">{text}</span>
+);
+
 const EmergencyGrant = () => {
   usePageMeta(
     "EncryptHer Emergency Grant – HerStory Spotlight",
@@ -88,7 +92,7 @@ const EmergencyGrant = () => {
                   Her baby has been hospitalized with severe pneumonia, a bacterial infection that requires urgent — and expensive — medical intervention. As the bills for medications and hospital stays climb, Rhea is being forced into a heartbreaking position. She is also battling severe postpartum depression, a condition that requires professional care and antidepressants she simply cannot afford.
                 </p>
                 <p>
-                  Right now, every peso Rhea has is going toward her son's survival, leaving her own health in a dangerous decline. At the EncryptHer Emergency Grant, we believe a mother shouldn't have to choose between her baby's life and her own mental health. Your support will provide the life-saving treatment her baby needs and the psychiatric care Rhea urgently requires to be the mother she wants to be.
+                  Right now, every peso Rhea has is going toward her son's survival, leaving her own health in a dangerous decline. At the <RedGrant />, we believe a mother shouldn't have to choose between her baby's life and her own mental health. Your support will provide the life-saving treatment her baby needs and the psychiatric care Rhea urgently requires to be the mother she wants to be.
                 </p>
 
                 <Card className="border-primary/20 bg-primary/5 mt-6">
@@ -119,7 +123,7 @@ const EmergencyGrant = () => {
 
                 <p className="text-sm text-muted-foreground italic pt-4 flex items-start gap-2">
                   <ShieldCheck className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden="true" />
-                  This case has been reviewed and verified by EncryptHer. Funds will be distributed directly to Rhea as part of the EncryptHer Emergency Grant program.
+                  This case has been reviewed and verified by EncryptHer. Funds will be distributed directly to Rhea as part of the <RedGrant text="EncryptHer Emergency Grant program" />.
                 </p>
               </div>
 
@@ -219,7 +223,7 @@ const EmergencyGrant = () => {
               Support This Emergency Grant
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Donations are securely processed through EncryptHer using Zeffy. All contributions support the EncryptHer Emergency Grant and are used to provide direct assistance to women and mothers in urgent need.
+              Donations are securely processed through EncryptHer using Zeffy. All contributions support the <RedGrant /> and are used to provide direct assistance to women and mothers in urgent need.
             </p>
 
             <div className="rounded-lg border border-border overflow-hidden bg-card">
@@ -275,7 +279,7 @@ const EmergencyGrant = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    The EncryptHer Emergency Grant campaign for Rhea and her baby has been launched. We are raising funds to help cover medical expenses and essential care. Thank you to everyone who shares and donates.
+                    The <RedGrant /> campaign for Rhea and her baby has been launched. We are raising funds to help cover medical expenses and essential care. Thank you to everyone who shares and donates.
                   </p>
                 </CardContent>
               </Card>
@@ -298,7 +302,7 @@ const EmergencyGrant = () => {
                   The <strong className="text-foreground">HerStory Spotlight</strong> highlights real women facing urgent challenges. Each story represents a real person in need — donations go directly toward helping the woman or family featured on this page.
                 </p>
                 <p>
-                  EncryptHer was founded to empower and protect women through education and digital safety. The <strong className="text-foreground">EncryptHer Emergency Grant</strong> extends that mission by providing short-term financial support to women and mothers in developing countries facing emergency situations — medical needs, infant care, or essential living costs.
+                  EncryptHer was founded to empower and protect women through education and digital safety. The <RedGrant /> extends that mission by providing short-term financial support to women and mothers in developing countries facing emergency situations — medical needs, infant care, or essential living costs.
                 </p>
               </div>
 
@@ -336,7 +340,7 @@ const EmergencyGrant = () => {
               EncryptHer is committed to responsible use of all donated funds. Updates on the Emergency Grant recipient and use of funds will be posted on this page.
             </p>
             <p className="text-sm text-muted-foreground">
-              EncryptHer Emergency Grants typically range from $300–$2,000 depending on the urgency and need.
+              <RedGrant text="EncryptHer Emergency Grants" /> typically range from $300–$2,000 depending on the urgency and need.
             </p>
           </div>
         </section>
