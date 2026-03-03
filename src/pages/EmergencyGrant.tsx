@@ -51,7 +51,7 @@ const EmergencyGrant = () => {
               id="emergency-grant-heading"
               className="text-4xl md:text-5xl font-bold mb-6 text-foreground"
             >
-              EncryptHer <span className="text-primary">Emergency Grant</span>
+              EncryptHer <span className="text-destructive">Emergency Grant</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-6">
               Immediate support for women and mothers in developing countries facing urgent hardship.
