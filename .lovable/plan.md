@@ -1,38 +1,16 @@
 
 
-## Plan: Convert Featured Article to DB Post + Add Category Filtering
+## Plan: Add "Read More" Link to Blog Post Cards
 
-Two changes requested:
+The old hardcoded featured article had an expandable "Read More" collapsible section. Now that the article lives in the database and links to its own page (`/blog/:slug`), we should add a visible **"Read More →"** link at the bottom of each blog post card so users have a clear call-to-action.
 
-### 1. Insert the hardcoded featured article as a database blog post
+### Changes
 
-Move the October 13, 2025 "The Growing Crisis" article from hardcoded HTML into the `blog_posts` table so it appears as a proper blog post with its own page at `/blog/the-growing-crisis-privacy-laws`.
+**File: `src/pages/Blog.tsx`** — Add a "Read More →" text link at the bottom of each post card, styled in the primary color. This goes after the author/date line, inside the existing `<Link>` wrapper, so clicking it navigates to the full post page.
 
-**Database insert** with:
-- **title**: "The Growing Crisis: How Lack of Privacy Laws Puts Everyone at Risk"
-- **slug**: `the-growing-crisis-privacy-laws`
-- **category**: "Privacy & Policy"
-- **published_at**: `2025-10-13`
-- **status**: `published`
-- **author_name**: "EncryptHer Team"
-- **excerpt**: The existing intro paragraph
-- **content**: Full Markdown version of the article (Current State of Privacy Protection, Why This Matters for Women's Safety sections with all bullet points)
+```
+Read More →
+```
 
-### 2. Remove the hardcoded featured article section
-
-**File: `src/pages/Blog.tsx`** — Delete lines 91-144 (the entire featured article Card with Collapsible). It will now appear in the dynamic "Recent Posts" list with a "Read More" link that goes to its dedicated blog post page (`/blog/the-growing-crisis-privacy-laws`).
-
-### 3. Make category badges clickable with filtering
-
-**File: `src/pages/Blog.tsx`**:
-- Add a `selectedCategory` state (`string | null`, default `null`)
-- Add a category filter bar below the page header showing all unique categories from posts as clickable Badge buttons, plus an "All" option
-- When a category is selected, filter the displayed posts to that category
-- Make the category badges on individual post cards also clickable (using `e.preventDefault()` to stop the Link navigation, then setting the filter)
-
-This gives the blog a polished feel: all posts are dynamic, each links to a full-page view ("Read More"), and categories act as clickable filters.
-
-### Files Changed
-- **Database** — insert blog post record
-- `src/pages/Blog.tsx` — remove hardcoded article, add category filter state + UI
+Styled as `text-primary font-semibold text-sm mt-3` with a right arrow to indicate navigation.
 
