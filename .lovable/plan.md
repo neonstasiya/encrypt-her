@@ -1,26 +1,17 @@
 
 
-## Plan: Publish Grant Update as Blog Post
+## Plan: Style Blog Post Cards
 
 ### What Changes
 
-Insert a new published blog post into the `blog_posts` table with the Grant Updates content, formatted as a full article with context about the Emergency Grant program and Rhea's story.
+Update the blog post cards on the Blog page to use the brand purple as a subtle left border accent and a gradient background, making them visually distinct and more "blog-like."
 
-### Implementation
+### Details
 
-**1. Insert blog post via database insert tool**
+**File: `src/pages/Blog.tsx`**
 
-- **title**: "Campaign Launched: EncryptHer Emergency Grant for Rhea and Her Baby"
-- **slug**: `campaign-launched-encrypther-emergency-grant-rhea`
-- **status**: `published`
-- **published_at**: `2026-03-03`
-- **author_name**: "EncryptHer Team"
-- **excerpt**: "The EncryptHer Emergency Grant campaign for Rhea and her baby has been launched. We are raising funds to help cover medical expenses and essential care."
-- **content**: Markdown article covering the campaign launch, Rhea's story summary, what funds will cover, and a call to action linking to the Emergency Grant page (`/emergency-grant`).
+- **Dynamic post cards (line 54)**: Change the `Card` className to add a left border accent (`border-l-4 border-l-primary`), a subtle gradient background (`bg-gradient-to-r from-primary/5 to-transparent`), and a stronger hover state (`hover:from-primary/10`).
+- **Featured article card (line 72)**: Apply the same styling for visual consistency.
 
-**2. No code changes needed** — the existing Blog and BlogPost pages already render published posts dynamically from the database.
-
-### Note on Photos & Videos
-
-The blog post content will reference the Emergency Grant page for photos and videos. If you'd like specific images embedded directly in the blog post, you can upload them through the Admin Blog Editor after the post is created — the editor supports image uploads and Markdown image embedding.
+This uses the existing purple primary color from the design system, works in both light and dark mode, and maintains WCAG contrast requirements since only background tints change.
 
