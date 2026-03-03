@@ -1,20 +1,22 @@
 
 
-## Plan: Update Rhea's Story
+## Plan: Reorder Emergency Grant Page — Story First
 
 ### What Changes
 
-Replace the three story paragraphs in `src/pages/EmergencyGrant.tsx` (lines 132–143) with the user's own copy — more direct, more specific (severe pneumonia, postpartum depression, antidepressants), and ending with a powerful line about not choosing between her baby's life and her own mental health.
+Reorganize the page so Rhea's spotlight appears immediately after the hero, followed by the donation form. The program info sections ("HerStory Spotlight" intro, "Why We Created This", "How Funded") move below the donation area, condensed into an "About This Program" section with anchor link from the hero.
 
-### File: `src/pages/EmergencyGrant.tsx`
+### New Section Order
 
-**Lines 132–143** — Replace the current three paragraphs with:
+1. **Hero** (keep as-is, add a small "Learn about this program" anchor link)
+2. **Current Spotlight: Rhea** (moved up from line 117)
+3. **Zeffy Donation Embed** (moved up from line 240)
+4. **Tax Status Disclaimer** (stays near donation)
+5. **Grant Updates** (stays)
+6. **About This Program** — combines the HerStory intro, Why We Created This, and How Funded into one section with an `id="about-program"` anchor
+7. **Transparency Commitment** (stays at bottom)
 
-> Rhea is a young mother in the Philippines who has spent the last nine months doing everything in her power to protect her child. But today, she is facing a crisis that no parent should have to navigate alone.
->
-> Her baby has been hospitalized with severe pneumonia, a bacterial infection that requires urgent — and expensive — medical intervention. As the bills for medications and hospital stays climb, Rhea is being forced into a heartbreaking position. She is also battling severe postpartum depression, a condition that requires professional care and antidepressants she simply cannot afford.
->
-> Right now, every peso Rhea has is going toward her son's survival, leaving her own health in a dangerous decline. At the EncryptHer Emergency Grant, we believe a mother shouldn't have to choose between her baby's life and her own mental health. Your support will provide the life-saving treatment her baby needs and the psychiatric care Rhea urgently requires to be the mother she wants to be.
+### File Changed
 
-No other files or sections change.
+- `src/pages/EmergencyGrant.tsx` — Reorder existing sections, add anchor link in hero pointing to `#about-program`, merge the three program-info sections into one condensed section near the bottom.
 
