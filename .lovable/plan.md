@@ -1,52 +1,26 @@
 
 
-## Plan: Admin Emergency Grant Media Manager
+## Plan: Publish Grant Update as Blog Post
 
-Currently, the Emergency Grant page has hardcoded "Photo coming soon" placeholders, and there is no admin section to manage this page's media. This plan adds an admin page for uploading photos and videos for Rhea's story, and wires the Emergency Grant page to display them.
+### What Changes
 
-### What Gets Built
+Insert a new published blog post into the `blog_posts` table with the Grant Updates content, formatted as a full article with context about the Emergency Grant program and Rhea's story.
 
-**1. Database: `emergency_grant_media` table**
+### Implementation
 
-A new table to store uploaded media references:
-- `id` (uuid, primary key)
-- `file_url` (text) — public storage URL
-- `media_type` (text) — "photo" or "video"
-- `caption` (text, nullable)
-- `display_order` (integer, default 0)
-- `created_at` (timestamp)
+**1. Insert blog post via database insert tool**
 
-RLS: admin-only for insert/update/delete, public read (since the grant page is public).
+- **title**: "Campaign Launched: EncryptHer Emergency Grant for Rhea and Her Baby"
+- **slug**: `campaign-launched-encrypther-emergency-grant-rhea`
+- **status**: `published`
+- **published_at**: `2026-03-03`
+- **author_name**: "EncryptHer Team"
+- **excerpt**: "The EncryptHer Emergency Grant campaign for Rhea and her baby has been launched. We are raising funds to help cover medical expenses and essential care."
+- **content**: Markdown article covering the campaign launch, Rhea's story summary, what funds will cover, and a call to action linking to the Emergency Grant page (`/emergency-grant`).
 
-**2. Storage bucket: `emergency-grant`**
+**2. No code changes needed** — the existing Blog and BlogPost pages already render published posts dynamically from the database.
 
-A public storage bucket for grant photos and videos. Admin-only upload/delete policies.
+### Note on Photos & Videos
 
-**3. New admin page: `src/pages/AdminEmergencyGrant.tsx`**
-
-- Upload photos (drag-and-drop or file picker, accepts images and video)
-- Preview uploaded media
-- Add/edit captions
-- Reorder or delete media
-- Link from the Admin Dashboard
-
-**4. Update Admin Dashboard**
-
-Add a new card: "Emergency Grant Media" linking to `/admin/emergency-grant`.
-
-**5. Update `src/pages/EmergencyGrant.tsx`**
-
-Replace the hardcoded photo placeholders (lines 149–170) with a query to `emergency_grant_media` that renders actual uploaded images/videos. Falls back to "Photo coming soon" if none exist.
-
-**6. Add route in `src/App.tsx`**
-
-Protected admin route for `/admin/emergency-grant`.
-
-### Files Changed
-
-- **Migration SQL** — create table + storage bucket + RLS policies
-- `src/pages/AdminEmergencyGrant.tsx` — new file (upload UI)
-- `src/pages/AdminDashboard.tsx` — add link card
-- `src/pages/EmergencyGrant.tsx` — replace placeholder with dynamic media
-- `src/App.tsx` — add route
+The blog post content will reference the Emergency Grant page for photos and videos. If you'd like specific images embedded directly in the blog post, you can upload them through the Admin Blog Editor after the post is created — the editor supports image uploads and Markdown image embedding.
 
