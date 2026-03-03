@@ -70,6 +70,8 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, className 
     let key = 0;
 
     while (remaining.length > 0) {
+      // Bold with link inside: **[text](url)**
+      const boldLinkMatch = remaining.match(/\*\*\[(.+?)\]\((.+?)\)\*\*/);
       // Bold **text**
       const boldMatch = remaining.match(/\*\*(.+?)\*\*/);
       // Italic *text*
@@ -78,6 +80,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, className 
       const linkMatch = remaining.match(/\[(.+?)\]\((.+?)\)/);
 
       const matches = [
+        boldLinkMatch ? { type: 'boldLink', match: boldLinkMatch, index: boldLinkMatch.index! } : null,
         boldMatch ? { type: 'bold', match: boldMatch, index: boldMatch.index! } : null,
         italicMatch ? { type: 'italic', match: italicMatch, index: italicMatch.index! } : null,
         linkMatch ? { type: 'link', match: linkMatch, index: linkMatch.index! } : null,
@@ -88,20 +91,36 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, className 
         break;
       }
 
-      const first = matches[0]!;
+      // Prefer boldLink over bold when they start at the same index
+      let first = matches[0]!;
+      if (first.type === 'bold' && matches.some(m => m!.type === 'boldLink' && m!.index === first.index)) {
+        first = matches.find(m => m!.type === 'boldLink')!;
+      }
+
       if (first.index > 0) {
         parts.push(remaining.slice(0, first.index));
       }
 
-      if (first.type === 'bold') {
+      const isInternal = (url: string) => url.startsWith('/');
+
+      if (first.type === 'boldLink') {
+        const url = first.match![2];
+        parts.push(
+          <a key={key++} href={url} className="text-primary underline font-bold hover:text-primary/80" {...(!isInternal(url) ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+            {first.match![1]}
+          </a>
+        );
+        remaining = remaining.slice(first.index + first.match![0].length);
+      } else if (first.type === 'bold') {
         parts.push(<strong key={key++}>{first.match![1]}</strong>);
         remaining = remaining.slice(first.index + first.match![0].length);
       } else if (first.type === 'italic') {
         parts.push(<em key={key++}>{first.match![1]}</em>);
         remaining = remaining.slice(first.index + first.match![0].length);
       } else if (first.type === 'link') {
+        const url = first.match![2];
         parts.push(
-          <a key={key++} href={first.match![2]} className="text-primary underline hover:text-primary/80" target="_blank" rel="noopener noreferrer">
+          <a key={key++} href={url} className="text-primary underline hover:text-primary/80" {...(!isInternal(url) ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
             {first.match![1]}
           </a>
         );
