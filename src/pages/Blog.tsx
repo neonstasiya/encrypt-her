@@ -1,6 +1,6 @@
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { Card } from "@/components/ui/card";
-import { Calendar, User, ChevronDown } from "lucide-react";
+import { Calendar, User, ChevronDown, Clock, Tag } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useState } from "react";
@@ -10,6 +10,14 @@ import { SkipLink } from "@/components/SkipLink";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { supabase } from "@/integrations/supabase/client";
 import BlogContributionForm from "@/components/BlogContributionForm";
+import { Badge } from "@/components/ui/badge";
+
+const estimateReadTime = (content: string | null): string => {
+  if (!content) return "1 min read";
+  const words = content.trim().split(/\s+/).length;
+  const minutes = Math.max(1, Math.ceil(words / 200));
+  return `${minutes} min read`;
+};
 
 const Blog = () => {
   usePageMeta();
@@ -20,7 +28,7 @@ const Blog = () => {
     queryFn: async () => {
       const { data, error } = await supabase
         .from('blog_posts')
-        .select('id, title, slug, excerpt, author_name, published_at')
+        .select('id, title, slug, excerpt, author_name, published_at, content, category')
         .eq('status', 'published')
         .order('published_at', { ascending: false });
       if (error) throw error;
@@ -52,6 +60,18 @@ const Blog = () => {
                 {posts.map((post) => (
                   <Link key={post.id} to={`/blog/${post.slug}`} className="block">
                     <Card className="p-6 border-l-4 border-l-primary bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10 transition-colors focus-within:ring-2 focus-within:ring-ring">
+                      <div className="flex items-center gap-2 mb-2">
+                        {post.category && (
+                          <Badge variant="secondary" className="text-xs">
+                            <Tag className="h-3 w-3 mr-1" aria-hidden="true" />
+                            {post.category}
+                          </Badge>
+                        )}
+                        <Badge variant="outline" className="text-xs">
+                          <Clock className="h-3 w-3 mr-1" aria-hidden="true" />
+                          {estimateReadTime(post.content)}
+                        </Badge>
+                      </div>
                       <h3 className="text-xl font-semibold text-foreground mb-2">{post.title}</h3>
                       {post.excerpt && <p className="text-muted-foreground mb-3">{post.excerpt}</p>}
                       <div className="flex items-center gap-4 text-sm text-muted-foreground">
@@ -71,6 +91,16 @@ const Blog = () => {
           {/* Featured article */}
           <Card className="p-6 border-l-4 border-l-primary bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10 transition-colors">
             <article aria-labelledby="blog-article-heading">
+              <div className="flex items-center gap-2 mb-2">
+                <Badge variant="secondary" className="text-xs">
+                  <Tag className="h-3 w-3 mr-1" aria-hidden="true" />
+                  Privacy & Policy
+                </Badge>
+                <Badge variant="outline" className="text-xs">
+                  <Clock className="h-3 w-3 mr-1" aria-hidden="true" />
+                  3 min read
+                </Badge>
+              </div>
               <h3 id="blog-article-heading" className="text-xl font-semibold text-foreground mb-2">
                 The Growing Crisis: How Lack of Privacy Laws Puts Everyone at Risk
               </h3>
