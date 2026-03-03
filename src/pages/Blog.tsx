@@ -51,7 +51,7 @@ const Blog = () => {
               <div className="space-y-4">
                 {posts.map((post) => (
                   <Link key={post.id} to={`/blog/${post.slug}`} className="block">
-                    <Card className="p-6 hover:bg-muted/50 transition-colors focus-within:ring-2 focus-within:ring-ring">
+                    <Card className="p-6 border-l-4 border-l-primary bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10 transition-colors focus-within:ring-2 focus-within:ring-ring">
                       <h3 className="text-xl font-semibold text-foreground mb-2">{post.title}</h3>
                       {post.excerpt && <p className="text-muted-foreground mb-3">{post.excerpt}</p>}
                       <div className="flex items-center gap-4 text-sm text-muted-foreground">
@@ -69,7 +69,7 @@ const Blog = () => {
           )}
 
           {/* Featured article */}
-          <Card className="p-6 hover:bg-muted/50 transition-colors">
+          <Card className="p-6 border-l-4 border-l-primary bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10 transition-colors">
             <article aria-labelledby="blog-article-heading">
               <h3 id="blog-article-heading" className="text-xl font-semibold text-foreground mb-2">
                 The Growing Crisis: How Lack of Privacy Laws Puts Everyone at Risk
