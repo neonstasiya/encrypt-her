@@ -96,13 +96,16 @@ const Blog = () => {
               <div className="space-y-4">
                 {filteredPosts.map((post) => {
                   const isEmergencyGrant = post.slug?.includes('emergency-grant') || post.title?.toLowerCase().includes('emergency grant');
+                  const highlightTitle = (title: string) => {
+                    const regex = /(EncryptHer\s+Emergency\s+Grant)/gi;
+                    const parts = title.split(regex);
+                    return parts.map((part, i) =>
+                      regex.test(part) ? <span key={i} className="text-destructive">{part}</span> : part
+                    );
+                  };
                   return (
                   <Link key={post.id} to={`/blog/${post.slug}`} className="block">
-                    <Card className={`p-6 border-l-4 transition-colors focus-within:ring-2 focus-within:ring-ring ${
-                      isEmergencyGrant
-                        ? 'border-l-destructive bg-gradient-to-r from-destructive/5 to-transparent hover:from-destructive/10'
-                        : 'border-l-primary bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10'
-                    }`}>
+                    <Card className="p-6 border-l-4 border-l-primary bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10 transition-colors focus-within:ring-2 focus-within:ring-ring">
                       <div className="flex items-center gap-2 mb-2">
                         {post.category && (
                           <Badge
@@ -130,7 +133,7 @@ const Blog = () => {
                           {estimateReadTime(post.content)}
                         </Badge>
                       </div>
-                      <h3 className="text-xl font-semibold text-foreground mb-2">{post.title}</h3>
+                      <h3 className="text-xl font-semibold text-foreground mb-2">{isEmergencyGrant ? highlightTitle(post.title) : post.title}</h3>
                       {post.excerpt && <p className="text-muted-foreground mb-3">{post.excerpt}</p>}
                       <div className="flex items-center gap-4 text-sm text-muted-foreground">
                         <span>{post.author_name}</span>
@@ -139,7 +142,7 @@ const Blog = () => {
                           {new Date(post.published_at || '').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                         </time>
                       </div>
-                      <p className={`font-semibold text-sm mt-3 ${isEmergencyGrant ? 'text-destructive' : 'text-primary'}`}>Read More →</p>
+                      <p className="text-primary font-semibold text-sm mt-3">Read More →</p>
                     </Card>
                   </Link>
                   );
