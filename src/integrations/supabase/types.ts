@@ -164,6 +164,33 @@ export type Database = {
         }
         Relationships: []
       }
+      emergency_grant_media: {
+        Row: {
+          caption: string | null
+          created_at: string
+          display_order: number
+          file_url: string
+          id: string
+          media_type: string
+        }
+        Insert: {
+          caption?: string | null
+          created_at?: string
+          display_order?: number
+          file_url: string
+          id?: string
+          media_type?: string
+        }
+        Update: {
+          caption?: string | null
+          created_at?: string
+          display_order?: number
+          file_url?: string
+          id?: string
+          media_type?: string
+        }
+        Relationships: []
+      }
       safety_guide_emails: {
         Row: {
           active: boolean | null

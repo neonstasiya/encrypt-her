@@ -7,7 +7,8 @@ import {
   LogOut,
   Settings,
   ArrowRight,
-  Edit
+  Edit,
+  HeartHandshake
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -65,6 +66,13 @@ const AdminDashboard = () => {
       icon: Upload,
       link: "/admin/upload-assets",
       color: "accent"
+    },
+    {
+      title: "Emergency Grant Media",
+      description: "Upload and manage photos and videos for the Emergency Grant page.",
+      icon: HeartHandshake,
+      link: "/admin/emergency-grant",
+      color: "primary"
     }
   ];
 
