@@ -130,16 +130,16 @@ const EmergencyGrant = () => {
               {/* Story */}
               <div className="md:col-span-2 space-y-4 text-lg text-muted-foreground">
                 <p>
-                  Rhea is a mother living in the Philippines whose 9-month-old baby is currently receiving treatment for a serious bacterial infection.
+                  Rhea is a young mother in the Philippines who spends every day doing what mothers do — making sure her baby is safe, fed, and loved. For nine months, she's poured everything she has into her child. But recently, things took a turn that no parent should have to face alone.
                 </p>
                 <p>
-                  While caring for her sick child, Rhea has also been struggling with postpartum health challenges and needs medical support and prescribed medication.
+                  Her baby became seriously ill with a bacterial infection. The kind of sick where you don't sleep, where you hold your child in a hospital waiting room and pray that someone can help. The doctors prescribed treatment, but the medications and hospital visits started adding up fast — far more than Rhea can afford on her own.
                 </p>
                 <p>
-                  Due to financial hardship, she is unable to afford both her baby's treatment and her own medical care.
+                  What makes this harder is something Rhea doesn't talk about much. Since giving birth, she's been quietly struggling with her own health. Postpartum challenges have been weighing on her — physically and emotionally — but she's been pushing through it because her baby comes first. She needs to see a doctor. She needs medication. But right now, every peso she has goes toward keeping her child alive.
                 </p>
                 <p>
-                  Through the EncryptHer Emergency Grant, we are raising funds to help Rhea provide essential care for her child while also receiving the medical support she needs to recover.
+                  No mother should have to choose between her baby's health and her own. Through the EncryptHer Emergency Grant, we're raising funds so Rhea doesn't have to make that choice. Your support means her baby gets the treatment he needs — and Rhea finally gets the care she's been putting off.
                 </p>
 
                 <Card className="border-primary/20 bg-primary/5 mt-6">
