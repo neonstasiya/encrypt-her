@@ -133,6 +133,7 @@ const Blog = () => {
                           {new Date(post.published_at || '').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                         </time>
                       </div>
+                      <p className="text-primary font-semibold text-sm mt-3">Read More →</p>
                     </Card>
                   </Link>
                 ))}
