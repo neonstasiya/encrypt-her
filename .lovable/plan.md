@@ -1,35 +1,22 @@
 
 
-## Plan: Build the EncryptHer Emergency Grant Page
+## Plan: Rewrite Rhea's Story with More Heart
 
-### What We're Building
+### What Changes
 
-A new `/emergency-grant` page featuring the "HerStory Spotlight" program — a story-driven donation page for Rhea and her 9-month-old baby in the Philippines. The page will embed a Zeffy donation form and follow the same accessible design patterns as existing pages.
+Replace the four short, clinical paragraphs (lines 131–143) with a warmer, more human narrative that reads like a real person's story — not a medical report.
 
-### Page Structure
+### New Story Copy
 
-1. **Hero** — "EncryptHer Emergency Grant" title with subtitle about supporting women and mothers in developing countries
-2. **HerStory Spotlight intro** — Program description explaining what HerStory Spotlight is and why it exists
-3. **Why We Created This** — Program purpose (extending mission beyond digital safety to emergency relief)
-4. **How This Program Is Funded** — Transparency section (community donations + portion of class proceeds)
-5. **Current Spotlight: Rhea** — Her story (baby's bacterial infection, postpartum health challenges, Philippines, 9 months old), funds breakdown, goal amount, placeholder for photos/video
-6. **Zeffy Donation Embed** — Placeholder iframe/link for the Zeffy form (you'll paste your Zeffy form URL once created)
-7. **Tax Status Disclaimer** — 501(c)(3) pending notice with proper legal wording
-8. **Updates Section** — Space for posting grant updates
-9. **Transparency Commitment** — Trust-building footer section
+The rewritten version will:
+- **Open with Rhea as a person** — not a case study. Set the scene: a young mother in the Philippines doing everything she can for her baby.
+- **Describe the situation with feeling** — her baby got sick, the fear of watching your child suffer, the hospital visits, the mounting costs she can't cover.
+- **Add the postpartum layer naturally** — she's been pushing through her own health struggles silently because her baby comes first, but she needs help too.
+- **End with hope and a call to action** — this grant can change things for her family right now.
 
-### Files to Create/Modify
+The tone will be compassionate, specific, and real — like someone telling you about a friend who needs help.
 
-1. **Create** `src/pages/EmergencyGrant.tsx` — The full page component
-2. **Modify** `src/App.tsx` — Add route `/emergency-grant`
-3. **Modify** `src/components/AccessibleHeader.tsx` — Add nav link to Emergency Grant page
+### File Changed
 
-### Technical Details
-
-- Follows existing page patterns (AccessibleHeader, AccessibleFooter, SkipLink, usePageMeta, aria attributes)
-- Zeffy embed will be an iframe placeholder — you'll replace the `src` URL with your actual Zeffy campaign link
-- Photo placeholders using styled containers (you'll upload Rhea's photos later via admin asset upload)
-- Progress bar showing funding goal vs raised amount (static for now, can be made dynamic later)
-- All content is hardcoded (no database table needed for this single page)
-- Accessible: proper heading hierarchy, aria labels, semantic HTML
+- `src/pages/EmergencyGrant.tsx` — Lines 131–143 (story paragraphs only, everything else stays the same)
 
