@@ -36,6 +36,7 @@ import AccessibilityStatement from "./pages/AccessibilityStatement";
 import ComingSoon from "./pages/ComingSoon";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
+import EmergencyGrant from "./pages/EmergencyGrant";
 
 const queryClient = new QueryClient();
 
@@ -71,6 +72,7 @@ const App = () => (
             <Route path="/accessibility" element={<AccessibilityStatement />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsAndConditions />} />
+            <Route path="/emergency-grant" element={<EmergencyGrant />} />
             
             {/* Protected Admin Routes */}
             <Route path="/admin" element={
