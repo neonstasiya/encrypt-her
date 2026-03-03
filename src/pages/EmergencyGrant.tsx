@@ -1,4 +1,4 @@
-import { Heart, Baby, Stethoscope, Pill, ShieldCheck, Clock, Users, HandHeart } from "lucide-react";
+import { Heart, Baby, Stethoscope, Pill, ShieldCheck, Clock, Users, HandHeart, ArrowDown } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
@@ -39,78 +39,16 @@ const EmergencyGrant = () => {
             >
               EncryptHer <span className="text-primary">Emergency Grant</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-6">
               Immediate support for women and mothers in developing countries facing urgent hardship.
             </p>
-          </div>
-        </section>
-
-        {/* HerStory Spotlight Intro */}
-        <section className="py-16 px-4" aria-labelledby="herstory-heading">
-          <div className="container mx-auto max-w-4xl">
-            <h2 id="herstory-heading" className="text-3xl md:text-4xl font-bold mb-6 text-foreground text-center">
-              HerStory Spotlight
-            </h2>
-            <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-4">
-              The HerStory Spotlight highlights real women facing urgent challenges. Through the EncryptHer Emergency Grant, we provide direct financial support to women and mothers experiencing crisis situations.
-            </p>
-            <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto">
-              Every story featured here represents a real person in need. Donations go directly toward helping the woman or family highlighted on this page.
-            </p>
-          </div>
-        </section>
-
-        <Separator className="max-w-4xl mx-auto" />
-
-        {/* Why We Created This */}
-        <section className="py-16 px-4" aria-labelledby="why-heading">
-          <div className="container mx-auto max-w-4xl">
-            <h2 id="why-heading" className="text-3xl font-bold mb-6 text-foreground">
-              Why We Created the EncryptHer Emergency Grant
-            </h2>
-            <div className="space-y-4 text-lg text-muted-foreground">
-              <p>
-                EncryptHer was founded to empower and protect women through education and digital safety. While this remains our core mission, we recognize that many women and mothers around the world face urgent challenges that cannot wait.
-              </p>
-              <p>
-                The EncryptHer Emergency Grant provides short-term financial support to women and mothers in developing countries who are facing emergency situations such as medical needs, infant care expenses, or essential living costs.
-              </p>
-              <div className="grid sm:grid-cols-2 gap-4 pt-4" role="list" aria-label="Types of support provided">
-                {[
-                  { icon: Baby, text: "Infant formula and baby supplies" },
-                  { icon: Pill, text: "Medications and medical treatment" },
-                  { icon: Stethoscope, text: "Doctor visits and hospital care" },
-                  { icon: Heart, text: "Essential daily necessities" },
-                ].map(({ icon: Icon, text }) => (
-                  <div key={text} className="flex items-center gap-3 p-3 rounded-lg bg-muted/50" role="listitem">
-                    <Icon className="h-5 w-5 text-primary shrink-0" aria-hidden="true" />
-                    <span className="text-foreground">{text}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <Separator className="max-w-4xl mx-auto" />
-
-        {/* How Funded */}
-        <section className="py-16 px-4 bg-muted/30" aria-labelledby="funding-heading">
-          <div className="container mx-auto max-w-4xl">
-            <h2 id="funding-heading" className="text-3xl font-bold mb-6 text-foreground">
-              How This Program Is Funded
-            </h2>
-            <div className="space-y-4 text-lg text-muted-foreground">
-              <p>
-                The EncryptHer Emergency Grant is supported through community donations and a portion of proceeds from EncryptHer classes and programs.
-              </p>
-              <p>
-                A percentage of class revenue is allocated to provide emergency assistance to women and mothers in developing countries.
-              </p>
-              <p className="font-medium text-foreground">
-                Donations made through this page go directly toward the current Emergency Grant recipient and future emergency cases.
-              </p>
-            </div>
+            <a
+              href="#about-program"
+              className="inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary/80 transition-colors"
+            >
+              Learn about this program
+              <ArrowDown className="h-3.5 w-3.5" aria-hidden="true" />
+            </a>
           </div>
         </section>
 
@@ -247,7 +185,6 @@ const EmergencyGrant = () => {
               Donations are securely processed through EncryptHer using Zeffy. All contributions support the EncryptHer Emergency Grant and are used to provide direct assistance to women and mothers in urgent need.
             </p>
 
-            {/* Replace the src below with your actual Zeffy campaign embed URL */}
             <div className="rounded-lg border border-border overflow-hidden bg-card">
               <div className="p-12 text-center text-muted-foreground space-y-4">
                 <HandHeart className="h-12 w-12 mx-auto text-primary" aria-hidden="true" />
@@ -275,18 +212,10 @@ const EmergencyGrant = () => {
                 <CardTitle className="text-lg" id="tax-heading">Tax Deductibility Notice</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3 text-sm text-muted-foreground">
-                <p>
-                  EncryptHer is currently in the process of applying for federal tax-exempt status under Section 501(c)(3) of the Internal Revenue Code.
-                </p>
-                <p>
-                  Donations made at this time may become tax-deductible if approval is granted retroactively, as permitted by IRS regulations.
-                </p>
-                <p>
-                  If EncryptHer receives 501(c)(3) approval, donors will receive written documentation for their records.
-                </p>
-                <p>
-                  Donations are voluntary and are used to support EncryptHer programs and emergency assistance initiatives.
-                </p>
+                <p>EncryptHer is currently in the process of applying for federal tax-exempt status under Section 501(c)(3) of the Internal Revenue Code.</p>
+                <p>Donations made at this time may become tax-deductible if approval is granted retroactively, as permitted by IRS regulations.</p>
+                <p>If EncryptHer receives 501(c)(3) approval, donors will receive written documentation for their records.</p>
+                <p>Donations are voluntary and are used to support EncryptHer programs and emergency assistance initiatives.</p>
               </CardContent>
             </Card>
           </div>
@@ -317,8 +246,51 @@ const EmergencyGrant = () => {
           </div>
         </section>
 
+        <Separator className="max-w-4xl mx-auto" />
+
+        {/* About This Program */}
+        <section className="py-16 px-4" id="about-program" aria-labelledby="about-program-heading">
+          <div className="container mx-auto max-w-4xl">
+            <h2 id="about-program-heading" className="text-3xl font-bold mb-6 text-foreground">
+              About This Program
+            </h2>
+
+            <div className="space-y-8">
+              <div className="space-y-4 text-lg text-muted-foreground">
+                <p>
+                  The <strong className="text-foreground">HerStory Spotlight</strong> highlights real women facing urgent challenges. Each story represents a real person in need — donations go directly toward helping the woman or family featured on this page.
+                </p>
+                <p>
+                  EncryptHer was founded to empower and protect women through education and digital safety. The <strong className="text-foreground">EncryptHer Emergency Grant</strong> extends that mission by providing short-term financial support to women and mothers in developing countries facing emergency situations — medical needs, infant care, or essential living costs.
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4" role="list" aria-label="Types of support provided">
+                {[
+                  { icon: Baby, text: "Infant formula and baby supplies" },
+                  { icon: Pill, text: "Medications and medical treatment" },
+                  { icon: Stethoscope, text: "Doctor visits and hospital care" },
+                  { icon: Heart, text: "Essential daily necessities" },
+                ].map(({ icon: Icon, text }) => (
+                  <div key={text} className="flex items-center gap-3 p-3 rounded-lg bg-muted/50" role="listitem">
+                    <Icon className="h-5 w-5 text-primary shrink-0" aria-hidden="true" />
+                    <span className="text-foreground">{text}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="space-y-3 text-lg text-muted-foreground border-t border-border pt-8">
+                <h3 className="text-xl font-semibold text-foreground">How This Program Is Funded</h3>
+                <p>
+                  The Emergency Grant is supported through community donations and a portion of proceeds from EncryptHer classes and programs. Donations made through this page go directly toward the current recipient and future emergency cases.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Transparency Commitment */}
-        <section className="py-12 px-4" aria-labelledby="transparency-heading">
+        <section className="py-12 px-4 bg-muted/30" aria-labelledby="transparency-heading">
           <div className="container mx-auto max-w-3xl text-center">
             <h2 id="transparency-heading" className="text-2xl font-bold mb-4 text-foreground">
               Our Commitment to Transparency
