@@ -1,8 +1,7 @@
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { Card } from "@/components/ui/card";
-import { Calendar, User, ChevronDown, Clock, Tag } from "lucide-react";
+import { Clock, Tag } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
@@ -21,7 +20,7 @@ const estimateReadTime = (content: string | null): string => {
 
 const Blog = () => {
   usePageMeta();
-  const [isOpen, setIsOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const { data: posts } = useQuery({
     queryKey: ['blog-posts'],
@@ -35,12 +34,20 @@ const Blog = () => {
       return data;
     },
   });
-  
+
+  const categories = posts
+    ? Array.from(new Set(posts.map(p => p.category).filter(Boolean))) as string[]
+    : [];
+
+  const filteredPosts = selectedCategory
+    ? posts?.filter(p => p.category === selectedCategory)
+    : posts;
+
   return (
     <div className="min-h-screen bg-background">
       <SkipLink />
       <AccessibleHeader />
-      
+
       <main id="main-content" role="main" className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto space-y-12">
           <header className="mb-8">
@@ -50,19 +57,64 @@ const Blog = () => {
             <p className="text-lg text-muted-foreground">
               Insights on digital privacy, safety, and empowerment
             </p>
+
+            {categories.length > 0 && (
+              <nav aria-label="Filter by category" className="flex flex-wrap gap-2 mt-4">
+                <button
+                  onClick={() => setSelectedCategory(null)}
+                  className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold transition-colors ${
+                    selectedCategory === null
+                      ? 'bg-primary text-primary-foreground border-primary'
+                      : 'bg-secondary text-secondary-foreground border-transparent hover:bg-secondary/80'
+                  }`}
+                >
+                  All
+                </button>
+                {categories.map(cat => (
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold transition-colors ${
+                      selectedCategory === cat
+                        ? 'bg-primary text-primary-foreground border-primary'
+                        : 'bg-secondary text-secondary-foreground border-transparent hover:bg-secondary/80'
+                    }`}
+                  >
+                    <Tag className="h-3 w-3 mr-1" aria-hidden="true" />
+                    {cat}
+                  </button>
+                ))}
+              </nav>
+            )}
           </header>
 
-          {/* Dynamic posts from database */}
-          {posts && posts.length > 0 && (
+          {filteredPosts && filteredPosts.length > 0 && (
             <section aria-labelledby="recent-posts">
-              <h2 id="recent-posts" className="text-2xl font-bold text-foreground mb-6">Recent Posts</h2>
+              <h2 id="recent-posts" className="text-2xl font-bold text-foreground mb-6">
+                {selectedCategory ? selectedCategory : 'Recent Posts'}
+              </h2>
               <div className="space-y-4">
-                {posts.map((post) => (
+                {filteredPosts.map((post) => (
                   <Link key={post.id} to={`/blog/${post.slug}`} className="block">
                     <Card className="p-6 border-l-4 border-l-primary bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10 transition-colors focus-within:ring-2 focus-within:ring-ring">
                       <div className="flex items-center gap-2 mb-2">
                         {post.category && (
-                          <Badge variant="secondary" className="text-xs">
+                          <Badge
+                            variant="secondary"
+                            className="text-xs cursor-pointer hover:bg-secondary/60"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setSelectedCategory(post.category);
+                            }}
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                setSelectedCategory(post.category);
+                              }
+                            }}
+                          >
                             <Tag className="h-3 w-3 mr-1" aria-hidden="true" />
                             {post.category}
                           </Badge>
@@ -87,61 +139,6 @@ const Blog = () => {
               </div>
             </section>
           )}
-
-          {/* Featured article */}
-          <Card className="p-6 border-l-4 border-l-primary bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10 transition-colors">
-            <article aria-labelledby="blog-article-heading">
-              <div className="flex items-center gap-2 mb-2">
-                <Badge variant="secondary" className="text-xs">
-                  <Tag className="h-3 w-3 mr-1" aria-hidden="true" />
-                  Privacy & Policy
-                </Badge>
-                <Badge variant="outline" className="text-xs">
-                  <Clock className="h-3 w-3 mr-1" aria-hidden="true" />
-                  3 min read
-                </Badge>
-              </div>
-              <h3 id="blog-article-heading" className="text-xl font-semibold text-foreground mb-2">
-                The Growing Crisis: How Lack of Privacy Laws Puts Everyone at Risk
-              </h3>
-              <p className="text-muted-foreground mb-3">
-                In an era where our entire lives are increasingly digital, the absence of comprehensive privacy laws has created a dangerous vulnerability that affects us all—but disproportionately impacts women and marginalized communities.
-              </p>
-              <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                <span>EncryptHer Team</span>
-                <span>•</span>
-                <time dateTime="2025-10-13">October 13, 2025</time>
-              </div>
-
-              <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-                <CollapsibleTrigger 
-                  className="flex items-center gap-2 text-primary hover:text-primary/80 font-semibold my-4 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded text-sm"
-                  aria-expanded={isOpen}
-                >
-                  {isOpen ? "Read Less" : "Read More"}
-                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
-                </CollapsibleTrigger>
-                <CollapsibleContent className="space-y-4 text-foreground text-sm">
-                  <h4 className="text-lg font-bold mt-4 mb-2">The Current State of Privacy Protection</h4>
-                  <p>
-                    While the European Union has implemented GDPR and California has enacted CCPA, the United States lacks a federal privacy law that protects all citizens uniformly. This patchwork approach leaves massive gaps in protection, creating a digital Wild West where personal data is harvested, sold, and exploited with minimal oversight.
-                  </p>
-
-                  <h4 className="text-lg font-bold mt-4 mb-2">Why This Matters for Women's Safety</h4>
-                  <p>The lack of robust privacy laws has particularly severe consequences for women:</p>
-                  <ul className="list-disc pl-6 space-y-2">
-                    <li><strong>Stalking and Harassment:</strong> Location data from apps and services can be purchased by anyone, including abusive partners or stalkers.</li>
-                    <li><strong>Reproductive Privacy:</strong> Period-tracking apps and health data can be accessed by third parties.</li>
-                    <li><strong>Intimate Image Abuse:</strong> Weak data protection laws make it easier for private photos to be shared without consent.</li>
-                  </ul>
-
-                  <p className="italic text-muted-foreground mt-4">
-                    At EncryptHer, we believe that every woman deserves to feel safe—both in the physical world and online.
-                  </p>
-                </CollapsibleContent>
-              </Collapsible>
-            </article>
-          </Card>
 
           {/* Contribution Form */}
           <BlogContributionForm />
