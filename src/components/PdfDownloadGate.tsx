@@ -72,10 +72,11 @@ export const PdfDownloadGate = ({
     setIsSubmitting(true);
 
     try {
+      const normalizedEmail = email.trim().toLowerCase();
       const { error: dbError } = await supabase
         .from("safety_guide_emails")
         .insert({
-          email: email.trim().toLowerCase(),
+          email: normalizedEmail,
           source: "safety_guide",
           interests: {
             guide: source,
@@ -89,11 +90,30 @@ export const PdfDownloadGate = ({
         console.error("Email signup error:", dbError);
       }
 
+      // Fire-and-forget confirmation email (don't block the download on it)
+      const downloadUrl = pdfUrl.startsWith("http")
+        ? pdfUrl
+        : `${window.location.origin}${pdfUrl}`;
+      supabase.functions
+        .invoke("send-transactional-email", {
+          body: {
+            templateName: "guide-download-confirmation",
+            recipientEmail: normalizedEmail,
+            idempotencyKey: `guide-${source}-${normalizedEmail}`,
+            templateData: {
+              guideTitle,
+              downloadUrl,
+              subscribed: subscribe,
+            },
+          },
+        })
+        .catch((e) => console.warn("Confirmation email failed (non-blocking):", e));
+
       toast({
         title: "Thanks! Your download is starting 📥",
         description: subscribe
-          ? "We'll email you when new guides and resources are published."
-          : "Enjoy the guide!",
+          ? "Check your inbox — we sent you a copy of the link, and we'll email you when new content goes live."
+          : "We sent you a copy of the download link too — enjoy the guide!",
       });
 
       triggerDownload();
