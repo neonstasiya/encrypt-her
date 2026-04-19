@@ -332,6 +332,33 @@ export type Database = {
         }
         Relationships: []
       }
+      site_pledges: {
+        Row: {
+          agreed_at: string
+          created_at: string
+          email: string | null
+          id: string
+          skipped: boolean
+          user_agent: string | null
+        }
+        Insert: {
+          agreed_at?: string
+          created_at?: string
+          email?: string | null
+          id?: string
+          skipped?: boolean
+          user_agent?: string | null
+        }
+        Update: {
+          agreed_at?: string
+          created_at?: string
+          email?: string | null
+          id?: string
+          skipped?: boolean
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       suppressed_emails: {
         Row: {
           created_at: string
