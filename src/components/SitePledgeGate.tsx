@@ -157,15 +157,6 @@ export const SitePledgeGate = () => {
             <Heart className="h-4 w-4" aria-hidden="true" />
             In crisis right now? Call RAINN: 1-800-656-4673
           </a>
-          <div>
-            <button
-              type="button"
-              onClick={handleSkip}
-              className="text-xs text-muted-foreground hover:text-foreground underline underline-offset-2"
-            >
-              Skip and view the site
-            </button>
-          </div>
         </div>
       </div>
     </div>
