@@ -20,9 +20,12 @@ import { Badge } from "@/components/ui/badge";
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { SkipLink } from "@/components/SkipLink";
+import { PdfDownloadGate } from "@/components/PdfDownloadGate";
 import { usePageMeta } from "@/hooks/usePageMeta";
 
 const PDF_URL = "/guides/online-privacy-starter-guide.pdf";
+const PDF_FILENAME = "encrypther-online-privacy-starter-guide.pdf";
+const GUIDE_TITLE = "Online Privacy Starter Guide";
 
 interface Section {
   id: string;
