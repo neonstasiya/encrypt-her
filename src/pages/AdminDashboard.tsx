@@ -7,7 +7,8 @@ import {
   LogOut,
   Settings,
   ArrowRight,
-  Edit
+  Edit,
+  Shield
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -65,6 +66,13 @@ const AdminDashboard = () => {
       icon: Upload,
       link: "/admin/upload-assets",
       color: "accent"
+    },
+    {
+      title: "Pledge Signups",
+      description: "View visitors who agreed to the site pledge and export their emails.",
+      icon: Shield,
+      link: "/admin/pledges",
+      color: "primary"
     }
   ];
 

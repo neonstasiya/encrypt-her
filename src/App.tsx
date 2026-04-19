@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SkipLink } from "@/components/SkipLink";
 import { KeyboardShortcuts } from "@/components/KeyboardShortcuts";
 import ScrollAnimator from "@/components/ScrollAnimator";
+import { SitePledgeGate } from "@/components/SitePledgeGate";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import Index from "./pages/Index";
@@ -30,6 +31,7 @@ import AdminBlogEditor from "./pages/AdminBlogEditor";
 import AdminContributions from "./pages/AdminContributions";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminContent from "./pages/AdminContent";
+import AdminPledges from "./pages/AdminPledges";
 
 import Auth from "./pages/Auth";
 import ResetPassword from "./pages/ResetPassword";
@@ -54,6 +56,7 @@ const App = () => (
           <SkipLink />
           {/* WCAG 2.1.4 (A) - Keyboard Shortcuts with discoverable help */}
           <KeyboardShortcuts />
+          <SitePledgeGate />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
@@ -118,6 +121,11 @@ const App = () => (
             <Route path="/admin/contributions" element={
               <ProtectedRoute requireAdmin>
                 <AdminContributions />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/pledges" element={
+              <ProtectedRoute requireAdmin>
+                <AdminPledges />
               </ProtectedRoute>
             } />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
