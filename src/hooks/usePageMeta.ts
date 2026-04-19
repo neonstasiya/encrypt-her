@@ -69,10 +69,6 @@ const pageMeta: Record<string, PageMeta> = {
     title: "Accessibility Statement - EncryptHer",
     description: "EncryptHer is committed to digital accessibility. Learn about our efforts to ensure our website is usable by everyone.",
   },
-  "/emergency-grant": {
-    title: "EncryptHer Emergency Grant – HerStory Spotlight",
-    description: "Support women and mothers in developing countries through the EncryptHer Emergency Grant. Read real stories and donate to make a direct impact.",
-  },
   "/guides/online-privacy-starter": {
     title: "Online Privacy Starter Guide - EncryptHer",
     description: "A free 10-step guide to protect your digital footprint, secure your accounts, and remove your data from broker sites. Read online or download as PDF.",
