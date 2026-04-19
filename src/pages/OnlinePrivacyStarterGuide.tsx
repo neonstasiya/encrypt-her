@@ -20,9 +20,12 @@ import { Badge } from "@/components/ui/badge";
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { SkipLink } from "@/components/SkipLink";
+import { GuideDownloadGate } from "@/components/GuideDownloadGate";
 import { usePageMeta } from "@/hooks/usePageMeta";
 
 const PDF_URL = "/guides/online-privacy-starter-guide.pdf";
+const PDF_FILENAME = "online-privacy-starter-guide.pdf";
+const GUIDE_NAME = "Online Privacy Starter Guide";
 
 interface Section {
   id: string;
@@ -196,12 +199,11 @@ const OnlinePrivacyStarterGuide = () => {
               A practical 10-step playbook you can complete in a weekend.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" asChild>
-                <a href={PDF_URL} download>
-                  <Download className="mr-2 h-5 w-5" aria-hidden="true" />
-                  Download PDF
-                </a>
-              </Button>
+              <GuideDownloadGate
+                pdfUrl={PDF_URL}
+                pdfFilename={PDF_FILENAME}
+                guideName={GUIDE_NAME}
+              />
               <Button size="lg" variant="outline" asChild>
                 <a href="#contents">Jump to contents</a>
               </Button>
@@ -272,12 +274,11 @@ const OnlinePrivacyStarterGuide = () => {
               Download the printable PDF version to keep on your devices or share with a friend who needs it.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild>
-                <a href={PDF_URL} download>
-                  <Download className="mr-2 h-5 w-5" aria-hidden="true" />
-                  Download PDF
-                </a>
-              </Button>
+              <GuideDownloadGate
+                pdfUrl={PDF_URL}
+                pdfFilename={PDF_FILENAME}
+                guideName={GUIDE_NAME}
+              />
               <Button size="lg" variant="outline" asChild>
                 <Link to="/resources">Browse more resources</Link>
               </Button>
