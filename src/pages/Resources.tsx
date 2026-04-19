@@ -63,7 +63,8 @@ const Resources = () => {
       title: "Online Privacy Starter Guide",
       description: "Essential steps to protect your digital footprint and secure your online accounts.",
       icon: Lock,
-      available: false
+      available: true,
+      link: "/guides/online-privacy-starter"
     },
     {
       title: "Travel Safety Checklist",
@@ -282,15 +283,24 @@ const Resources = () => {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Button 
-                      variant={guide.available ? "default" : "outline"} 
-                      className="w-full"
-                      disabled={!guide.available}
-                      aria-label={guide.available ? `Download ${guide.title}` : `${guide.title} - Coming Soon`}
-                    >
-                      <Download className="mr-2 h-4 w-4" aria-hidden="true" />
-                      {guide.available ? "Download PDF" : "Coming Soon"}
-                    </Button>
+                    {guide.available && guide.link ? (
+                      <Button asChild className="w-full" aria-label={`Open ${guide.title}`}>
+                        <Link to={guide.link}>
+                          <BookOpen className="mr-2 h-4 w-4" aria-hidden="true" />
+                          Read Guide
+                        </Link>
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="outline"
+                        className="w-full"
+                        disabled
+                        aria-label={`${guide.title} - Coming Soon`}
+                      >
+                        <Download className="mr-2 h-4 w-4" aria-hidden="true" />
+                        Coming Soon
+                      </Button>
+                    )}
                   </CardContent>
                 </Card>
               ))}

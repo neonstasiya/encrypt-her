@@ -38,6 +38,7 @@ import ComingSoon from "./pages/ComingSoon";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import EmergencyGrant from "./pages/EmergencyGrant";
+import OnlinePrivacyStarterGuide from "./pages/OnlinePrivacyStarterGuide";
 
 const queryClient = new QueryClient();
 
@@ -74,6 +75,7 @@ const App = () => (
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsAndConditions />} />
             <Route path="/emergency-grant" element={<EmergencyGrant />} />
+            <Route path="/guides/online-privacy-starter" element={<OnlinePrivacyStarterGuide />} />
             
             {/* Protected Admin Routes */}
             <Route path="/admin" element={
