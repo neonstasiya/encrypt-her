@@ -199,12 +199,12 @@ const OnlinePrivacyStarterGuide = () => {
               A practical 10-step playbook you can complete in a weekend.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" asChild>
-                <a href={PDF_URL} download>
-                  <Download className="mr-2 h-5 w-5" aria-hidden="true" />
-                  Download PDF
-                </a>
-              </Button>
+              <PdfDownloadGate
+                pdfUrl={PDF_URL}
+                pdfFilename={PDF_FILENAME}
+                guideTitle={GUIDE_TITLE}
+                source="online-privacy-starter"
+              />
               <Button size="lg" variant="outline" asChild>
                 <a href="#contents">Jump to contents</a>
               </Button>
