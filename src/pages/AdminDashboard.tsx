@@ -65,13 +65,6 @@ const AdminDashboard = () => {
       icon: Upload,
       link: "/admin/upload-assets",
       color: "accent"
-    },
-    {
-      title: "Emergency Grant Media",
-      description: "Upload and manage photos and videos for the Emergency Grant page.",
-      icon: HeartHandshake,
-      link: "/admin/emergency-grant",
-      color: "primary"
     }
   ];
 

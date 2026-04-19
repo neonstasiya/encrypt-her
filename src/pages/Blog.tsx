@@ -137,7 +137,7 @@ const Blog = () => {
                             {estimateReadTime(post.content)}
                           </Badge>
                         </div>
-                        <h3 className="text-base font-semibold text-foreground mb-1.5 leading-snug">{isEmergencyGrant ? highlightTitle(post.title) : post.title}</h3>
+                        <h3 className="text-base font-semibold text-foreground mb-1.5 leading-snug">{post.title}</h3>
                         <div className="flex items-center gap-2 text-xs text-muted-foreground">
                           <span>{post.author_name}</span>
                           <span>•</span>
