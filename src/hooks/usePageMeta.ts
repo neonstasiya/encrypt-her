@@ -73,6 +73,10 @@ const pageMeta: Record<string, PageMeta> = {
     title: "EncryptHer Emergency Grant – HerStory Spotlight",
     description: "Support women and mothers in developing countries through the EncryptHer Emergency Grant. Read real stories and donate to make a direct impact.",
   },
+  "/guides/online-privacy-starter": {
+    title: "Online Privacy Starter Guide - EncryptHer",
+    description: "A free 10-step guide to protect your digital footprint, secure your accounts, and remove your data from broker sites. Read online or download as PDF.",
+  },
 };
 
 // Exported for the edge function to use the same data
