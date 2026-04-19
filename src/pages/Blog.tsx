@@ -105,43 +105,56 @@ const Blog = () => {
                   };
                   return (
                   <Link key={post.id} to={`/blog/${post.slug}`} className="block">
-                    <Card className="p-4 border-l-4 border-l-primary bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10 transition-colors focus-within:ring-2 focus-within:ring-ring">
-                      <div className="flex items-center gap-2 mb-1.5">
-                        {post.category && (
-                          <Badge
-                            variant="secondary"
-                            className="text-[10px] py-0 px-2 cursor-pointer hover:bg-secondary/60"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              setSelectedCategory(post.category);
-                            }}
-                            role="button"
-                            tabIndex={0}
-                            onKeyDown={(e) => {
-                              if (e.key === 'Enter' || e.key === ' ') {
+                    <Card
+                      className="relative overflow-hidden p-4 border-l-4 border-l-primary hover:shadow-lg transition-all focus-within:ring-2 focus-within:ring-ring"
+                      style={
+                        post.featured_image
+                          ? {
+                              backgroundImage: `linear-gradient(to right, hsl(var(--background) / 0.92), hsl(var(--background) / 0.75)), url(${post.featured_image})`,
+                              backgroundSize: 'cover',
+                              backgroundPosition: 'center',
+                            }
+                          : undefined
+                      }
+                    >
+                      <div className="relative">
+                        <div className="flex items-center gap-2 mb-1.5">
+                          {post.category && (
+                            <Badge
+                              variant="secondary"
+                              className="text-[10px] py-0 px-2 cursor-pointer hover:bg-secondary/60"
+                              onClick={(e) => {
                                 e.preventDefault();
                                 setSelectedCategory(post.category);
-                              }
-                            }}
-                          >
-                            <Tag className="h-2.5 w-2.5 mr-1" aria-hidden="true" />
-                            {post.category}
+                              }}
+                              role="button"
+                              tabIndex={0}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                  e.preventDefault();
+                                  setSelectedCategory(post.category);
+                                }
+                              }}
+                            >
+                              <Tag className="h-2.5 w-2.5 mr-1" aria-hidden="true" />
+                              {post.category}
+                            </Badge>
+                          )}
+                          <Badge variant="outline" className="text-[10px] py-0 px-2 bg-background/70">
+                            <Clock className="h-2.5 w-2.5 mr-1" aria-hidden="true" />
+                            {estimateReadTime(post.content)}
                           </Badge>
-                        )}
-                        <Badge variant="outline" className="text-[10px] py-0 px-2">
-                          <Clock className="h-2.5 w-2.5 mr-1" aria-hidden="true" />
-                          {estimateReadTime(post.content)}
-                        </Badge>
+                        </div>
+                        <h3 className="text-base font-semibold text-foreground mb-1.5 leading-snug">{isEmergencyGrant ? highlightTitle(post.title) : post.title}</h3>
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                          <span>{post.author_name}</span>
+                          <span>•</span>
+                          <time dateTime={post.published_at || ''}>
+                            {new Date(post.published_at || '').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                          </time>
+                        </div>
+                        <p className="text-primary font-medium text-xs mt-2">Read More →</p>
                       </div>
-                      <h3 className="text-base font-semibold text-foreground mb-1.5 leading-snug">{isEmergencyGrant ? highlightTitle(post.title) : post.title}</h3>
-                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                        <span>{post.author_name}</span>
-                        <span>•</span>
-                        <time dateTime={post.published_at || ''}>
-                          {new Date(post.published_at || '').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-                        </time>
-                      </div>
-                      <p className="text-primary font-medium text-xs mt-2">Read More →</p>
                     </Card>
                   </Link>
                   );
