@@ -286,7 +286,7 @@ const OnlinePrivacyStarterGuide = () => {
               <Card className="border-2 border-primary/30 shadow-elegant">
                 <CardHeader className="text-center pb-4">
                   <div className="mx-auto mb-4 h-14 w-14 rounded-full bg-primary/10 flex items-center justify-center" aria-hidden="true">
-                    <Lock className="h-7 w-7 text-primary" />
+                    <LockIcon className="h-7 w-7 text-primary" />
                   </div>
                   <CardTitle id="unlock-heading" className="text-2xl md:text-3xl">
                     Unlock the full guide
@@ -347,7 +347,7 @@ const OnlinePrivacyStarterGuide = () => {
                         </>
                       ) : (
                         <>
-                          <Lock className="mr-2 h-4 w-4" aria-hidden="true" />
+                          <LockIcon className="mr-2 h-4 w-4" aria-hidden="true" />
                           Unlock the Guide
                         </>
                       )}
