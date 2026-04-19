@@ -25,7 +25,7 @@ export const SitePledgeGate = () => {
       setShow(false);
       return;
     }
-    const status = localStorage.getItem(STORAGE_KEY);
+    const status = sessionStorage.getItem(STORAGE_KEY);
     if (!status) setShow(true);
   }, [location.pathname]);
 
@@ -58,7 +58,7 @@ export const SitePledgeGate = () => {
 
     setSubmitting(true);
     await recordPledge(false, email.trim() || undefined);
-    localStorage.setItem(STORAGE_KEY, "agreed");
+    sessionStorage.setItem(STORAGE_KEY, "agreed");
     setShow(false);
     setSubmitting(false);
   };
