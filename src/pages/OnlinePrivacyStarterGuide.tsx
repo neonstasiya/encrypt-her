@@ -13,7 +13,7 @@ import {
   UserX,
   ListChecks,
   Check,
-  Lock as LockIcon,
+  LockKeyhole as LockIcon,
   Loader2,
 } from "lucide-react";
 import { z } from "zod";
