@@ -95,14 +95,6 @@ const Blog = () => {
               </h2>
               <div className="space-y-4">
                 {filteredPosts.map((post) => {
-                  const isEmergencyGrant = post.slug?.includes('emergency-grant') || post.title?.toLowerCase().includes('emergency grant');
-                  const highlightTitle = (title: string) => {
-                    const regex = /(EncryptHer\s+Emergency\s+Grant)/gi;
-                    const parts = title.split(regex);
-                    return parts.map((part, i) =>
-                      regex.test(part) ? <span key={i} className="text-destructive">{part}</span> : part
-                    );
-                  };
                   return (
                   <Link key={post.id} to={`/blog/${post.slug}`} className="block">
                     <Card
