@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  Download,
   ArrowLeft,
   Search,
   KeyRound,
@@ -13,15 +13,23 @@ import {
   UserX,
   ListChecks,
   Check,
+  Lock as LockIcon,
+  Loader2,
 } from "lucide-react";
+import { z } from "zod";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import { AccessibleHeader } from "@/components/AccessibleHeader";
 import { AccessibleFooter } from "@/components/AccessibleFooter";
 import { SkipLink } from "@/components/SkipLink";
 import { PdfDownloadGate } from "@/components/PdfDownloadGate";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/hooks/use-toast";
 
 const PDF_URL = "/guides/online-privacy-starter-guide.pdf";
 const PDF_FILENAME = "encrypther-online-privacy-starter-guide.pdf";
