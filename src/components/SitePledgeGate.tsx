@@ -94,11 +94,10 @@ export const SitePledgeGate = () => {
           className="text-foreground leading-relaxed mb-6"
         >
           EncryptHer exists to protect women — many of whom face abuse,
-          stalking, or surveillance every day.{" "}
+          stalking, or surveillance every day. Before you enter:{" "}
           <strong>
-            Before you enter: 'I pledge to use what I learn here to keep myself
-            and others safer, and never to weaponize this knowledge against
-            another person.'
+            'I pledge to use what I learn here to keep myself and others safer,
+            and never to weaponize this knowledge against another person.'
           </strong>
         </p>
 
