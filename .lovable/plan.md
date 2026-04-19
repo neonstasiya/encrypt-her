@@ -1,50 +1,44 @@
 
-The user wants a "Online Privacy Starter Guide" — referenced from the Resources page (currently shows download cards as "Coming Soon"). Let me check that page first to understand context.
 
-Looking at the codebase: `src/pages/Resources.tsx` likely has a card for "Online Privacy Starter Guide" linking to `/coming-soon`. The user wants this to become real content.
+**Component: `SitePledgeGate.tsx`**
+- A full-screen modal overlay (not a route guard) that renders on top of any page when the user hasn't signed.
+- Shows the pledge text + email input + "I agree & enter" button.
+- On submit: stores email in a new `site_pledges` table, sets `localStorage.site_pledge_signed = true`, removes the overlay.
+- Has a small "Need help right now?" link in the corner that scrolls past the modal to surface RAINN/hotline numbers (so a woman in crisis is never blocked).
 
-Two delivery options exist:
-1. A web page at `/guides/online-privacy-starter` (consistent with site, accessible, SEO-friendly)
-2. A downloadable PDF (offline use, shareable)
+**Integration: mount once in `App.tsx`**
+- Renders globally above all routes.
+- Reads `localStorage` on mount — if signed, never shows.
+- Excluded routes: `/auth`, `/reset-password`, `/unsubscribe` (admin/utility flows).
 
-Best approach: **Do both** — create a dedicated content page AND generate a downloadable PDF that the page links to. This matches the existing "Resources" pattern of having both online courses and downloadable guides.
+**SEO protection (critical):**
+- The modal is rendered as a sibling overlay, NOT conditionally hiding page content. Page HTML stays fully intact in the DOM.
+- No `noindex`, no redirects, no server-side gating.
+- Add a tiny "Skip pledge" text link in the modal footer for accessibility (WCAG) and as a safety valve for crisis users — they can dismiss with a click and `localStorage` records "skipped" so they're not nagged.
 
-## Plan
+**Database:**
+- New table `site_pledges` (id, email nullable, agreed_at, ip_hash, user_agent) with RLS allowing public INSERT only.
+- Email is optional — pledge can be signed without email (lower friction, still captures intent + analytics).
 
-### 1. Create downloadable PDF
-- Generate `online-privacy-starter-guide.pdf` using ReportLab with EncryptHer branding (purple accents, clean typography)
-- Save to `/public/guides/online-privacy-starter-guide.pdf` so it's served as a static asset
-- Content sections:
-  1. Introduction — why digital privacy matters
-  2. Audit your digital footprint (Google yourself, check data broker sites)
-  3. Strong passwords + password manager setup
-  4. Enable two-factor authentication (2FA)
-  5. Lock down social media privacy settings
-  6. Secure your browser (privacy extensions, tracker blocking)
-  7. Email privacy basics
-  8. Mobile device privacy (app permissions, location)
-  9. Public Wi-Fi safety + VPN basics
-  10. Quick checklist / next steps
-- QA: render to images, verify layout, no clipping, readable
+**Pledge copy (draft):**
+> "EncryptHer exists to protect women — many of whom face abuse, stalking, or surveillance every day. Before you enter, I pledge to use what I learn here to keep myself and others safer, and never to weaponize this knowledge against another person."
+> 
+> [ optional email field ]
+> [ ✓ I agree ] [ Enter EncryptHer ]
+> 
+> *In crisis right now? [Skip and view emergency resources →]*
 
-### 2. Create web page `/guides/online-privacy-starter`
-- New file: `src/pages/OnlinePrivacyStarterGuide.tsx`
-- Same content as PDF, formatted for web with:
-  - AccessibleHeader + AccessibleFooter
-  - Hero section with title + intro
-  - Numbered sections with icons (Lucide)
-  - Prominent "Download PDF" button at top and bottom
-  - Quick-jump table of contents
-- Register route in `src/App.tsx`
-- Add page meta in `src/hooks/usePageMeta.ts`
+**Admin:** Add a "Pledge Signups" tile in `/admin` showing total pledges + email exports (CSV).
 
-### 3. Wire up the Resources page
-- Update `src/pages/Resources.tsx`: change the "Online Privacy Starter Guide" card from "Coming Soon" to link to `/guides/online-privacy-starter`
-- Remove the "Coming Soon" badge for this card
+**Files to create/edit:**
+- `src/components/SitePledgeGate.tsx` (new)
+- `src/App.tsx` (mount gate)
+- `src/pages/AdminPledges.tsx` (new admin view)
+- `src/pages/AdminDashboard.tsx` (add tile)
+- New migration: `site_pledges` table + RLS
 
-### Files Changed
-- `/mnt/documents/online-privacy-starter-guide.pdf` → copied to `public/guides/`
-- `src/pages/OnlinePrivacyStarterGuide.tsx` (new)
-- `src/App.tsx` (add route)
-- `src/hooks/usePageMeta.ts` (add meta entry)
-- `src/pages/Resources.tsx` (link the card)
+**Tradeoffs to know:**
+- First-visit friction will modestly reduce bounce-rate-adjusted engagement (~5-15% typical for pledge modals).
+- Email capture rate will be lower than a hard gate (~20-40% vs 60%+) because email is optional.
+- Crisis-safety escape hatch is non-negotiable for the mission.
+
