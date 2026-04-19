@@ -1,30 +1,19 @@
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-
 Deno.serve(async () => {
-  const sb = createClient(
-    Deno.env.get("SUPABASE_URL")!,
-    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
-  );
-  const all: string[] = [];
-  const walk = async (prefix = "") => {
-    const { data, error } = await sb.storage.from("emergency-grant").list(prefix, { limit: 1000 });
-    if (error) throw error;
-    for (const it of data ?? []) {
-      const path = prefix ? `${prefix}/${it.name}` : it.name;
-      // folders have null id
-      // @ts-ignore
-      if (it.id === null) await walk(path);
-      else all.push(path);
-    }
-  };
-  try {
-    await walk();
-    if (all.length) {
-      const { error } = await sb.storage.from("emergency-grant").remove(all);
-      if (error) throw error;
-    }
-    return new Response(JSON.stringify({ removed: all.length }), { headers: { "content-type": "application/json" } });
-  } catch (e) {
-    return new Response(JSON.stringify({ error: String(e) }), { status: 500 });
-  }
+  const url = Deno.env.get("SUPABASE_URL")!;
+  const key = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+  // Empty then delete the bucket via Storage Admin API
+  const empty = await fetch(`${url}/storage/v1/bucket/emergency-grant/empty`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${key}`, apikey: key },
+  });
+  const emptyBody = await empty.text();
+  const del = await fetch(`${url}/storage/v1/bucket/emergency-grant`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${key}`, apikey: key },
+  });
+  const delBody = await del.text();
+  return new Response(JSON.stringify({
+    empty: { status: empty.status, body: emptyBody },
+    delete: { status: del.status, body: delBody },
+  }), { headers: { "content-type": "application/json" } });
 });
