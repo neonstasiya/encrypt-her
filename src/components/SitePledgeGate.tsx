@@ -94,10 +94,16 @@ export const SitePledgeGate = () => {
           className="text-foreground leading-relaxed mb-6"
         >
           EncryptHer exists to protect women — many of whom face abuse,
-          stalking, or surveillance every day. Before you enter, I pledge to
-          use what I learn here to keep myself and others safer, and{" "}
-          <strong>never to weaponize this knowledge against another person.</strong>
+          stalking, or surveillance every day. Before you enter, please take
+          this pledge:
         </p>
+
+        <blockquote className="mb-6 border-l-4 border-primary bg-primary/5 px-4 py-3 rounded-r-md">
+          <p className="text-foreground font-medium italic leading-relaxed">
+            “I pledge to use what I learn here to keep myself and others safer,
+            and <strong className="not-italic">never to weaponize this knowledge against another person.</strong>”
+          </p>
+        </blockquote>
 
         <form onSubmit={handleAgree} className="space-y-4">
           <div>
