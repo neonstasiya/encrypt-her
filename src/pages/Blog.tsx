@@ -95,14 +95,6 @@ const Blog = () => {
               </h2>
               <div className="space-y-4">
                 {filteredPosts.map((post) => {
-                  const isEmergencyGrant = post.slug?.includes('emergency-grant') || post.title?.toLowerCase().includes('emergency grant');
-                  const highlightTitle = (title: string) => {
-                    const regex = /(EncryptHer\s+Emergency\s+Grant)/gi;
-                    const parts = title.split(regex);
-                    return parts.map((part, i) =>
-                      regex.test(part) ? <span key={i} className="text-destructive">{part}</span> : part
-                    );
-                  };
                   return (
                   <Link key={post.id} to={`/blog/${post.slug}`} className="block">
                     <Card
@@ -145,7 +137,7 @@ const Blog = () => {
                             {estimateReadTime(post.content)}
                           </Badge>
                         </div>
-                        <h3 className="text-base font-semibold text-foreground mb-1.5 leading-snug">{isEmergencyGrant ? highlightTitle(post.title) : post.title}</h3>
+                        <h3 className="text-base font-semibold text-foreground mb-1.5 leading-snug">{post.title}</h3>
                         <div className="flex items-center gap-2 text-xs text-muted-foreground">
                           <span>{post.author_name}</span>
                           <span>•</span>

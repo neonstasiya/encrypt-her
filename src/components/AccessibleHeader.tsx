@@ -104,14 +104,6 @@ export const AccessibleHeader = ({ showDonateButton = false }: AccessibleHeaderP
                 >
                   Donate
                 </Link>
-                <Link 
-                  to="/emergency-grant" 
-                  className="text-lg text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded px-2 py-1"
-                  aria-current={isCurrentPage("/emergency-grant") ? "page" : undefined}
-                >
-                  Emergency Grant
-                </Link>
-
                 {isAdmin && (
                   <>
                     <Separator className="my-2" />

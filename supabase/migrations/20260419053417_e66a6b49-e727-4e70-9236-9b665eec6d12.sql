@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS public.emergency_grant_media CASCADE;

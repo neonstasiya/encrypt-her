@@ -30,14 +30,14 @@ import AdminBlogEditor from "./pages/AdminBlogEditor";
 import AdminContributions from "./pages/AdminContributions";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminContent from "./pages/AdminContent";
-import AdminEmergencyGrant from "./pages/AdminEmergencyGrant";
+
 import Auth from "./pages/Auth";
 import ResetPassword from "./pages/ResetPassword";
 import AccessibilityStatement from "./pages/AccessibilityStatement";
 import ComingSoon from "./pages/ComingSoon";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
-import EmergencyGrant from "./pages/EmergencyGrant";
+
 import OnlinePrivacyStarterGuide from "./pages/OnlinePrivacyStarterGuide";
 import Unsubscribe from "./pages/Unsubscribe";
 
@@ -75,7 +75,7 @@ const App = () => (
             <Route path="/accessibility" element={<AccessibilityStatement />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsAndConditions />} />
-            <Route path="/emergency-grant" element={<EmergencyGrant />} />
+            
             <Route path="/guides/online-privacy-starter" element={<OnlinePrivacyStarterGuide />} />
             <Route path="/unsubscribe" element={<Unsubscribe />} />
             
@@ -120,12 +120,6 @@ const App = () => (
                 <AdminContributions />
               </ProtectedRoute>
             } />
-            <Route path="/admin/emergency-grant" element={
-              <ProtectedRoute requireAdmin>
-                <AdminEmergencyGrant />
-              </ProtectedRoute>
-            } />
-            
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
