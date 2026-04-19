@@ -134,7 +134,6 @@ const Blog = () => {
                         </Badge>
                       </div>
                       <h3 className="text-xl font-semibold text-foreground mb-2">{isEmergencyGrant ? highlightTitle(post.title) : post.title}</h3>
-                      {post.excerpt && <p className="text-muted-foreground mb-3">{post.excerpt}</p>}
                       <div className="flex items-center gap-4 text-sm text-muted-foreground">
                         <span>{post.author_name}</span>
                         <span>•</span>
