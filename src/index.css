@@ -44,6 +44,31 @@
   outline: none;
 }
 
+/* Remove mobile tap/focus highlight boxes while keeping desktop keyboard focus visible */
+@media (max-width: 767px) {
+  a,
+  button,
+  [role="button"],
+  input,
+  textarea,
+  select,
+  label {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  *:focus,
+  *:focus-visible,
+  a:focus,
+  button:focus,
+  [role="button"]:focus,
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
 /* ============================================
    WCAG 2.3.3 (AAA) - Animation from Interactions
    Comprehensive reduced motion support
