@@ -67,6 +67,15 @@
     outline: none !important;
     box-shadow: none !important;
   }
+
+  .mobile-no-tap-highlight,
+  .mobile-no-tap-highlight:hover,
+  .mobile-no-tap-highlight:focus,
+  .mobile-no-tap-highlight:focus-visible,
+  .mobile-no-tap-highlight:active {
+    background-color: transparent !important;
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 /* ============================================

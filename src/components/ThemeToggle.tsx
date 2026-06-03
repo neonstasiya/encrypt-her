@@ -31,6 +31,7 @@ export function ThemeToggle() {
     <Button
       variant="ghost"
       size="icon"
+      className="mobile-no-tap-highlight"
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       aria-pressed={isDark}
