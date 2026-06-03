@@ -45,13 +45,19 @@
 }
 
 /* Remove mobile tap/focus highlight boxes while keeping desktop keyboard focus visible */
-@media (hover: none) and (pointer: coarse) {
+@media (max-width: 767px) {
   a,
   button,
-  [role="button"] {
+  [role="button"],
+  input,
+  textarea,
+  select,
+  label {
     -webkit-tap-highlight-color: transparent;
   }
 
+  *:focus,
+  *:focus-visible,
   a:focus,
   button:focus,
   [role="button"]:focus,
