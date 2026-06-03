@@ -23,7 +23,7 @@ export const AccessibleHeader = ({ showDonateButton = false }: AccessibleHeaderP
       <div className="container mx-auto px-4 flex items-center justify-between py-px">
         <Link 
           to="/" 
-          className="flex items-center gap-0 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded"
+          className="flex items-center gap-0 outline-none focus:outline-none md:focus-visible:ring-2 md:focus-visible:ring-ring md:focus-visible:ring-offset-2 rounded"
           aria-label="EncryptHer - Go to homepage"
         >
           <img src={encryptherLogo} alt="" className="h-14 w-14 md:h-24 md:w-24" aria-hidden="true" />
