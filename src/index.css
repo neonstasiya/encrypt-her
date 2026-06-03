@@ -46,6 +46,14 @@
 
 /* Remove mobile tap/focus highlight boxes while keeping desktop keyboard focus visible */
 @media (max-width: 767px) {
+  html,
+  body,
+  *,
+  *::before,
+  *::after {
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
   a,
   button,
   [role="button"],

@@ -19,7 +19,16 @@ export const AccessibleHeader = ({ showDonateButton = false }: AccessibleHeaderP
   const isCurrentPage = (path: string) => location.pathname === path;
   
   return (
-    <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50" role="banner">
+    <header
+      className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50"
+      role="banner"
+      onPointerUp={(event) => {
+        if (event.pointerType === "touch") {
+          const target = event.target as HTMLElement;
+          window.setTimeout(() => target.closest<HTMLElement>("a, button, [role='button']")?.blur(), 0);
+        }
+      }}
+    >
       <div className="container mx-auto px-4 flex items-center justify-between py-px">
         <Link 
           to="/" 
