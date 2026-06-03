@@ -19,11 +19,20 @@ export const AccessibleHeader = ({ showDonateButton = false }: AccessibleHeaderP
   const isCurrentPage = (path: string) => location.pathname === path;
   
   return (
-    <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50" role="banner">
+    <header
+      className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50"
+      role="banner"
+      onPointerUp={(event) => {
+        if (event.pointerType === "touch") {
+          const target = event.target as HTMLElement;
+          window.setTimeout(() => target.closest<HTMLElement>("a, button, [role='button']")?.blur(), 0);
+        }
+      }}
+    >
       <div className="container mx-auto px-4 flex items-center justify-between py-px">
         <Link 
           to="/" 
-          className="flex items-center gap-0 outline-none focus:outline-none md:focus-visible:ring-2 md:focus-visible:ring-ring md:focus-visible:ring-offset-2 rounded"
+          className="mobile-no-tap-highlight flex items-center gap-0 outline-none focus:outline-none md:focus-visible:ring-2 md:focus-visible:ring-ring md:focus-visible:ring-offset-2 rounded"
           aria-label="EncryptHer - Go to homepage"
         >
           <img src={encryptherLogo} alt="" className="h-14 w-14 md:h-24 md:w-24" aria-hidden="true" />
@@ -44,6 +53,7 @@ export const AccessibleHeader = ({ showDonateButton = false }: AccessibleHeaderP
               <Button 
                 variant="ghost" 
                 size="icon" 
+                className="mobile-no-tap-highlight"
                 aria-label="Open main navigation menu"
                 aria-haspopup="dialog"
               >

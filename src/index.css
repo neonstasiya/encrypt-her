@@ -46,6 +46,14 @@
 
 /* Remove mobile tap/focus highlight boxes while keeping desktop keyboard focus visible */
 @media (max-width: 767px) {
+  html,
+  body,
+  *,
+  *::before,
+  *::after {
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
   a,
   button,
   [role="button"],
@@ -66,6 +74,33 @@
   [role="button"]:focus-visible {
     outline: none !important;
     box-shadow: none !important;
+  }
+
+  .mobile-no-tap-highlight,
+  .mobile-no-tap-highlight:hover,
+  .mobile-no-tap-highlight:focus,
+  .mobile-no-tap-highlight:focus-visible,
+  .mobile-no-tap-highlight:active {
+    background-color: transparent !important;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: none !important;
+    outline: none !important;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+  }
+
+  header a:hover,
+  header button:hover,
+  header a:active,
+  header button:active,
+  header a:focus,
+  header button:focus,
+  header a:focus-visible,
+  header button:focus-visible {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
   }
 }
 

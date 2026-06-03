@@ -73,7 +73,7 @@ export const SitePledgeGate = () => {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-background/95 backdrop-blur-sm p-4 overflow-y-auto"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-background p-4 overflow-y-auto md:bg-background/95 md:backdrop-blur-sm"
       role="dialog"
       aria-modal="true"
       aria-labelledby="pledge-title"
