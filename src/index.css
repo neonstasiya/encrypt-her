@@ -75,6 +75,24 @@
   .mobile-no-tap-highlight:active {
     background-color: transparent !important;
     -webkit-tap-highlight-color: transparent;
+    box-shadow: none !important;
+    outline: none !important;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+  }
+
+  header a:hover,
+  header button:hover,
+  header a:active,
+  header button:active,
+  header a:focus,
+  header button:focus,
+  header a:focus-visible,
+  header button:focus-visible {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
   }
 }
 
