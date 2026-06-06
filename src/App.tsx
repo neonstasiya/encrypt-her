@@ -56,7 +56,7 @@ const App = () => (
           <SkipLink />
           {/* WCAG 2.1.4 (A) - Keyboard Shortcuts with discoverable help */}
           <KeyboardShortcuts />
-          <SitePledgeGate />
+          {/* <SitePledgeGate /> Temporarily disabled — revisit later */}
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
