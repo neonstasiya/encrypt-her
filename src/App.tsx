@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SkipLink } from "@/components/SkipLink";
 import { KeyboardShortcuts } from "@/components/KeyboardShortcuts";
 import ScrollAnimator from "@/components/ScrollAnimator";
-import { SitePledgeGate } from "@/components/SitePledgeGate";
+// import { SitePledgeGate } from "@/components/SitePledgeGate"; // Temporarily disabled — revisit later
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import Index from "./pages/Index";
