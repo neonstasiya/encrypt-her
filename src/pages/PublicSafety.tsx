@@ -607,7 +607,7 @@ const PublicSafety = () => {
             Ready to Build Your Safety Skills?
           </h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Join thousands of women taking control of their personal safety. Enroll today and start building confidence, awareness, and practical protection skills.
+            Take control of your personal safety. Enroll today and start building confidence, awareness, and practical protection skills.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="text-lg" asChild>

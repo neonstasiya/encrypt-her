@@ -36,7 +36,7 @@ const defaultContent = {
   },
   cta: {
     title: "Ready to Take Control?",
-    description: "Join thousands of women who have strengthened their safety and privacy through our programs.",
+    description: "Start building your safety and privacy skills with our programs.",
     primaryButton: "Enroll Now",
     secondaryButton: "Free Resources",
   },
