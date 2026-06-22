@@ -1,22 +1,22 @@
-## Add Browser Fingerprinting Guide to /resources
+## Goal
+Create a downloadable LinkedIn profile banner image that visually matches the EncryptHer homepage hero — pink/purple gradient header style — featuring the tagline **"Your Safety, Your Privacy, Your Power."**
 
-The new guide page exists at `/guides/browser-fingerprinting` but isn't listed on the Resources page. I'll add it to the "Downloadable Guides" grid as an available guide.
+## Output
+- Single PNG image at LinkedIn's recommended banner size: **1584 × 396 px**
+- Saved to `/mnt/documents/encrypther-linkedin-banner.png` for download
+- No logo, no URL — just styled tagline (per your answer)
 
-### Change
-**Edit `src/pages/Resources.tsx`** — add a new entry to the `downloadableGuides` array (after "Online Privacy Starter Guide"):
+## Visual direction (matches site hero)
+- Background: gradient from `--primary` (deep purple/magenta `hsl(280 70% 40%)`) through soft pink to `--accent` (`hsl(320 65% 45%)`), mirroring the homepage hero's `from-primary/40 via-background/80 to-accent/40` feel but more saturated for banner impact
+- Subtle abstract overlay (soft glow, faint geometric/network texture) for depth, no busy imagery
+- Typography: bold modern sans-serif, large, centered
+  - "Your Safety, Your Privacy," in white
+  - "Your Power" highlighted in a brighter pink/magenta accent (matches the site's `text-primary` treatment of "Your Power")
+- Safe margins so text isn't clipped by LinkedIn's profile photo circle (left ~280px on desktop)
 
-```ts
-{
-  title: "Browser Fingerprinting Guide",
-  description: "Learn how websites track you across the web — and the mitigation playbook to reduce your fingerprint.",
-  icon: Eye,
-  available: true,
-  link: "/guides/browser-fingerprinting"
-}
-```
+## Steps
+1. Generate the banner with the premium image model (text legibility matters)
+2. View the result and verify the tagline is rendered correctly, spacing is clean, and it reads well at LinkedIn banner dimensions
+3. If text is misrendered or layout is off, regenerate with a tightened prompt
 
-This will render as a "Read Guide" card alongside the Online Privacy Starter Guide. No other changes needed — the existing card renderer already handles `available: true` + `link` correctly.
-
-### Out of scope
-- No changes to routing, SEO metadata, or the guide page itself (already in place from the previous turn).
-- Not touching the footer dropdown (state-only).
+No code changes — this is a one-off design asset.
