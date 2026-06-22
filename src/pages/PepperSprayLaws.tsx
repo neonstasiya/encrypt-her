@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Shield, AlertTriangle } from "lucide-react";
+import { Shield, AlertTriangle, Plane, Luggage } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
