@@ -120,7 +120,119 @@ const PepperSprayLaws = () => {
           </div>
         </header>
 
-        <section aria-label="Filters" className="grid sm:grid-cols-2 gap-3 mb-8">
+        <section aria-labelledby="travel-heading" className="mb-10">
+          <div className="flex items-center gap-3 mb-4">
+            <Plane className="h-7 w-7 text-primary" aria-hidden="true" />
+            <h2 id="travel-heading" className="text-2xl md:text-3xl font-bold text-foreground">
+              Airline &amp; Travel Restrictions
+            </h2>
+          </div>
+          <p className="text-muted-foreground max-w-3xl mb-5">
+            Pepper spray is tightly regulated when you fly. Federal rules generally allow it in checked baggage only,
+            with size and safety-cap requirements, but it is never allowed in carry-on bags. Individual airlines may add
+            their own conditions, so confirm with your carrier before departure.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-5 mb-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Luggage className="h-5 w-5 text-primary" aria-hidden="true" />
+                  TSA Rules
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2 text-sm text-muted-foreground">
+                <p>
+                  <strong className="text-foreground">Carry-on:</strong> Not permitted.
+                </p>
+                <p>
+                  <strong className="text-foreground">Checked baggage:</strong> One container up to 4 fl. oz. (118 mL)
+                  is allowed if it has a safety mechanism to prevent accidental discharge.
+                </p>
+                <p>
+                  Sprays containing more than 2% by mass of tear gas (CS or CN) are prohibited in checked baggage.
+                </p>
+                <p className="pt-2">
+                  <a
+                    href="https://www.tsa.gov/travel/security-screening/whatcanibring/items/pepper-spray"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary underline hover:text-primary/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
+                  >
+                    TSA: What Can I Bring? — Pepper Spray
+                  </a>
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Major Airline Policies</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3 text-sm text-muted-foreground">
+                  <li>
+                    <a
+                      href="https://www.aa.com/web/i18n/travel-info/baggage/restricted-items.html"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary underline hover:text-primary/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
+                    >
+                      American Airlines — Restricted Items
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.delta.com/us/en/baggage/prohibited-or-restricted-items/overview"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary underline hover:text-primary/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
+                    >
+                      Delta Air Lines — Prohibited or Restricted Items
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.united.com/en/us/fly/baggage/dangerous-items.html"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary underline hover:text-primary/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
+                    >
+                      United Airlines — Dangerous Items
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://support.southwest.com/helpcenter/s/article/Self-defense-sprays"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary underline hover:text-primary/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
+                    >
+                      Southwest Airlines — Self-Defense Sprays
+                    </a>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div
+            role="note"
+            className="flex gap-3 rounded-md border border-border bg-card p-4 text-sm text-muted-foreground"
+          >
+            <AlertTriangle className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+            <p>
+              <strong className="text-foreground">International travel:</strong> Pepper spray rules vary widely
+              outside the U.S. Some countries prohibit import or possession entirely. Check destination and transit
+              country regulations before packing it in any luggage.
+            </p>
+          </div>
+        </section>
+
+        <section aria-labelledby="state-laws-heading" className="mb-6">
+          <h2 id="state-laws-heading" className="sr-only">
+            State Laws
+          </h2>
           <Input
             type="search"
             placeholder="Search by state, statute, or keyword…"
