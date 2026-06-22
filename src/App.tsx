@@ -43,6 +43,7 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import OnlinePrivacyStarterGuide from "./pages/OnlinePrivacyStarterGuide";
 import BrowserFingerprintingGuide from "./pages/BrowserFingerprintingGuide";
 import Unsubscribe from "./pages/Unsubscribe";
+import PepperSprayLaws from "./pages/PepperSprayLaws";
 
 const queryClient = new QueryClient();
 
@@ -79,6 +80,7 @@ const App = () => (
             <Route path="/accessibility" element={<AccessibilityStatement />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsAndConditions />} />
+            <Route path="/pepper-spray-laws" element={<PepperSprayLaws />} />
             
             <Route path="/guides/online-privacy-starter" element={<OnlinePrivacyStarterGuide />} />
             <Route path="/guides/browser-fingerprinting" element={<BrowserFingerprintingGuide />} />

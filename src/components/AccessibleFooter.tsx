@@ -59,6 +59,11 @@ export const AccessibleFooter = () => {
                   Safety Guides
                 </Link>
               </li>
+              <li>
+                <Link to="/pepper-spray-laws" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring rounded">
+                  Pepper Spray Laws
+                </Link>
+              </li>
             </ul>
           </nav>
           
