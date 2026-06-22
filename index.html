@@ -5,26 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/favicon.png" type="image/png" />
     <title>EncryptHer - Women's Digital Safety & Privacy Education</title>
-    <meta name="description" content="EncryptHer empowers women through comprehensive digital safety education, online privacy courses, travel safety training, and advocacy for women's digital rights." />
+    <meta name="description" content="EncryptHer empowers women with digital safety education, online privacy courses, travel safety training, and digital rights advocacy." />
     <meta name="author" content="EncryptHer" />
+    <link rel="canonical" href="https://encrypther.org/" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="EncryptHer - Women's Digital Safety & Privacy Education" />
-    <meta property="og:description" content="EncryptHer empowers women through comprehensive digital safety education, online privacy courses, travel safety training, and advocacy for women's digital rights." />
+    <meta property="og:description" content="EncryptHer empowers women with digital safety education, online privacy courses, travel safety training, and digital rights advocacy." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://encrypt-her.lovable.app" />
-    <meta property="og:image" content="https://encrypt-her.lovable.app/og-image.jpg" />
+    <meta property="og:url" content="https://encrypther.org/" />
+    <meta property="og:image" content="https://encrypther.org/og-image.jpg" />
+    <meta property="og:site_name" content="EncryptHer" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="EncryptHer - Women's Digital Safety & Privacy Education" />
-    <meta name="twitter:description" content="EncryptHer empowers women through comprehensive digital safety education, online privacy courses, travel safety training, and advocacy for women's digital rights." />
+    <meta name="twitter:description" content="EncryptHer empowers women with digital safety education, online privacy courses, travel safety training, and digital rights advocacy." />
+
+    <!-- Sitewide Organization + WebSite JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://encrypther.org/#organization",
+            "name": "EncryptHer",
+            "url": "https://encrypther.org/",
+            "logo": "https://encrypther.org/favicon.png",
+            "description": "EncryptHer empowers women with digital safety education, online privacy courses, travel safety training, and digital rights advocacy."
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://encrypther.org/#website",
+            "url": "https://encrypther.org/",
+            "name": "EncryptHer",
+            "publisher": { "@id": "https://encrypther.org/#organization" }
+          }
+        ]
+      }
+    </script>
 
     <script>
       (function() {
         var path = window.location.pathname;
+        var BASE = "https://encrypther.org";
         var meta = {
-          "/": { title: "EncryptHer - Women's Digital Safety & Privacy Education", description: "EncryptHer empowers women through comprehensive digital safety education, online privacy courses, travel safety training, and advocacy for women's digital rights." },
+          "/": { title: "EncryptHer - Women's Digital Safety & Privacy Education", description: "EncryptHer empowers women with digital safety education, online privacy courses, travel safety training, and digital rights advocacy." },
           "/about": { title: "About Us - EncryptHer", description: "Learn about EncryptHer's mission to empower women through digital safety education, our team, and our commitment to women's online security." },
           "/donate": { title: "Donate - Support Women's Safety | EncryptHer", description: "Support EncryptHer's mission to empower women with digital safety education. Your donation helps provide free resources, courses, and advocacy programs." },
           "/online-privacy": { title: "Online Privacy Course - EncryptHer", description: "Learn essential online privacy and security skills to protect yourself in the digital world. Free course by EncryptHer for women's digital safety." },
@@ -41,13 +68,16 @@
           "/accessibility": { title: "Accessibility Statement - EncryptHer", description: "EncryptHer is committed to digital accessibility. Learn about our efforts to ensure our website is usable by everyone." }
         };
         var m = meta[path] || meta['/'];
+        var url = BASE + path;
         if (m) {
           document.querySelector('meta[property="og:title"]').setAttribute('content', m.title);
           document.querySelector('meta[property="og:description"]').setAttribute('content', m.description);
-          document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://encrypt-her.lovable.app' + path);
+          document.querySelector('meta[property="og:url"]').setAttribute('content', url);
           document.querySelector('meta[name="twitter:title"]').setAttribute('content', m.title);
           document.querySelector('meta[name="twitter:description"]').setAttribute('content', m.description);
           document.querySelector('meta[name="description"]').setAttribute('content', m.description);
+          var canonical = document.querySelector('link[rel="canonical"]');
+          if (canonical) canonical.setAttribute('href', url);
           document.title = m.title;
         }
       })();

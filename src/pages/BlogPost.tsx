@@ -28,9 +28,29 @@ const BlogPost = () => {
     enabled: !!slug,
   });
 
+  const articleJsonLd = post
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: post.title,
+        description: post.excerpt || undefined,
+        author: { "@type": "Person", name: post.author_name },
+        datePublished: post.published_at || post.created_at,
+        dateModified: post.updated_at || post.published_at || post.created_at,
+        image: post.featured_image || undefined,
+        mainEntityOfPage: `https://encrypther.org/blog/${post.slug}`,
+        publisher: {
+          "@type": "Organization",
+          name: "EncryptHer",
+          logo: { "@type": "ImageObject", url: "https://encrypther.org/favicon.png" },
+        },
+      }
+    : null;
+
   usePageMeta(
     post?.title ? `${post.title} | EncryptHer Blog` : 'Blog Post | EncryptHer',
-    post?.excerpt || undefined
+    post?.excerpt || undefined,
+    { ogType: "article", jsonLd: articleJsonLd }
   );
 
   const getReadingTime = (content: string) => {

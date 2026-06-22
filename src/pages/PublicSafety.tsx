@@ -10,7 +10,20 @@ import { SkipLink } from "@/components/SkipLink";
 import { usePageMeta } from "@/hooks/usePageMeta";
 
 const PublicSafety = () => {
-  usePageMeta();
+  usePageMeta(undefined, undefined, {
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      name: "Public Safety Course",
+      description:
+        "Learn essential public safety skills and strategies for women. EncryptHer's free course covers awareness, prevention, and response techniques.",
+      provider: {
+        "@type": "Organization",
+        name: "EncryptHer",
+        sameAs: "https://encrypther.org",
+      },
+    },
+  });
   
   return (
     <div className="min-h-screen bg-background">
