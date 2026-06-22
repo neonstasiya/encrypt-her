@@ -229,10 +229,7 @@ const PepperSprayLaws = () => {
           </div>
         </section>
 
-        <section aria-labelledby="state-laws-heading" className="mb-6">
-          <h2 id="state-laws-heading" className="sr-only">
-            State Laws
-          </h2>
+        <section aria-label="Filters" className="grid sm:grid-cols-2 gap-3 mb-8">
           <Input
             type="search"
             placeholder="Search by state, statute, or keyword…"
