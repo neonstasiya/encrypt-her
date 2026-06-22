@@ -41,6 +41,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 
 import OnlinePrivacyStarterGuide from "./pages/OnlinePrivacyStarterGuide";
+import BrowserFingerprintingGuide from "./pages/BrowserFingerprintingGuide";
 import Unsubscribe from "./pages/Unsubscribe";
 
 const queryClient = new QueryClient();
@@ -80,6 +81,7 @@ const App = () => (
             <Route path="/terms" element={<TermsAndConditions />} />
             
             <Route path="/guides/online-privacy-starter" element={<OnlinePrivacyStarterGuide />} />
+            <Route path="/guides/browser-fingerprinting" element={<BrowserFingerprintingGuide />} />
             <Route path="/unsubscribe" element={<Unsubscribe />} />
             
             {/* Protected Admin Routes */}
