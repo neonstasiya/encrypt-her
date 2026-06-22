@@ -89,6 +89,11 @@ const pageMeta: Record<string, PageMeta> = {
     description:
       "A free 10-step guide to protect your digital footprint, secure your accounts, and remove your data from broker sites. Read online or download as PDF.",
   },
+  "/guides/browser-fingerprinting": {
+    title: "Browser Fingerprinting Guide — Protect Your Privacy | EncryptHer",
+    description:
+      "Learn how browser fingerprinting tracks you across the web and the practical, ranked steps you can take to defend against it.",
+  },
 };
 
 // Exported for the edge function to use the same data
