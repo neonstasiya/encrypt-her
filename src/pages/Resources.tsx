@@ -67,6 +67,13 @@ const Resources = () => {
       link: "/guides/online-privacy-starter"
     },
     {
+      title: "Browser Fingerprinting Guide",
+      description: "Learn how websites track you across the web — and the mitigation playbook to reduce your fingerprint.",
+      icon: Eye,
+      available: true,
+      link: "/guides/browser-fingerprinting"
+    },
+    {
       title: "Travel Safety Checklist",
       description: "Comprehensive pre-travel and in-destination safety checklist for solo travelers.",
       icon: Plane,
