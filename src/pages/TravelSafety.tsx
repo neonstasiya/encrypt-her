@@ -10,7 +10,20 @@ import { SkipLink } from "@/components/SkipLink";
 import { usePageMeta } from "@/hooks/usePageMeta";
 
 const TravelSafety = () => {
-  usePageMeta();
+  usePageMeta(undefined, undefined, {
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      name: "Travel Safety Course",
+      description:
+        "Comprehensive travel safety training for women. Learn essential tips, strategies, and tools to stay safe while traveling domestically and internationally.",
+      provider: {
+        "@type": "Organization",
+        name: "EncryptHer",
+        sameAs: "https://encrypther.org",
+      },
+    },
+  });
   
   return (
     <div className="min-h-screen bg-background">

@@ -10,7 +10,20 @@ import { SkipLink } from "@/components/SkipLink";
 import { usePageMeta } from "@/hooks/usePageMeta";
 
 const OnlinePrivacy = () => {
-  usePageMeta();
+  usePageMeta(undefined, undefined, {
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      name: "Online Privacy Course",
+      description:
+        "Learn essential online privacy and security skills to protect yourself in the digital world. Free course by EncryptHer for women's digital safety.",
+      provider: {
+        "@type": "Organization",
+        name: "EncryptHer",
+        sameAs: "https://encrypther.org",
+      },
+    },
+  });
   
   return <div className="min-h-screen bg-background">
       <SkipLink />
